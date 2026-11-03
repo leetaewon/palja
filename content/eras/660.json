@@ -1,0 +1,51 @@
+{
+  "id": "660",
+  "title": "백제 멸망",
+  "birthYears": [630, 650],
+  "regions": [
+    { "id": "sabi", "name": "사비", "weight": 14 },
+    { "id": "ungjin", "name": "웅진", "weight": 12 },
+    { "id": "geumgang", "name": "금강 하구", "weight": 12 },
+    { "id": "hwangsan", "name": "황산", "weight": 14 },
+    { "id": "imjon", "name": "임존", "weight": 18 },
+    { "id": "yeongsan", "name": "영산강", "weight": 30 }
+  ],
+  "statuses": [
+    {
+      "id": "royal", "name": "왕족", "weight": 1, "sourceRef": "status-royal",
+      "recordTerm": "왕족", "recordTermFemale": "왕족", "nameGroup": "royal",
+      "influenceBase": 3, "persuasion": 1.0, "mortality": 0.75,
+      "start": { "health": [55, 80], "wealth": [80, 95], "learning": [5, 15], "trust": [45, 60] },
+      "regions": ["sabi"]
+    },
+    {
+      "id": "yangban", "name": "귀족·관인", "weight": 1.98, "sourceRef": "status-660",
+      "recordTerm": "관인", "recordTermFemale": "여인", "nameGroup": "noble",
+      "influenceBase": 2, "persuasion": 1.0, "mortality": 0.8,
+      "start": { "health": [45, 75], "wealth": [55, 85], "learning": [5, 15], "trust": [35, 55] }
+    },
+    {
+      "id": "commoner", "name": "백성", "weight": 84.15, "sourceRef": "status-660",
+      "recordTerm": "백성", "recordTermFemale": "백성", "nameGroup": "common",
+      "influenceBase": 1, "persuasion": 0.8, "mortality": 1.0,
+      "start": { "health": [35, 70], "wealth": [10, 40], "learning": [0, 5], "trust": [25, 45] }
+    },
+    {
+      "id": "slave", "name": "노비", "weight": 12.87, "sourceRef": "status-660",
+      "recordTerm": "노", "recordTermFemale": "비", "nameGroup": "slave",
+      "influenceBase": 1, "persuasion": 0.6, "mortality": 1.12,
+      "start": { "health": [30, 65], "wealth": [0, 15], "learning": [0, 3], "trust": [20, 40] }
+    }
+  ],
+  "mortality": { "eraModifier": 1.05 },
+  "reigns": [
+    { "name": "무왕", "accession": 600, "firstYear": 600 },
+    { "name": "의자왕", "accession": 641, "firstYear": 641 },
+    { "name": "문무왕", "accession": 661, "firstYear": 661 },
+    { "name": "신문왕", "accession": 681, "firstYear": 681 },
+    { "name": "효소왕", "accession": 692, "firstYear": 692 },
+    { "name": "성덕왕", "accession": 702, "firstYear": 702 },
+    { "name": "효성왕", "accession": 737, "firstYear": 737 }
+  ],
+  "sourceRefs": ["era-660", "status-660", "regions-660"]
+}
