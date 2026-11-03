@@ -4,9 +4,7 @@ import { content } from './helpers';
 
 describe('출생 결정 (PRD 4장)', () => {
   const N = 30000;
-  const births = Array.from({ length: N }, (_, i) => createBirth(content, `birth-${i}`));
-  // 시점이 여럿이라 1592 전용 검사는 1592 출생만 본다
-  const births1592 = births.filter((b) => b.eraId === '1592');
+  const births = Array.from({ length: N }, (_, i) => createBirth(content, `birth-${i}`, { eraId: '1592' }));
 
   it('왕족 출생 확률 1% ±0.3%p', () => {
     const royal = births.filter((b) => b.statusId === 'royal').length / N;
@@ -17,7 +15,7 @@ describe('출생 결정 (PRD 4장)', () => {
   it('신분 분포가 콘텐츠 가중치를 따른다', () => {
     const era = content.eras.find((e) => e.id === '1592')!;
     for (const st of era.statuses) {
-      const got = births1592.filter((b) => b.statusId === st.id).length / births1592.length;
+      const got = births.filter((b) => b.statusId === st.id).length / N;
       expect(Math.abs(got - st.weight / 100)).toBeLessThan(0.012);
     }
   });
@@ -25,7 +23,7 @@ describe('출생 결정 (PRD 4장)', () => {
   it('성별 50:50, 출생 연도는 구간 안', () => {
     const male = births.filter((b) => b.sex === 'male').length / N;
     expect(Math.abs(male - 0.5)).toBeLessThan(0.015);
-    for (const b of births1592.slice(0, 2000)) {
+    for (const b of births.slice(0, 2000)) {
       expect(b.year).toBeGreaterThanOrEqual(1565);
       expect(b.year).toBeLessThanOrEqual(1580);
       expect(b.month).toBeGreaterThanOrEqual(1);
@@ -34,11 +32,11 @@ describe('출생 결정 (PRD 4장)', () => {
   });
 
   it('왕족은 한양이 있는 경기도에서 태어난다', () => {
-    for (const b of births1592.filter((x) => x.statusId === 'royal')) expect(b.regionId).toBe('gyeonggi');
+    for (const b of births.filter((x) => x.statusId === 'royal')) expect(b.regionId).toBe('gyeonggi');
   });
 
   it('노비는 성 없이, 왕족은 이씨로 이름이 붙는다', () => {
-    for (const b of births1592.slice(0, 3000)) {
+    for (const b of births.slice(0, 3000)) {
       expect(b.givenName.length).toBeGreaterThan(0);
       if (b.statusId === 'slave') expect(b.surname).toBe('');
       if (b.statusId === 'royal') expect(b.surname).toBe('이');

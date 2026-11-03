@@ -3,7 +3,7 @@ import { computeInfluence, createBirth, createLife, persuasionChance, useKnowled
 import { content } from './helpers';
 
 function life(statusId: string, stats: Partial<LifeState['stats']>, flags: string[] = []): LifeState {
-  const s = createLife(content, createBirth(content, `inf-${statusId}`));
+  const s = createLife(content, createBirth(content, `inf-${statusId}`, { eraId: '1592' }));
   return { ...s, statusId, stats: { health: 50, wealth: 10, learning: 10, trust: 30, ...stats }, flags, lifeIndex: 1 };
 }
 

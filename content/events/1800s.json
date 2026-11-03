@@ -1,0 +1,2739 @@
+[
+  {
+    "id": "1800-jeongjo-death",
+    "kind": "timeline",
+    "when": {
+      "year": 1800,
+      "month": 6
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "ageMin": 8,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "6월, 임금이 세상을 떠나고 열한 살 세자가 왕위에 올랐다는 소식이 고을에 닿았다. 대왕대비가 발을 드리우고 나랏일을 본다고 했다.",
+    "sourceRefs": [
+      "era-1800s",
+      "reigns-1800s"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1801-gongnobi",
+    "kind": "timeline",
+    "when": {
+      "year": 1801,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "statuses": [
+        "slave"
+      ]
+    },
+    "text": "정월, 나라가 관청에 딸린 노비의 문서를 거두어 불태운다는 소식이 돌았다.",
+    "outcomes": [
+      {
+        "weight": 15,
+        "text": "당신의 집안은 내수사에 딸린 노비였다. 노비 문서가 불타고, 당신은 양인이 되었다.",
+        "effects": [
+          {
+            "type": "status",
+            "to": "commoner"
+          },
+          {
+            "type": "flag",
+            "set": "freed-1801"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          },
+          {
+            "type": "record",
+            "level": "hojeok",
+            "templateId": "hojeok-1800s-freed"
+          }
+        ]
+      },
+      {
+        "weight": 85,
+        "text": "6만 6천여 명이 양인이 되었다고 했다. 당신은 사가의 노비라 달라진 것이 없었다."
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "gongnobi-1801"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1801-gongnobi-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1801,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "ageMin": 9,
+      "notStatuses": [
+        "slave",
+        "royal"
+      ]
+    },
+    "text": "정월, 내수사와 관청에 딸린 노비 6만 6천여 명을 양인으로 삼는다는 영이 내렸다.",
+    "sourceRefs": [
+      "gongnobi-1801"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1801-sinyu",
+    "kind": "timeline",
+    "when": {
+      "year": 1801,
+      "month": 2
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "ageMin": 9,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "천주교를 금하는 영이 내리고, 믿는 사람들이 잡혀가 목숨을 잃었다는 소식이 이어졌다. 이웃끼리 서로를 살피라는 말도 돌았다.",
+    "sourceRefs": [
+      "sinyu-1801",
+      "catholic-1800s"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1800s-catholic-invite",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "ageMin": 16,
+      "yearMin": 1805,
+      "yearMax": 1865,
+      "regions": [
+        "gyeonggi",
+        "chungcheong",
+        "jeolla",
+        "gyeongsang"
+      ],
+      "notStatuses": [
+        "royal"
+      ],
+      "notFlags": [
+        "catholic",
+        "donghak"
+      ]
+    },
+    "chance": 0.025,
+    "text": "알고 지내던 이가 한문과 언문으로 적힌 천주교 책을 건네며, 함께 모여 기도하자고 했다.",
+    "choices": [
+      {
+        "id": "believe",
+        "label": "그 가르침을 받아들인다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "catholic"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ],
+        "result": "당신은 밤마다 몰래 모이는 사람들 틈에 앉았다. 그곳에서는 신분을 따지지 않고 서로를 교우라 불렀다."
+      },
+      {
+        "id": "decline",
+        "label": "책을 돌려주고 모르는 일로 한다",
+        "result": "당신은 책을 돌려주었다. 그 일은 다시 입에 올리지 않았다."
+      },
+      {
+        "id": "memory-decline",
+        "label": "(기억) 그 길에 무엇이 기다리는지 안다. 마음에만 담고 모임에는 나가지 않는다",
+        "requires": {
+          "memory": [
+            "1866-byeongin"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "learning",
+            "delta": 2
+          }
+        ],
+        "result": "당신은 책 몇 줄만 마음에 새기고 모임에는 나가지 않았다."
+      }
+    ],
+    "sourceRefs": [
+      "catholic-1800s"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-catholic-search",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "flags": [
+        "catholic"
+      ],
+      "yearMin": 1805,
+      "yearMax": 1865,
+      "notFlags": [
+        "catholic-village"
+      ]
+    },
+    "chance": 0.05,
+    "repeatable": true,
+    "text": "관아에서 천주교인을 찾는다는 말이 돌았다. 이웃 하나가 끌려갔다.",
+    "choices": [
+      {
+        "id": "hide",
+        "label": "책과 묵주를 땅에 묻고 숨죽여 지낸다",
+        "outcomes": [
+          {
+            "weight": 85,
+            "text": "포졸들은 당신의 집을 그냥 지나쳤다."
+          },
+          {
+            "weight": 15,
+            "text": "누군가 당신의 이름을 댔다. 당신은 관아로 끌려갔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -15
+              },
+              {
+                "type": "death",
+                "cause": "punishment",
+                "chance": 0.35
+              },
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-1800s-martyr",
+                "chance": 0.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "village",
+        "label": "산골 교우촌으로 식구를 데리고 옮겨 간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "catholic-village"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -12
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -3
+          }
+        ],
+        "result": "당신은 가진 것을 팔고 산골로 들어가 옹기를 굽고 화전을 일구었다."
+      }
+    ],
+    "sourceRefs": [
+      "catholic-1800s"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1811-hong",
+    "kind": "choice",
+    "when": {
+      "year": 1811,
+      "month": 12
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "regions": [
+        "pyeongan"
+      ],
+      "sex": "male",
+      "ageMin": 15,
+      "ageMax": 55,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "12월, 가산 다복동에서 군사가 일어났다. 서북 사람을 벼슬길에서 막아 온 나라를 바로잡겠다고 했다. 열흘 남짓 사이 청천강 북쪽의 여러 고을이 그 손에 들어갔다.",
+    "choices": [
+      {
+        "id": "join",
+        "label": "봉기한 군에 들어간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "hong-army"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          },
+          {
+            "type": "record",
+            "level": "munjip",
+            "templateId": "munjip-1800s-hong",
+            "chance": 0.25
+          }
+        ],
+        "result": "당신은 창을 받아 들고 대열에 섰다."
+      },
+      {
+        "id": "stay",
+        "label": "집을 지키며 지켜본다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -3
+          }
+        ],
+        "result": "당신은 문을 닫고 겨울을 났다. 양쪽 군사가 번갈아 곡식을 거두어 갔다."
+      },
+      {
+        "id": "flee",
+        "label": "식구를 데리고 남쪽으로 피한다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-1811"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -3
+          }
+        ],
+        "result": "당신은 눈길을 걸어 황해도 쪽으로 내려갔다."
+      },
+      {
+        "id": "memory-stay",
+        "label": "(기억) 이 난리가 정주성에서 끝난다는 것을 안다. 휩쓸리지 않고 식구를 산속에 숨긴다",
+        "requires": {
+          "memory": [
+            "1811-hong"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "hong-safe"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -4
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.3
+          },
+          {
+            "type": "protect",
+            "cause": "punishment",
+            "factor": 0.3
+          }
+        ],
+        "result": "당신은 식구를 데리고 산속 움막에 숨어 봄을 기다렸다."
+      },
+      {
+        "id": "memory-join-leave",
+        "label": "(기억) 군에 들어가되, 정주성에 갇히기 전에 빠져나올 때를 정해 둔다",
+        "requires": {
+          "memory": [
+            "1812-jeongju"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "hong-army"
+          },
+          {
+            "type": "flag",
+            "set": "hong-plan-leave"
+          },
+          {
+            "type": "record",
+            "level": "munjip",
+            "templateId": "munjip-1800s-hong",
+            "chance": 0.25
+          }
+        ],
+        "result": "당신은 대열에 섰다. 마음속으로는 빠져나올 날을 세어 두었다."
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "hong-1811"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1811-hong-home",
+    "kind": "timeline",
+    "when": {
+      "year": 1811,
+      "month": 12
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "regions": [
+        "pyeongan"
+      ],
+      "notStatuses": [
+        "royal"
+      ],
+      "notFlags": [
+        "hong-army"
+      ]
+    },
+    "text": "12월, 난리가 고을까지 번졌다. 관아의 수령이 달아났다는 말이 돌았다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -3
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1811-hong",
+    "sourceRefs": [
+      "hong-1811"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1812-hong-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1812,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "ageMin": 9,
+      "notStatuses": [
+        "royal"
+      ],
+      "regions": [
+        "gyeonggi",
+        "chungcheong",
+        "jeolla",
+        "gyeongsang",
+        "gangwon",
+        "hwanghae",
+        "hamgyeong"
+      ]
+    },
+    "text": "정월, 평안도에서 홍경래가 군사를 일으켰다는 소식이 들렸다. 서북 사람을 차별해 온 일이 그 바탕이라는 말이 돌았다.",
+    "sourceRefs": [
+      "hong-1811"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1812-jeongju-siege",
+    "kind": "choice",
+    "when": {
+      "year": 1812,
+      "month": 2
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "flags": [
+        "hong-army"
+      ]
+    },
+    "text": "관군에 밀린 봉기군은 정주성에 들어가 성문을 닫았다. 성 밖에는 관군이 겹겹이 진을 쳤다.",
+    "choices": [
+      {
+        "id": "hold",
+        "label": "성 안에 남아 끝까지 지킨다",
+        "result": "당신은 성벽 위에서 겨울을 넘겼다. 성 안의 곡식이 줄어 갔다."
+      },
+      {
+        "id": "slip",
+        "label": "밤을 틈타 성을 빠져나간다",
+        "outcomes": [
+          {
+            "weight": 55,
+            "text": "당신은 어둠 속에서 성벽을 타고 내려가 산으로 숨었다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "hong-left"
+              },
+              {
+                "type": "flag",
+                "set": "hong-fugitive"
+              }
+            ]
+          },
+          {
+            "weight": 45,
+            "text": "성 밖에서 관군에게 붙잡혔다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "hong-left"
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -15
+              },
+              {
+                "type": "death",
+                "cause": "punishment",
+                "chance": 0.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-leave",
+        "label": "(기억) 성이 무너지는 날을 안다. 포위가 굳어지기 전, 정해 둔 길로 빠져나간다",
+        "requires": {
+          "memory": [
+            "1812-jeongju"
+          ]
+        },
+        "outcomes": [
+          {
+            "weight": 85,
+            "text": "당신은 미리 봐 둔 물길을 따라 성을 빠져나갔다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "hong-left"
+              },
+              {
+                "type": "flag",
+                "set": "hong-fugitive"
+              }
+            ]
+          },
+          {
+            "weight": 15,
+            "text": "빠져나가다 관군의 눈에 띄었다. 당신은 간신히 몸만 피했다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "hong-left"
+              },
+              {
+                "type": "flag",
+                "set": "hong-fugitive"
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -12
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "hong-1811"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1812-jeongju-fall",
+    "kind": "timeline",
+    "when": {
+      "year": 1812,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "flags": [
+        "hong-army"
+      ],
+      "notFlags": [
+        "hong-left"
+      ]
+    },
+    "text": "4월, 관군이 성 밑으로 굴을 파고 화약을 터뜨렸다. 정주성이 무너졌다.",
+    "effects": [
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.3
+      },
+      {
+        "type": "death",
+        "cause": "punishment",
+        "chance": 0.6
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "당신은 무너진 성벽 틈으로 빠져나와 산으로 숨었다.",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "hong-fugitive"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -10
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1812-jeongju",
+    "sourceRefs": [
+      "hong-1811"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1812-jeongju-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1812,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "regions": [
+        "pyeongan",
+        "hwanghae"
+      ],
+      "ageMin": 8,
+      "notFlags": [
+        "hong-army"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "4월, 정주성이 무너지고 난리가 끝났다. 성 안에 있던 사람 가운데 많은 이가 목숨을 잃었다는 말이 돌았다.",
+    "memorable": true,
+    "memoryKey": "1812-jeongju",
+    "sourceRefs": [
+      "hong-1811"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1812-hong-fugitive",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "flags": [
+        "hong-fugitive"
+      ],
+      "yearMin": 1812,
+      "yearMax": 1820
+    },
+    "chance": 0.15,
+    "text": "봉기군에 있던 사람을 찾는 방이 고을 어귀에 붙었다.",
+    "outcomes": [
+      {
+        "weight": 80,
+        "text": "당신은 이름을 바꾸고 다른 고을에서 품을 팔며 지냈다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "weight": 20,
+        "text": "누군가 당신을 알아보았다. 당신은 관아로 끌려갔다.",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "hong-fugitive"
+          },
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.5
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -10
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "hong-1811"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1821-cholera-prep",
+    "kind": "choice",
+    "when": {
+      "year": 1821,
+      "month": 3
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "memory": [
+        "1821-cholera"
+      ],
+      "ageMin": 10,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "1821년 봄. 당신은 올가을 서북에서 괴질이 내려온다는 것을 기억하고 있다.",
+    "choices": [
+      {
+        "id": "memory-avoid",
+        "label": "(기억) 가을이 오면 장터와 길목을 피하고, 앓는 집에 드나들지 않기로 식구들과 약속한다",
+        "requires": {
+          "memory": [
+            "1821-cholera"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "cholera-prepared"
+          },
+          {
+            "type": "protect",
+            "cause": "epidemic",
+            "factor": 0.5
+          }
+        ],
+        "result": "식구들은 영문을 몰랐지만 당신의 말을 따르기로 했다."
+      },
+      {
+        "id": "memory-hideout",
+        "label": "(기억) 가을 전에 식구를 데리고 외딴 골짜기로 옮겨 간다",
+        "requires": {
+          "memory": [
+            "1821-cholera"
+          ],
+          "statMin": {
+            "wealth": 20
+          }
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "cholera-hideout"
+          },
+          {
+            "type": "flag",
+            "set": "cholera-prepared"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -12
+          },
+          {
+            "type": "protect",
+            "cause": "epidemic",
+            "factor": 0.4
+          }
+        ],
+        "result": "당신은 골짜기에 움막을 짓고 곡식을 옮겨 두었다."
+      },
+      {
+        "id": "knowledge-water",
+        "label": "(지식) 물을 끓여 마시고 손을 씻는 법을 미리 퍼뜨린다",
+        "requires": {
+          "knowledge": [
+            "boil-water"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "cholera-prepared"
+          },
+          {
+            "type": "knowledge",
+            "id": "boil-water"
+          }
+        ]
+      },
+      {
+        "id": "wait",
+        "label": "아직은 아무 일도 없다. 하던 일을 한다",
+        "result": "당신은 봄 농사를 시작했다."
+      }
+    ],
+    "sourceRefs": [
+      "cholera-1821",
+      "regression-1800s"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1821-cholera-north",
+    "kind": "choice",
+    "when": {
+      "year": 1821,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "regions": [
+        "pyeongan",
+        "hwanghae"
+      ],
+      "ageMin": 14,
+      "notFlags": [
+        "cholera-hideout"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "8월, 의주로 들어온 괴질이 평안도 고을들을 휩쓸었다. 토하고 설사하다 하루 이틀 만에 숨지는 사람이 잇따랐다.",
+    "choices": [
+      {
+        "id": "stay",
+        "label": "마을에 남아 앓는 식구를 돌본다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.075
+          }
+        ],
+        "result": "당신은 앓는 이의 머리맡을 지켰다."
+      },
+      {
+        "id": "flee",
+        "label": "식구를 데리고 산으로 피한다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -6
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -3
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.04
+          }
+        ],
+        "result": "당신은 식구를 데리고 산속으로 들어갔다."
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 우물물을 끓여 마시게 하고, 앓는 이의 토사물은 멀리 묻게 한다",
+        "requires": {
+          "memory": [
+            "1821-cholera"
+          ]
+        },
+        "effects": [
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.015
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 2
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "괴질이 돌 때 식구들이 물을 끓여 마셨다."
+          }
+        ],
+        "result": "당신은 기억해 둔 대로 식구들을 단속했다."
+      },
+      {
+        "id": "knowledge",
+        "label": "(지식) 마을 사람들에게 물을 끓여 마시고 앓는 이를 따로 두게 한다",
+        "requires": {
+          "knowledge": [
+            "isolate-sick"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "isolate-sick"
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.02
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1821-cholera",
+    "sourceRefs": [
+      "cholera-1821"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1821-cholera",
+    "kind": "choice",
+    "when": {
+      "year": 1821,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "regions": [
+        "gyeonggi",
+        "chungcheong",
+        "jeolla",
+        "gyeongsang",
+        "gangwon",
+        "hamgyeong"
+      ],
+      "ageMin": 14,
+      "notFlags": [
+        "cholera-hideout"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "9월, 서북에서 내려온 괴질이 고을에 닿았다. 한양에서는 열흘 만에 1만 명이 넘게 죽었다는 말이 돌았다.",
+    "choices": [
+      {
+        "id": "stay",
+        "label": "마을에 남아 앓는 식구를 돌본다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.075
+          }
+        ],
+        "result": "당신은 앓는 이의 머리맡을 지켰다."
+      },
+      {
+        "id": "flee",
+        "label": "식구를 데리고 산으로 피한다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -6
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -3
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.04
+          }
+        ],
+        "result": "당신은 식구를 데리고 산속으로 들어갔다."
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 우물물을 끓여 마시게 하고, 앓는 이의 토사물은 멀리 묻게 한다",
+        "requires": {
+          "memory": [
+            "1821-cholera"
+          ]
+        },
+        "effects": [
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.015
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 2
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "괴질이 돌 때 식구들이 물을 끓여 마셨다."
+          }
+        ],
+        "result": "당신은 기억해 둔 대로 식구들을 단속했다."
+      },
+      {
+        "id": "knowledge",
+        "label": "(지식) 마을 사람들에게 물을 끓여 마시고 앓는 이를 따로 두게 한다",
+        "requires": {
+          "knowledge": [
+            "isolate-sick"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "isolate-sick"
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.02
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1821-cholera",
+    "sourceRefs": [
+      "cholera-1821"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1821-cholera-child",
+    "kind": "timeline",
+    "when": {
+      "year": 1821,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "ageMax": 13,
+      "notFlags": [
+        "cholera-hideout"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "9월, 괴질이 마을에 돌았다. 어른들은 아이들을 방 안에서 내보내지 않았다.",
+    "effects": [
+      {
+        "type": "death",
+        "cause": "epidemic",
+        "chance": 0.06
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "당신은 그 가을을 무사히 넘겼다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1821-cholera",
+    "sourceRefs": [
+      "cholera-1821"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1821-cholera-safe",
+    "kind": "timeline",
+    "when": {
+      "year": 1821,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "flags": [
+        "cholera-hideout"
+      ],
+      "ageMin": 14
+    },
+    "text": "9월, 산 아래 마을에 괴질이 돌았다는 소식이 골짜기까지 들려왔다. 당신의 식구는 겨울이 올 때까지 산을 내려가지 않았다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -3
+      },
+      {
+        "type": "change",
+        "scope": "family",
+        "text": "괴질이 도는 동안 식구들이 골짜기에 머물렀다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1821-cholera",
+    "sourceRefs": [
+      "cholera-1821",
+      "regression-1800s"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1822-cholera",
+    "kind": "timeline",
+    "when": {
+      "year": 1822
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "괴질이 다시 돌았다.",
+    "choices": [
+      {
+        "id": "endure",
+        "label": "문을 닫아걸고 지나가기를 기다린다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.025
+          }
+        ],
+        "result": "당신은 문을 닫아걸었다."
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 지난해처럼 물을 끓이고 사람 많은 곳을 피한다",
+        "requires": {
+          "memory": [
+            "1821-cholera"
+          ]
+        },
+        "effects": [
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.008
+          }
+        ],
+        "result": "당신은 지난해의 기억대로 식구들을 단속했다."
+      },
+      {
+        "id": "isolate",
+        "label": "(지식) 앓는 사람을 따로 돌보게 한다",
+        "requires": {
+          "knowledge": [
+            "isolate-sick"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "isolate-sick"
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.012
+          }
+        ]
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "sourceRefs": [
+      "cholera-1821"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1800s-sedo-rumor",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "ageMin": 15,
+      "yearMin": 1805,
+      "yearMax": 1862,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "chance": 0.03,
+    "text": "고을 수령이 또 바뀌었다. 한양의 세도 가문에 돈을 바치고 얻은 자리라, 바치느라 쓴 돈을 고을에서 거두어 간다는 말이 돌았다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -2
+      }
+    ],
+    "sourceRefs": [
+      "samjeong"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-disaster-years",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "ageMin": 5,
+      "yearMin": 1807,
+      "yearMax": 1835
+    },
+    "chance": 0.04,
+    "repeatable": true,
+    "text": "큰물과 가뭄이 번갈아 든 끝에 돌림병이 돌았다. 마을마다 빈집이 늘었다.",
+    "choices": [
+      {
+        "id": "endure",
+        "label": "식구를 모아 견딘다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -4
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.06
+          }
+        ],
+        "result": "당신은 그해를 넘겼다."
+      },
+      {
+        "id": "boil",
+        "label": "(지식) 물을 끓여 마시고 앓는 이를 따로 두게 한다",
+        "requires": {
+          "knowledge": [
+            "isolate-sick"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "isolate-sick"
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.06
+          }
+        ]
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "sourceRefs": [
+      "population-1800s"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "1800s-hwangok",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "statuses": [
+        "commoner",
+        "yuhak"
+      ],
+      "ageMin": 18,
+      "notFlags": [
+        "drifted"
+      ]
+    },
+    "chance": 0.07,
+    "repeatable": true,
+    "text": "봄, 아전이 와서 환곡을 받아 가라고 했다. 겨와 모래가 섞인 곡식이라도 가을에는 이자를 붙여 갚아야 한다.",
+    "choices": [
+      {
+        "id": "take",
+        "label": "받아 둔다. 보릿고개를 넘기려면 어쩔 수 없다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -4
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": 2
+          }
+        ],
+        "result": "당신은 쭉정이 섞인 곡식 자루를 지고 돌아왔다."
+      },
+      {
+        "id": "refuse",
+        "label": "필요 없다며 버틴다",
+        "outcomes": [
+          {
+            "weight": 55,
+            "text": "아전은 투덜거리며 돌아갔다."
+          },
+          {
+            "weight": 45,
+            "text": "아전은 장부에 이름을 적어 두고 갔다. 가을에 받지도 않은 곡식의 이자가 매겨졌다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -8
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ledger",
+        "label": "(지식) 장부를 따져 이자가 얼마나 부풀려졌는지 셈해 보인다",
+        "requires": {
+          "knowledge": [
+            "bookkeeping"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "bookkeeping"
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "samjeong"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-gunpo",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "statuses": [
+        "commoner"
+      ],
+      "sex": "male",
+      "ageMin": 16,
+      "ageMax": 59,
+      "notFlags": [
+        "drifted"
+      ]
+    },
+    "chance": 0.06,
+    "repeatable": true,
+    "text": "군포를 매기는 날, 당신 집에 죽은 할아버지와 젖먹이 몫까지 군포가 매겨졌다.",
+    "choices": [
+      {
+        "id": "pay",
+        "label": "빚을 내서라도 낸다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          }
+        ],
+        "result": "당신은 소를 팔아 군포를 채웠다."
+      },
+      {
+        "id": "appeal",
+        "label": "관아에 가서 억울함을 호소한다",
+        "outcomes": [
+          {
+            "weight": 25,
+            "text": "새로 온 수령이 장부를 고쳐 주었다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 3
+              }
+            ]
+          },
+          {
+            "weight": 75,
+            "text": "호소는 받아들여지지 않았다. 매만 맞고 돌아왔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -6
+              },
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "leave",
+        "label": "식구를 데리고 고향을 떠난다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "drifted"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -6
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -4
+          }
+        ],
+        "result": "당신은 밤에 짐을 꾸려 고을을 떠났다. 떠도는 사람이 당신만은 아니었다."
+      }
+    ],
+    "sourceRefs": [
+      "samjeong"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-drifter-life",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "flags": [
+        "drifted"
+      ],
+      "ageMin": 16
+    },
+    "chance": 0.12,
+    "text": "떠돌던 끝에 산골 화전민 마을에 자리를 잡았다.",
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "비탈밭을 일구어 조와 감자를 심었다. 세금을 매기러 오는 이는 없었다.",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "drifted"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 4
+          }
+        ]
+      },
+      {
+        "weight": 30,
+        "text": "첫 겨울이 혹독했다.",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "drifted"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -8
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.05
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "samjeong"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-buy-jokbo",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "statuses": [
+        "commoner"
+      ],
+      "ageMin": 20,
+      "statMin": {
+        "wealth": 45
+      },
+      "notFlags": [
+        "jokbo-offer"
+      ]
+    },
+    "chance": 0.25,
+    "text": "족보를 꾸미는 사람이 찾아왔다. 값만 치르면 어느 양반 집안의 먼 갈래에 이름을 올려 주겠다고 했다.",
+    "choices": [
+      {
+        "id": "buy",
+        "label": "돈을 치르고 족보에 이름을 올린다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "jokbo-offer"
+          },
+          {
+            "type": "flag",
+            "set": "bought-jokbo"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -25
+          },
+          {
+            "type": "status",
+            "to": "yuhak"
+          },
+          {
+            "type": "record",
+            "level": "jokbo",
+            "templateId": "jokbo-1800s-bought"
+          }
+        ],
+        "result": "이듬해 호적에 당신의 직역은 유학으로 적혔다. 군포를 내라는 아전의 발길이 끊겼다."
+      },
+      {
+        "id": "decline",
+        "label": "그 돈이면 차라리 살림에 보탠다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "jokbo-offer"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 3
+          }
+        ],
+        "result": "당신은 사람을 돌려보냈다."
+      }
+    ],
+    "sourceRefs": [
+      "jokbo-buying",
+      "status-1800s"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-hojeok-yuhak",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "statuses": [
+        "commoner"
+      ],
+      "ageMin": 20,
+      "statMin": {
+        "wealth": 30
+      },
+      "notFlags": [
+        "hojeok-offer"
+      ]
+    },
+    "chance": 0.12,
+    "text": "호적을 새로 적는 해였다. 아전이 슬며시, 값을 쳐주면 직역란에 유학이라 적어 주겠다고 했다.",
+    "choices": [
+      {
+        "id": "pay",
+        "label": "값을 치르고 유학으로 적힌다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "hojeok-offer"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -15
+          },
+          {
+            "type": "status",
+            "to": "yuhak"
+          },
+          {
+            "type": "record",
+            "level": "hojeok",
+            "templateId": "hojeok-1800s-yuhak-bought"
+          }
+        ],
+        "result": "호적대장에 당신의 이름 앞에 유학 두 글자가 붙었다."
+      },
+      {
+        "id": "gongmyeong",
+        "label": "공명첩을 사서 벼슬 이름을 받는다",
+        "requires": {
+          "statMin": {
+            "wealth": 45
+          }
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "hojeok-offer"
+          },
+          {
+            "type": "flag",
+            "set": "gongmyeong"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -20
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 4
+          },
+          {
+            "type": "record",
+            "level": "hojeok",
+            "templateId": "hojeok-1800s-gongmyeong"
+          }
+        ],
+        "result": "이름 칸이 비어 있던 첩지에 당신의 이름이 적혔다. 실제 벼슬은 아니었지만 마을 사람들의 대접이 달라졌다."
+      },
+      {
+        "id": "decline",
+        "label": "양인으로 산다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "hojeok-offer"
+          }
+        ],
+        "result": "당신은 고개를 저었다."
+      }
+    ],
+    "sourceRefs": [
+      "jokbo-buying",
+      "status-1800s"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-buy-land",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "statuses": [
+        "commoner",
+        "yuhak",
+        "jungin"
+      ],
+      "ageMin": 20,
+      "statMin": {
+        "wealth": 40
+      },
+      "notFlags": [
+        "landowner"
+      ]
+    },
+    "chance": 0.12,
+    "text": "옆 마을 논 다섯 마지기가 나왔다. 빚에 몰린 집이 내놓은 땅이라고 했다.",
+    "choices": [
+      {
+        "id": "buy",
+        "label": "땅을 산다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "landowner"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -18
+          }
+        ],
+        "result": "당신은 땅문서를 받아 장롱 깊이 넣었다."
+      },
+      {
+        "id": "skip",
+        "label": "남의 눈물이 밴 땅이다. 사지 않는다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 2
+          }
+        ],
+        "result": "당신은 그 땅을 사지 않았다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1800s-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-landowner-harvest",
+    "kind": "random",
+    "when": {
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "flags": [
+        "landowner"
+      ]
+    },
+    "chance": 0.2,
+    "repeatable": true,
+    "text": "사 둔 논에서 나락이 실하게 들었다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": 5
+      }
+    ],
+    "sourceRefs": [
+      "era-1800s-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-sokryang",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 16,
+      "statMin": {
+        "wealth": 22
+      },
+      "notFlags": [
+        "runaway"
+      ]
+    },
+    "chance": 0.2,
+    "repeatable": true,
+    "text": "속전을 바치면 주인이 노비 문서에서 이름을 지워 주겠다는 말이 나왔다.",
+    "choices": [
+      {
+        "id": "pay",
+        "label": "모은 것을 다 털어 속량한다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -20
+          },
+          {
+            "type": "status",
+            "to": "commoner"
+          },
+          {
+            "type": "record",
+            "level": "hojeok",
+            "templateId": "hojeok-1800s-sokryang"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ],
+        "result": "주인이 노비 문서에서 당신의 이름을 지웠다. 당신은 양인이 되었다."
+      },
+      {
+        "id": "save",
+        "label": "조금 더 모은 뒤에 한다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 2
+          }
+        ],
+        "result": "당신은 엽전 꾸러미를 다시 땅에 묻었다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1800s-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-slave-runaway",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 15,
+      "ageMax": 45,
+      "notFlags": [
+        "runaway",
+        "runaway-asked"
+      ]
+    },
+    "chance": 0.05,
+    "text": "같은 집 노비 하나가 밤에 함께 달아나자고 했다. 요즘은 붙잡으러 오는 일도 드물다고 했다.",
+    "choices": [
+      {
+        "id": "run",
+        "label": "함께 달아난다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "runaway-asked"
+          },
+          {
+            "type": "flag",
+            "set": "runaway"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -3
+          }
+        ],
+        "result": "당신은 새벽이 오기 전에 고개를 넘었다."
+      },
+      {
+        "id": "stay",
+        "label": "남는다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "runaway-asked"
+          }
+        ],
+        "result": "당신은 그 밤을 뜬눈으로 새웠다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1800s-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-jungin-petition",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "statuses": [
+        "jungin"
+      ],
+      "sex": "male",
+      "ageMin": 25,
+      "yearMin": 1820,
+      "statMin": {
+        "learning": 25
+      },
+      "notFlags": [
+        "petition-asked"
+      ]
+    },
+    "chance": 0.08,
+    "text": "중인들이 모여, 문벌을 따지지 말고 벼슬길을 열어 달라는 상소를 올리자고 했다. 연명부가 당신 앞에 놓였다.",
+    "choices": [
+      {
+        "id": "sign",
+        "label": "이름을 적는다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "petition-asked"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 4
+          },
+          {
+            "type": "record",
+            "level": "munjip",
+            "templateId": "munjip-1800s-tongcheong",
+            "chance": 0.6
+          }
+        ],
+        "result": "당신은 붓을 들어 이름을 적었다. 상소는 받아들여지지 않았지만 이름은 남았다."
+      },
+      {
+        "id": "decline",
+        "label": "괜히 눈 밖에 날 일은 하지 않는다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "petition-asked"
+          }
+        ],
+        "result": "당신은 연명부를 옆 사람에게 넘겼다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1800s-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1800s-village-teacher",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "statuses": [
+        "yuhak",
+        "yangban"
+      ],
+      "sex": "male",
+      "ageMin": 25,
+      "statMin": {
+        "learning": 30
+      },
+      "notFlags": [
+        "village-teacher",
+        "teacher-asked",
+        "official"
+      ]
+    },
+    "chance": 0.08,
+    "text": "마을 사람들이 찾아와 아이들 글을 가르쳐 달라고 청했다. 사례는 곡식 몇 말이라고 했다.",
+    "choices": [
+      {
+        "id": "teach",
+        "label": "훈장 노릇을 맡는다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "teacher-asked"
+          },
+          {
+            "type": "flag",
+            "set": "village-teacher"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 4
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 5
+          }
+        ],
+        "result": "당신은 사랑방에 아이들을 앉히고 천자문을 펼쳤다."
+      },
+      {
+        "id": "decline",
+        "label": "아직은 과거를 바라본다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "teacher-asked"
+          },
+          {
+            "type": "stat",
+            "stat": "learning",
+            "delta": 2
+          }
+        ],
+        "result": "당신은 다시 책상 앞에 앉았다."
+      },
+      {
+        "id": "hangul",
+        "label": "(지식) 천자문과 함께 언문과 셈을 가르친다",
+        "requires": {
+          "knowledge": [
+            "teach-hangul"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "teacher-asked"
+          },
+          {
+            "type": "flag",
+            "set": "village-teacher"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          },
+          {
+            "type": "knowledge",
+            "id": "teach-hangul"
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1800s-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1860-donghak-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1860,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "regions": [
+        "gyeongsang"
+      ],
+      "ageMin": 15,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "경주에서 새 가르침이 일어났다는 말이 돌았다. 사람은 누구나 마음에 하늘을 모신다고 했다.",
+    "sourceRefs": [
+      "donghak-1860"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1861-donghak-invite",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "regions": [
+        "gyeongsang",
+        "jeolla",
+        "chungcheong"
+      ],
+      "statuses": [
+        "commoner",
+        "yuhak",
+        "slave",
+        "jungin"
+      ],
+      "ageMin": 16,
+      "yearMin": 1861,
+      "yearMax": 1866,
+      "notFlags": [
+        "donghak",
+        "donghak-asked",
+        "catholic"
+      ]
+    },
+    "chance": 0.08,
+    "text": "이웃이 동학 모임에 함께 가자고 했다. 주문을 외우며 하늘을 모시는 데는 양반과 상민이 따로 없다고 했다.",
+    "choices": [
+      {
+        "id": "join",
+        "label": "모임에 나간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "donghak-asked"
+          },
+          {
+            "type": "flag",
+            "set": "donghak"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 5
+          }
+        ],
+        "result": "모임에서는 양반 차림의 사람과 머슴이 서로 맞절을 했다."
+      },
+      {
+        "id": "decline",
+        "label": "나가지 않는다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "donghak-asked"
+          }
+        ],
+        "result": "당신은 하던 일을 계속했다."
+      }
+    ],
+    "sourceRefs": [
+      "donghak-1860"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1860s-donghak-crackdown",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "flags": [
+        "donghak"
+      ],
+      "yearMin": 1862
+    },
+    "chance": 0.06,
+    "text": "관아에서 동학 무리를 잡아들인다는 말이 돌았다.",
+    "outcomes": [
+      {
+        "weight": 80,
+        "text": "당신은 한동안 모임에 나가지 않았다."
+      },
+      {
+        "weight": 20,
+        "text": "당신도 끌려가 매를 맞고 풀려났다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -12
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -6
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "donghak-1860"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1862-imsul-jinju",
+    "kind": "choice",
+    "when": {
+      "year": 1862,
+      "month": 2
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "regions": [
+        "gyeongsang"
+      ],
+      "ageMin": 16,
+      "ageMax": 65,
+      "statuses": [
+        "commoner",
+        "yuhak",
+        "slave",
+        "jungin"
+      ],
+      "notFlags": [
+        "imsul-asked"
+      ]
+    },
+    "text": "2월, 진주에서 백성들이 들고일어나 관아로 몰려갔다. 환곡과 결세를 견디다 못한 일이었다. 이웃 고을에서도 사람들이 장터에 모여 수령에게 따지러 가자고 했다.",
+    "choices": [
+      {
+        "id": "join",
+        "label": "함께 관아로 간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "imsul-asked"
+          },
+          {
+            "type": "flag",
+            "set": "imsul-joined"
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 60,
+            "text": "사람들은 아전의 집을 부수고 환곡 장부를 불살랐다. 몇 달 뒤, 관아는 앞장선 이들을 잡아들였다. 당신은 그 명단에 들지 않았다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 4
+              }
+            ]
+          },
+          {
+            "weight": 30,
+            "text": "봉기가 가라앉은 뒤 당신은 앞장선 사람으로 지목되어 끌려갔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -15
+              },
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-1800s-imsul"
+              },
+              {
+                "type": "death",
+                "cause": "punishment",
+                "chance": 0.3
+              }
+            ]
+          },
+          {
+            "weight": 10,
+            "text": "관아 앞에서 군졸과 맞부딪쳤다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -10
+              },
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 0.4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "watch",
+        "label": "멀리서 지켜본다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "imsul-asked"
+          }
+        ],
+        "result": "당신은 장터 끝에서 불길이 오르는 것을 보았다."
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 함께 가되 앞장서지 않고, 장부를 불사르는 자리에서는 물러선다",
+        "requires": {
+          "memory": [
+            "1862-imsul"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "imsul-asked"
+          },
+          {
+            "type": "flag",
+            "set": "imsul-joined"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ],
+        "result": "당신은 무리 뒤쪽에 섰다. 뒤에 잡혀간 명단에 당신의 이름은 없었다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1862-imsul",
+    "sourceRefs": [
+      "imsul-1862",
+      "samjeong"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1862-imsul-spread",
+    "kind": "choice",
+    "when": {
+      "year": 1862,
+      "month": 5
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "regions": [
+        "jeolla",
+        "chungcheong"
+      ],
+      "ageMin": 16,
+      "ageMax": 65,
+      "statuses": [
+        "commoner",
+        "yuhak",
+        "slave",
+        "jungin"
+      ],
+      "notFlags": [
+        "imsul-asked"
+      ]
+    },
+    "text": "봄부터 진주에서 시작된 봉기가 삼남의 고을마다 번졌다. 당신의 고을에서도 사람들이 장터에 모여 관아로 가자고 했다.",
+    "choices": [
+      {
+        "id": "join",
+        "label": "함께 관아로 간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "imsul-asked"
+          },
+          {
+            "type": "flag",
+            "set": "imsul-joined"
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 60,
+            "text": "사람들은 아전의 집을 부수고 환곡 장부를 불살랐다. 몇 달 뒤, 관아는 앞장선 이들을 잡아들였다. 당신은 그 명단에 들지 않았다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 4
+              }
+            ]
+          },
+          {
+            "weight": 30,
+            "text": "봉기가 가라앉은 뒤 당신은 앞장선 사람으로 지목되어 끌려갔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -15
+              },
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-1800s-imsul"
+              },
+              {
+                "type": "death",
+                "cause": "punishment",
+                "chance": 0.3
+              }
+            ]
+          },
+          {
+            "weight": 10,
+            "text": "관아 앞에서 군졸과 맞부딪쳤다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -10
+              },
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 0.4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "watch",
+        "label": "멀리서 지켜본다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "imsul-asked"
+          }
+        ],
+        "result": "당신은 장터 끝에서 불길이 오르는 것을 보았다."
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 함께 가되 앞장서지 않고, 장부를 불사르는 자리에서는 물러선다",
+        "requires": {
+          "memory": [
+            "1862-imsul"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "imsul-asked"
+          },
+          {
+            "type": "flag",
+            "set": "imsul-joined"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ],
+        "result": "당신은 무리 뒤쪽에 섰다. 뒤에 잡혀간 명단에 당신의 이름은 없었다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1862-imsul",
+    "sourceRefs": [
+      "imsul-1862",
+      "samjeong"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1862-imsul-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1862,
+      "month": 5
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "regions": [
+        "gyeonggi",
+        "gangwon",
+        "hwanghae",
+        "pyeongan",
+        "hamgyeong"
+      ],
+      "ageMin": 9
+    },
+    "text": "삼남의 70여 고을에서 백성들이 들고일어났다는 소식이 들렸다. 조정이 삼정의 폐단을 바로잡겠다고 나섰다는 말도 돌았다.",
+    "memorable": true,
+    "memoryKey": "1862-imsul",
+    "sourceRefs": [
+      "imsul-1862",
+      "samjeong"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1862-imsul-prep",
+    "kind": "choice",
+    "when": {
+      "year": 1861,
+      "month": 10
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "memory": [
+        "1862-imsul"
+      ],
+      "regions": [
+        "gyeongsang",
+        "jeolla",
+        "chungcheong"
+      ],
+      "ageMin": 16,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "1861년 가을. 당신은 이듬해 봄 삼남의 고을들이 들고일어난다는 것을 기억하고 있다.",
+    "choices": [
+      {
+        "id": "memory-petition",
+        "label": "(기억) 봉기 전에 고을 사람들과 등소를 올려 환곡의 폐단을 먼저 호소한다",
+        "requires": {
+          "memory": [
+            "1862-imsul"
+          ]
+        },
+        "outcomes": [
+          {
+            "weight": 35,
+            "text": "등소가 받아들여져, 고을의 환곡 이자가 조금 줄었다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 6
+              },
+              {
+                "type": "change",
+                "scope": "village",
+                "text": "마을이 등소를 올려 환곡 이자를 줄였다."
+              }
+            ]
+          },
+          {
+            "weight": 65,
+            "text": "수령은 등소를 물리쳤다. 그래도 고을 사람들은 당신의 이름을 기억했다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-grain",
+        "label": "(기억) 난리 통에 곡식이 묶일 것을 안다. 미리 곡식을 갈무리해 둔다",
+        "requires": {
+          "memory": [
+            "1862-imsul"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -3
+          },
+          {
+            "type": "protect",
+            "cause": "famine",
+            "factor": 0.5
+          }
+        ],
+        "result": "당신은 곡식을 독에 담아 뒤뜰에 묻었다."
+      },
+      {
+        "id": "wait",
+        "label": "지켜본다",
+        "result": "당신은 해가 바뀌기를 기다렸다."
+      }
+    ],
+    "sourceRefs": [
+      "imsul-1862",
+      "regression-1800s"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1866-byeongin",
+    "kind": "choice",
+    "when": {
+      "year": 1866,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "flags": [
+        "catholic"
+      ]
+    },
+    "text": "정월, 나라에서 천주교인을 크게 잡아들이기 시작했다. 서양 신부들도 붙잡혔다는 말이 돌았다.",
+    "choices": [
+      {
+        "id": "hide",
+        "label": "산속으로 숨는다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -8
+          },
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.2
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "당신은 그해를 산속 굴에서 났다."
+          }
+        ]
+      },
+      {
+        "id": "stay",
+        "label": "집에 머문다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.4
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "포졸들이 마을을 휩쓸고 지나갔다. 당신은 살아남았다."
+          }
+        ]
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 이 해가 올 것을 알았다. 지난가을에 이미 먼 고을로 옮겨 이름을 바꾸었다",
+        "requires": {
+          "memory": [
+            "1866-byeongin"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -6
+          },
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.03
+          }
+        ],
+        "result": "새 고을에서 당신을 아는 사람은 없었다."
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "byeongin-1866",
+      "catholic-1800s"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1866-byeongin-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1866,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1800s"
+      ],
+      "ageMin": 9,
+      "notFlags": [
+        "catholic"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "봄부터 천주교인을 잡아들인다더니, 가을에는 서양 배가 강화도에 들어와 싸움이 벌어졌다는 소식이 돌았다.",
+    "sourceRefs": [
+      "byeongin-1866"
+    ],
+    "confidence": "confirmed"
+  }
+]

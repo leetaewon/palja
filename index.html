@@ -1,12 +1,33 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="color-scheme" content="light" />
-    <title>팔자</title>
+    <meta name="theme-color" content="#f2ebdd" />
+    <title>팔자 — 이 땅 어딘가에 태어나 한 번의 일생을</title>
+    <meta name="description" content="삼국에서 조선까지, 이 땅 어딘가에 무작위로 태어나 한 번의 일생을 사는 텍스트 인생 시뮬레이션. 죽으면 팔자를 고치러 같은 삶으로 돌아갑니다." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="팔자" />
+    <meta property="og:description" content="이 땅 어딘가에 무작위로 태어나 한 번의 일생을 산다. 죽으면 팔자를 고치러 돌아간다." />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <link rel="canonical" href="%SITE_URL%/" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='10' fill='%23b0322a'/%3E%3Ctext x='50' y='70' font-size='58' text-anchor='middle' fill='%23fbf5ea' font-family='serif'%3E八%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet" />
+    <script>
+      // 첫 화면 깜빡임 방지: 고른 모드를 먼저 적용한다. 첫 방문은 라이트 (PRD 10-1)
+      try {
+        if (localStorage.getItem('palja:theme') === 'dark') {
+          document.documentElement.dataset.theme = 'dark';
+          document.documentElement.style.colorScheme = 'dark';
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
+    <noscript>이 게임은 자바스크립트가 켜져 있어야 해요.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
