@@ -59,9 +59,10 @@
 | 명령 | 용도 |
 |---|---|
 | `npm run dev` | 개발 서버 |
-| `npm run test` | Vitest (엔진·콘텐츠 검증) |
-| `npm run e2e` | Playwright |
-| `npm run sim:lives` | 1만 인생 시뮬레이션 리포트 |
-| `npm run build` | 프로덕션 빌드 |
+| `npm run test` | Vitest (엔진·콘텐츠 검증·보정 목표). 테스트는 `tests/` |
+| `npm run lint` | ESLint (엔진 순수성·`Math.random` 금지 규칙 포함) |
+| `npm run build` | 타입 검사 + 프로덕션 빌드 (`dist`) |
+| `npm run sim:lives` | 1만 인생 시뮬레이션 리포트. `-- --n 2000`으로 표본 수, `-- --json`으로 JSON 출력 |
+| `npm run e2e` | Playwright (Phase 2에서 추가) |
 
-> 명령 이름은 Phase 1에서 `package.json`에 맞춰 확정하고, 바뀌면 이 표를 고친다.
+> 명령이 바뀌면 이 표를 고친다.

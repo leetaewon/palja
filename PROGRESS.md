@@ -3,21 +3,19 @@
 > 새 세션은 이 파일부터 읽는다. 작업할 때마다 갱신한다. (규칙: `CLAUDE.md`)
 
 ## 현재 상태
-- **현재 단계**: Phase 1 — 엔진과 시뮬레이터 (시작 전)
-- **현재 브랜치**: main
-- **마지막 갱신**: 2026-11-03 — 기획 문서 완료 (Brief, 근거 자료, PRD, 디자인 문서, 세션 프롬프트)
+- **현재 단계**: Phase 1 — 엔진과 시뮬레이터 (진행 중)
+- **현재 브랜치**: phase-1-engine
+- **마지막 갱신**: 2026-11-03 — 프로젝트 초기화 (Vite + React + TS, Vitest, ESLint)
 
 ## 다음 할 일
-1. `phase-1-engine` 브랜치를 만든다.
-2. Vite + React + TypeScript 초기화 (`base: '/'`, `.node-version`에 Node LTS 고정 — Cloudflare Pages 빌드용), Vitest·ESLint 설정, `package.json` 스크립트(test·build·lint·sim:lives) 확정 후 CLAUDE.md 명령 표 갱신.
-3. `src/engine/`에 시드 RNG → 출생 결정 → 연 단위 진행 → 사건 평가 → 사망 모델 순으로 테스트와 함께 구현.
-4. `content/`에 1592 시점 최소 콘텐츠 작성 (PRD 12장 Phase 1 기준).
-5. `sim:lives`로 PRD 6-1 보정 목표 맞추기.
+1. `src/engine/`에 시드 RNG → 출생 결정 → 연 단위 진행 → 사건 평가 → 사망 모델 순으로 테스트와 함께 구현.
+2. `content/`에 1592 시점 최소 콘텐츠 작성 (PRD 12장 Phase 1 기준).
+3. `sim:lives`로 PRD 6-1 보정 목표 맞추기.
 
 ## 단계별 체크
 
 ### Phase 1 — 엔진과 시뮬레이터
-- [ ] 프로젝트 초기화
+- [x] 프로젝트 초기화 (Node 22 `.node-version`, `base: '/'`, ESLint에 `Math.random`·엔진 DOM 금지 규칙)
 - [ ] 시드 RNG, 출생, 능력치, 연 단위 진행, 사건·갈림길, 신분 변동
 - [ ] 사망 모델, 회귀(기억·현대 지식·영향력), 기록 엔딩 판정
 - [ ] 콘텐츠 스키마 검증 + 1592 최소 콘텐츠
