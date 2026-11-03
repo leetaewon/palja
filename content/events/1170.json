@@ -1,0 +1,3036 @@
+[
+  {
+    "id": "1170-coup-memory",
+    "kind": "choice",
+    "when": {
+      "year": 1170,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "memory": [
+        "1170-coup"
+      ],
+      "ageMin": 5,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "1170년 여름이 왔다. 당신은 가을이 오기 전 개경에서 무슨 일이 일어나는지 기억하고 있다.",
+    "choices": [
+      {
+        "id": "wait",
+        "label": "아무것도 하지 않는다",
+        "result": "당신은 기억을 마음속에 묻어 두었다."
+      },
+      {
+        "id": "noble-leave",
+        "label": "(기억) 8월이 오기 전에 식구들을 데리고 시골 농장으로 내려간다",
+        "requires": {
+          "memory": [
+            "1170-coup"
+          ],
+          "statuses": [
+            "yangban"
+          ],
+          "ageMin": 16
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-1170"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "8월이 오기 전에 식구들을 데리고 개경을 떠났다."
+          }
+        ],
+        "result": "당신은 집안 어른들에게 몸이 좋지 않다며 시골로 내려가자고 했다. 어른들은 마지못해 따랐다."
+      },
+      {
+        "id": "noble-child",
+        "label": "(기억) 아버지에게 8월 행차를 따라가지 말라고 매달린다",
+        "requires": {
+          "memory": [
+            "1170-coup"
+          ],
+          "statuses": [
+            "yangban"
+          ],
+          "ageMax": 15
+        },
+        "outcomes": [
+          {
+            "weight": 55,
+            "text": "아버지는 아이의 울음을 이기지 못하고 병을 핑계로 행차에서 빠졌다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "father-spared-1170"
+              },
+              {
+                "type": "change",
+                "scope": "family",
+                "text": "아버지가 8월 행차에서 빠졌다."
+              }
+            ]
+          },
+          {
+            "weight": 45,
+            "text": "아버지는 웃으며 당신의 머리를 쓰다듬었다. 행차 날짜는 바뀌지 않았다."
+          }
+        ]
+      },
+      {
+        "id": "soldier-ready",
+        "label": "(기억) 그날 누가 칼을 들고 누가 쓰러지는지 알고 있다. 몸을 아끼며 때를 기다린다",
+        "requires": {
+          "memory": [
+            "1170-coup"
+          ],
+          "statuses": [
+            "soldier"
+          ],
+          "ageMin": 16
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "foresight-1170"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 2
+          }
+        ],
+        "result": "당신은 동료들의 수군거림에 귀를 기울이며 말을 아꼈다."
+      },
+      {
+        "id": "gaegyeong-away",
+        "label": "(기억) 그 무렵 개경 거리에 나가지 않도록 일을 미리 마친다",
+        "requires": {
+          "memory": [
+            "1170-coup"
+          ],
+          "regions": [
+            "gaegyeong"
+          ],
+          "notStatuses": [
+            "yangban",
+            "soldier"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-1170"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -2
+          }
+        ],
+        "result": "당신은 8월 한 달 동안 성 밖 일가에 머물렀다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "regression-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1170-bohyeon",
+    "kind": "choice",
+    "when": {
+      "year": 1170,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "sex": "male",
+      "ageMin": 18,
+      "notFlags": [
+        "safe-1170"
+      ]
+    },
+    "text": "8월, 왕이 보현원으로 놀이 행차를 나선다. 수행하는 문신들 사이에 당신의 이름도 있다. 호위하는 무신들의 얼굴이 굳어 있다.",
+    "choices": [
+      {
+        "id": "follow",
+        "label": "행렬을 따른다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.4
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "그날 밤 보현원에서 무신들이 수행하던 문신들을 죽였다. 당신은 어둠을 틈타 담을 넘어 살아 돌아왔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -10
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -5
+              },
+              {
+                "type": "flag",
+                "set": "survived-1170"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "excuse",
+        "label": "병을 핑계로 집에 남는다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.08
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "다음 날, 보현원에서 문신들이 무더기로 죽었다는 소식이 들어왔다. 개경 곳곳에서 문신의 집이 습격당했다. 당신은 문을 걸어 잠그고 숨을 죽였다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -3
+              },
+              {
+                "type": "flag",
+                "set": "survived-1170"
+              },
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-1170-survivor",
+                "chance": 0.3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-avoid",
+        "label": "(기억) 그날 무슨 일이 일어나는지 안다. 행차 전날 개경을 빠져나간다",
+        "requires": {
+          "memory": [
+            "1170-coup"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          },
+          {
+            "type": "flag",
+            "set": "survived-1170"
+          },
+          {
+            "type": "record",
+            "level": "munjip",
+            "templateId": "munjip-1170-survivor"
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "보현원 행차를 피해 목숨을 건졌다."
+          }
+        ],
+        "result": "당신은 말을 달려 시골 농장으로 갔다. 보름 뒤 들려온 소식은 당신이 기억하는 그대로였다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1170-coup",
+    "sourceRefs": [
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1170-coup-noble-family",
+    "kind": "timeline",
+    "when": {
+      "year": 1170,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "ageMin": 5,
+      "notFlags": [
+        "survived-1170",
+        "safe-1170"
+      ]
+    },
+    "text": "8월, 보현원에서 무신들이 왕을 수행하던 문신들을 죽였다. 개경의 문신 집안마다 곡소리가 났다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "당신의 집안은 화를 피했다. 식구들은 한동안 바깥출입을 하지 않았다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "weight": 25,
+        "text": "당신의 집도 군사들에게 털렸다. 재물을 많이 잃었지만 식구들은 살아남았다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -20
+          }
+        ]
+      },
+      {
+        "weight": 15,
+        "text": "행차를 따라갔던 아버지가 돌아오지 못했다.",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "father-dead"
+          },
+          {
+            "type": "family",
+            "event": "parent-died"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -15
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -5
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1170-coup",
+    "sourceRefs": [
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1170-coup-noble-safe",
+    "kind": "timeline",
+    "when": {
+      "year": 1170,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "flags": [
+        "safe-1170"
+      ]
+    },
+    "text": "8월, 보현원에서 문신들이 무더기로 죽었다는 소식이 시골까지 닿았다. 당신의 식구들은 모두 무사했다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 3
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1170-coup",
+    "sourceRefs": [
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1170-soldier-coup",
+    "kind": "choice",
+    "when": {
+      "year": 1170,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "soldier"
+      ],
+      "sex": "male",
+      "ageMin": 16
+    },
+    "text": "8월, 보현원 행차를 호위하던 날 밤, 무신 우두머리들이 문신들을 치라는 명을 내렸다. 당신의 손에도 칼이 쥐여 있다.",
+    "choices": [
+      {
+        "id": "join",
+        "label": "무신들을 따라 칼을 든다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "side-jung"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 5
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 8
+          },
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 0.03
+          }
+        ],
+        "result": "그날 밤의 일은 오래 당신의 꿈에 나왔다. 정변 뒤 무신들은 함께한 군사들에게 상을 내렸다."
+      },
+      {
+        "id": "stay",
+        "label": "막사를 지키며 나서지 않는다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -2
+          }
+        ],
+        "result": "당신은 끝까지 막사를 떠나지 않았다. 동료 몇은 당신을 미심쩍게 보았다."
+      },
+      {
+        "id": "memory-guard",
+        "label": "(기억) 칼은 들되, 정중부 집안 사람들과는 거리를 둔다",
+        "requires": {
+          "memory": [
+            "1170-coup"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 4
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 5
+          },
+          {
+            "type": "flag",
+            "set": "foresight-1170"
+          }
+        ],
+        "result": "당신은 무리 뒤쪽에 섰다. 상은 적게 받았지만 누구의 사람으로도 이름이 나지 않았다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1170-coup",
+    "sourceRefs": [
+      "era-1170",
+      "factions-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1170-coup-gaegyeong",
+    "kind": "timeline",
+    "when": {
+      "year": 1170,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "regions": [
+        "gaegyeong"
+      ],
+      "ageMin": 5,
+      "notStatuses": [
+        "royal",
+        "yangban",
+        "soldier"
+      ],
+      "notFlags": [
+        "safe-1170"
+      ]
+    },
+    "text": "8월, 개경 거리에 무신들의 군사가 가득했다. 문신의 집들이 습격당했다는 소문이 돌았다.",
+    "outcomes": [
+      {
+        "weight": 85,
+        "text": "당신의 식구들은 문을 닫아걸고 며칠을 지냈다."
+      },
+      {
+        "weight": 15,
+        "text": "길에서 군사들과 마주쳐 짐을 빼앗겼다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -3
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1170-coup",
+    "sourceRefs": [
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1170-king-deposed",
+    "kind": "timeline",
+    "when": {
+      "year": 1170,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 5,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "9월, 왕이 쫓겨나 거제로 보내지고 그 아우가 새 왕이 되었다는 소식이 들려왔다. 나라의 일은 이제 무신들이 정한다고들 했다.",
+    "memorable": true,
+    "memoryKey": "1170-coup",
+    "sourceRefs": [
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1171-noble-choice",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "sex": "male",
+      "ageMin": 16,
+      "yearMin": 1171,
+      "yearMax": 1185,
+      "notFlags": [
+        "retired-1170",
+        "serve-military"
+      ]
+    },
+    "chance": 0.3,
+    "text": "무신 정권 아래에서도 글을 아는 사람은 필요했다. 무신 집안에서 벼슬을 주겠다는 말이 들어왔다.",
+    "choices": [
+      {
+        "id": "serve",
+        "label": "벼슬을 받고 개경에 남는다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "official"
+          },
+          {
+            "type": "flag",
+            "set": "serve-military"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 6
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ],
+        "result": "당신은 관복을 입고 다시 궁궐에 나갔다. 윗자리에는 무신들이 앉아 있었다."
+      },
+      {
+        "id": "retire",
+        "label": "낙향하여 글을 읽으며 지낸다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "retired-1170"
+          },
+          {
+            "type": "stat",
+            "stat": "learning",
+            "delta": 6
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          },
+          {
+            "type": "protect",
+            "cause": "punishment",
+            "factor": 0.7
+          }
+        ],
+        "result": "당신은 시골집으로 내려가 문을 닫고 책을 읽었다. 찾아오는 이는 드물었다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1173-kim-bodang",
+    "kind": "timeline",
+    "when": {
+      "year": 1173,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 8,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "8월, 동북면병마사 김보당이 옛 왕을 다시 세우겠다며 군사를 일으켰다. 한 달이 못 되어 무너졌고, 10월에는 경주에 머물던 옛 왕이 이의민에게 죽임을 당했다는 소식이 들려왔다.",
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "사람들은 이 일을 두고 목소리를 낮추어 말했다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1173-gyesa",
+    "kind": "timeline",
+    "when": {
+      "year": 1173,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "ageMin": 12,
+      "notFlags": [
+        "retired-1170"
+      ]
+    },
+    "text": "김보당의 난이 무너진 뒤, 무신들은 문신들을 다시 잡아들였다. 계사년의 일이었다.",
+    "outcomes": [
+      {
+        "weight": 75,
+        "text": "당신은 이번에도 화를 피했다. 집안에 남아 있던 편지들을 모두 태웠다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "weight": 25,
+        "text": "당신도 끌려가 문초를 받았다.",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.3
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -10
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1174-monks",
+    "kind": "timeline",
+    "when": {
+      "year": 1174,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "regions": [
+        "gaegyeong"
+      ],
+      "ageMin": 8,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "1월, 귀법사를 비롯한 개경 둘레 절의 승려들이 무리를 지어 성문으로 몰려왔다. 무신들의 군사가 이들을 막아섰다.",
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "며칠 동안 성문이 닫혀 장이 서지 않았다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1174-jo-wichong",
+    "kind": "choice",
+    "when": {
+      "year": 1174,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "regions": [
+        "bukgye"
+      ],
+      "ageMin": 15,
+      "notStatuses": [
+        "royal"
+      ],
+      "notFlags": [
+        "safe-seogyeong"
+      ]
+    },
+    "text": "9월, 서경유수 조위총이 개경의 무신들을 치겠다며 군사를 일으켰다. 북계의 여러 성이 그를 따랐다. 고을에서도 사람을 모은다.",
+    "choices": [
+      {
+        "id": "join",
+        "label": "서경 군에 들어간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "jo-rebel"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          },
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 0.05
+          }
+        ],
+        "result": "당신은 창을 받아 들고 서경으로 향했다."
+      },
+      {
+        "id": "stay",
+        "label": "집에 남아 농사를 짓는다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -3
+          }
+        ],
+        "result": "당신은 군사를 모으러 온 사람에게 곡식 한 섬을 내주고 집에 남았다."
+      },
+      {
+        "id": "memory-flee",
+        "label": "(기억) 서경이 끝내 무너진다는 것을 안다. 식구들과 남쪽 일가로 몸을 옮긴다",
+        "requires": {
+          "memory": [
+            "1174-jo"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-seogyeong"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.5
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "서경이 포위되기 전에 식구들을 남쪽으로 옮겼다."
+          }
+        ],
+        "result": "당신은 가을걷이를 서둘러 마치고 길을 떠났다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1174-jo",
+    "sourceRefs": [
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1175-campaign",
+    "kind": "timeline",
+    "when": {
+      "year": 1175,
+      "month": 10
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "soldier"
+      ],
+      "sex": "male",
+      "ageMin": 16,
+      "ageMax": 55
+    },
+    "text": "서경을 치는 군대에 당신도 뽑혔다. 겨울 동안 서경성 앞에서 진을 쳤다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -6
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 80,
+        "text": "당신은 살아서 진을 지켰다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "weight": 20,
+        "text": "성 아래 싸움에서 크게 다쳤다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -15
+          },
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 0.3
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "factions-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1176-seogyeong-falls",
+    "kind": "timeline",
+    "when": {
+      "year": 1176,
+      "month": 6
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "jo-rebel"
+      ]
+    },
+    "text": "6월, 오랜 포위 끝에 서경이 무너졌다. 조위총은 붙잡혀 죽었다.",
+    "effects": [
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.25
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "당신은 무너진 성을 빠져나와 고향으로 숨어들었다.",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "jo-rebel"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -8
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          },
+          {
+            "type": "record",
+            "level": "munjip",
+            "templateId": "munjip-1170-jo",
+            "chance": 0.3
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1174-bukgye-war",
+    "kind": "timeline",
+    "when": {
+      "year": 1175,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "regions": [
+        "bukgye"
+      ],
+      "ageMin": 5,
+      "notFlags": [
+        "safe-seogyeong",
+        "jo-rebel"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "서경과 개경의 싸움이 2년 가까이 이어졌다. 북계의 들판은 군사들이 지나갈 때마다 짓밟혔다.",
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "당신의 식구들은 곡식을 숨겨 두고 버텼다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -6
+          }
+        ]
+      },
+      {
+        "weight": 30,
+        "text": "군사들이 곡식을 거두어 가 굶주린 봄을 보냈다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -6
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.05
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1176-mangi",
+    "kind": "choice",
+    "when": {
+      "year": 1176,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "bugok"
+      ],
+      "regions": [
+        "yanggwang"
+      ],
+      "ageMin": 14
+    },
+    "text": "1월, 공주 명학소의 망이와 망소이가 무리를 모아 일어났다. 소에 매인 사람들이 무거운 공물과 차별에 맞서 낫과 몽둥이를 들었다.",
+    "effects": [
+      {
+        "type": "flag",
+        "set": "mangi-near"
+      }
+    ],
+    "choices": [
+      {
+        "id": "join",
+        "label": "무리에 들어간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "mangi-rebel"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 5
+          },
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 0.04
+          }
+        ],
+        "result": "당신은 낫을 들고 무리 뒤를 따랐다. 무리는 공주를 쳐서 떨어뜨렸다."
+      },
+      {
+        "id": "help",
+        "label": "곡식만 몰래 보탠다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -4
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ],
+        "result": "당신은 밤마다 곡식 자루를 날랐다."
+      },
+      {
+        "id": "stay",
+        "label": "식구들을 지키며 나서지 않는다",
+        "result": "당신은 문을 닫고 소식이 지나가기를 기다렸다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1176-mangi",
+    "sourceRefs": [
+      "era-1170",
+      "bugok-1170",
+      "revolts-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1176-mangi-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1176,
+      "month": 6
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 10,
+      "notStatuses": [
+        "royal"
+      ],
+      "notFlags": [
+        "mangi-rebel",
+        "mangi-near"
+      ]
+    },
+    "text": "공주 명학소의 사람들이 일어나 고을을 쳤다는 소식이 퍼졌다. 조정은 군사를 보내는 한편, 명학소를 충순현으로 올려 달랬다.",
+    "outcomes": [
+      {
+        "weight": 80,
+        "text": "사람들은 소에 사는 이들도 현민이 될 수 있느냐며 수군거렸다."
+      },
+      {
+        "weight": 20,
+        "text": "부곡과 소에 사는 일가들은 이 소식에 오래 잠을 이루지 못했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 1
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "bugok-1170",
+      "revolts-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1176-chungsun",
+    "kind": "timeline",
+    "when": {
+      "year": 1176,
+      "month": 6
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "mangi-rebel"
+      ],
+      "statuses": [
+        "bugok"
+      ]
+    },
+    "text": "6월, 조정이 명학소를 충순현으로 올렸다. 소의 사람들은 이제 현의 백성이 되었다.",
+    "effects": [
+      {
+        "type": "status",
+        "to": "commoner"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 3
+      },
+      {
+        "type": "record",
+        "level": "hojeok",
+        "templateId": "hojeok-1170-chungsun"
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "bugok-1170",
+      "revolts-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1177-mangi-again",
+    "kind": "choice",
+    "when": {
+      "year": 1177,
+      "month": 2
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "mangi-rebel"
+      ]
+    },
+    "text": "이듬해, 조정이 군사를 보내 망이의 고향을 짓밟고 식구들을 가두었다는 말이 돌았다. 망이와 망소이가 다시 무리를 모은다.",
+    "choices": [
+      {
+        "id": "rise",
+        "label": "다시 무리에 든다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 0.25
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 55,
+            "text": "7월, 무리는 무너졌다. 당신은 산속으로 달아나 이름을 숨기고 살았다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "hidden-1177"
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -10
+              },
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-1170-mangi"
+              }
+            ]
+          },
+          {
+            "weight": 45,
+            "text": "7월, 무리는 무너졌다. 당신은 붙잡혔다.",
+            "effects": [
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-1170-mangi"
+              },
+              {
+                "type": "death",
+                "cause": "punishment",
+                "chance": 0.6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "home",
+        "label": "이번에는 집에 남는다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -3
+          }
+        ],
+        "result": "당신은 무리를 찾아온 옛 동료를 돌려보냈다."
+      },
+      {
+        "id": "memory-hide",
+        "label": "(기억) 7월에 무리가 무너지고 명학소가 다시 소로 떨어진다는 것을 안다. 식구들과 먼 고을로 떠난다",
+        "requires": {
+          "memory": [
+            "1176-mangi"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "hidden-1177"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          },
+          {
+            "type": "protect",
+            "cause": "punishment",
+            "factor": 0.3
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "토벌군이 오기 전에 식구들을 데리고 먼 고을로 떠났다."
+          }
+        ],
+        "result": "당신은 밤길을 걸어 아무도 당신을 모르는 고을에 닿았다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1176-mangi",
+    "sourceRefs": [
+      "era-1170",
+      "revolts-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1177-demoted",
+    "kind": "timeline",
+    "when": {
+      "year": 1177,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "mangi-rebel"
+      ],
+      "notFlags": [
+        "hidden-1177"
+      ],
+      "statuses": [
+        "commoner"
+      ]
+    },
+    "text": "7월, 봉기가 진압된 뒤 충순현은 다시 명학소로 떨어졌다. 당신도 다시 소의 사람이 되었다.",
+    "effects": [
+      {
+        "type": "status",
+        "to": "bugok"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": -3
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "bugok-1170",
+      "revolts-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1179-gyeong",
+    "kind": "choice",
+    "when": {
+      "year": 1179,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "side-jung"
+      ]
+    },
+    "text": "9월, 젊은 장군 경대승이 정중부를 죽이고 권력을 잡았다. 정중부 쪽 사람들을 가려낸다는 말이 돌았다.",
+    "choices": [
+      {
+        "id": "hide",
+        "label": "몸을 숨기고 지나가기를 기다린다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.15
+          },
+          {
+            "type": "flag",
+            "unset": "side-jung"
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "당신은 한동안 처가에 숨어 지냈다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "submit",
+        "label": "경대승의 도방에 줄을 댄다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.08
+          },
+          {
+            "type": "flag",
+            "unset": "side-jung"
+          },
+          {
+            "type": "flag",
+            "set": "side-gyeong"
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "당신은 옛 동료들을 뒤로하고 새 주인을 섬겼다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -4
+              },
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-leave",
+        "label": "(기억) 그해 봄에 이미 정중부 곁을 떠나 시골 군영으로 옮겨 두었다",
+        "requires": {
+          "memory": [
+            "1170-factions"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "side-jung"
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "정중부가 쓰러지기 전에 그 곁을 떠났다."
+          }
+        ],
+        "result": "개경의 피바람은 당신이 있는 시골 군영까지 닿지 않았다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1170-factions",
+    "sourceRefs": [
+      "era-1170",
+      "factions-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1179-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1179,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 10,
+      "notStatuses": [
+        "royal"
+      ],
+      "notFlags": [
+        "side-jung"
+      ]
+    },
+    "text": "9월, 경대승이 정중부를 죽이고 권력을 잡았다는 소식이 들려왔다.",
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "사람들은 또 사람이 바뀌었다고만 말했다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "factions-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1182-jeonju",
+    "kind": "choice",
+    "when": {
+      "year": 1182,
+      "month": 3
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "regions": [
+        "jeolla"
+      ],
+      "ageMin": 14
+    },
+    "text": "3월, 전주의 관노들이 고된 부림을 견디지 못하고 일어나 고을을 차지했다. 그들이 사람을 모은다.",
+    "choices": [
+      {
+        "id": "join",
+        "label": "그들과 함께한다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 0.05
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 60,
+            "text": "40여 일 만에 성이 열리고 무리는 흩어졌다. 당신은 숨어서 살아남았다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -6
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 4
+              },
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-1170-jeonju"
+              }
+            ]
+          },
+          {
+            "weight": 40,
+            "text": "40여 일 만에 성이 열렸다. 당신은 붙잡혔다.",
+            "effects": [
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-1170-jeonju"
+              },
+              {
+                "type": "death",
+                "cause": "punishment",
+                "chance": 0.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "stay",
+        "label": "주인집에 남는다",
+        "result": "당신은 들리는 함성을 못 들은 척 일만 했다."
+      },
+      {
+        "id": "memory-quiet",
+        "label": "(기억) 40여 일 만에 무너진다는 것을 안다. 숨어 지낼 곳에 식구들을 먼저 보낸다",
+        "requires": {
+          "memory": [
+            "1182-jeonju"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -2
+          },
+          {
+            "type": "protect",
+            "cause": "punishment",
+            "factor": 0.5
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "난리가 무너지기 전에 식구들을 숨겼다."
+          }
+        ],
+        "result": "성 안팎이 들끓는 동안 당신의 식구들은 산속 움막에 있었다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1182-jeonju",
+    "sourceRefs": [
+      "era-1170",
+      "revolts-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1183-yi-uimin",
+    "kind": "timeline",
+    "when": {
+      "year": 1183,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 10,
+      "notStatuses": [
+        "royal",
+        "slave"
+      ]
+    },
+    "text": "7월, 경대승이 병으로 죽었다. 얼마 뒤 경주에 물러나 있던 이의민이 개경으로 돌아와 권력을 잡았다.",
+    "sourceRefs": [
+      "era-1170",
+      "factions-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1183-yi-uimin-slave",
+    "kind": "timeline",
+    "when": {
+      "year": 1183,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 10
+    },
+    "text": "7월, 노비의 아들로 태어난 이의민이 나라의 권세를 잡았다는 말이 들려왔다. 주인집 머슴들이 밤늦도록 그 이야기를 했다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 2
+      },
+      {
+        "type": "flag",
+        "set": "heard-yi-uimin"
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "factions-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1184-side",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "soldier",
+        "yangban"
+      ],
+      "sex": "male",
+      "ageMin": 18,
+      "yearMin": 1184,
+      "yearMax": 1194,
+      "notFlags": [
+        "side-yi",
+        "retired-1170"
+      ]
+    },
+    "chance": 0.25,
+    "text": "이의민의 집안 사람이 찾아와 함께 일하자고 했다. 그 곁에 서면 벼슬과 땅이 따라온다고 했다.",
+    "choices": [
+      {
+        "id": "accept",
+        "label": "이의민 쪽에 선다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "side-yi"
+          },
+          {
+            "type": "flag",
+            "set": "official"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 12
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ],
+        "result": "당신은 새 관직과 밭을 받았다."
+      },
+      {
+        "id": "decline",
+        "label": "정중히 사양한다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -2
+          }
+        ],
+        "result": "손님은 굳은 얼굴로 돌아갔다."
+      },
+      {
+        "id": "memory-decline",
+        "label": "(기억) 이의민의 집안은 1196년에 무너진다. 핑계를 대고 멀리한다",
+        "requires": {
+          "memory": [
+            "1196-choe"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 1
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "이의민 집안의 손을 잡지 않았다."
+          }
+        ],
+        "result": "당신은 병든 어머니를 핑계로 손님을 돌려보냈다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "factions-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1193-kim-sami",
+    "kind": "choice",
+    "when": {
+      "year": 1193,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "regions": [
+        "gyeongsang"
+      ],
+      "statuses": [
+        "commoner",
+        "bugok",
+        "slave"
+      ],
+      "sex": "male",
+      "ageMin": 15,
+      "ageMax": 55
+    },
+    "text": "7월, 운문의 김사미와 초전의 효심이 무리를 모아 일어났다. 굶주리고 빼앗긴 사람들이 그 뒤를 따른다.",
+    "choices": [
+      {
+        "id": "join",
+        "label": "무리에 들어간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "rebel-1193"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 4
+          },
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 0.05
+          }
+        ],
+        "result": "당신은 무리를 따라 산으로 들어갔다."
+      },
+      {
+        "id": "help",
+        "label": "곡식만 보태고 집에 남는다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -4
+          }
+        ],
+        "result": "당신은 곡식 두 말을 몰래 내주었다."
+      },
+      {
+        "id": "stay",
+        "label": "나서지 않는다",
+        "result": "당신은 산 쪽을 보지 않으려 애썼다."
+      },
+      {
+        "id": "memory-stay",
+        "label": "(기억) 이듬해 무리가 무너진다는 것을 안다. 이름을 올리지 않고 식구들을 산 너머로 피신시킨다",
+        "requires": {
+          "memory": [
+            "1193-revolt"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.6
+          },
+          {
+            "type": "protect",
+            "cause": "punishment",
+            "factor": 0.6
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "토벌군이 오기 전에 식구들을 산 너머로 피신시켰다."
+          }
+        ],
+        "result": "당신은 토벌군이 지나갈 길을 피해 식구들을 옮겼다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1193-revolt",
+    "sourceRefs": [
+      "era-1170",
+      "revolts-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1194-revolt-end",
+    "kind": "timeline",
+    "when": {
+      "year": 1194,
+      "month": 2
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "rebel-1193"
+      ]
+    },
+    "text": "2월, 김사미가 항복하여 죽임을 당했고, 얼마 뒤 효심도 붙잡혔다. 무리는 흩어졌다.",
+    "effects": [
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.2
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "당신은 흩어지는 무리 속에서 살아남아 고향으로 돌아왔다.",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "rebel-1193"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -8
+          },
+          {
+            "type": "record",
+            "level": "munjip",
+            "templateId": "munjip-1170-sami",
+            "chance": 0.4
+          }
+        ]
+      },
+      {
+        "weight": 30,
+        "text": "당신은 붙잡혔다.",
+        "effects": [
+          {
+            "type": "record",
+            "level": "munjip",
+            "templateId": "munjip-1170-sami"
+          },
+          {
+            "type": "flag",
+            "unset": "rebel-1193"
+          },
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.5
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "revolts-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1195-memory",
+    "kind": "choice",
+    "when": {
+      "year": 1195,
+      "month": 11
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "side-yi"
+      ],
+      "memory": [
+        "1196-choe"
+      ]
+    },
+    "text": "1195년 겨울이 왔다. 당신은 이듬해 봄 이의민의 집안에 무슨 일이 일어나는지 기억하고 있다.",
+    "choices": [
+      {
+        "id": "stay",
+        "label": "그대로 지낸다",
+        "result": "당신은 기억을 애써 지웠다."
+      },
+      {
+        "id": "memory-leave",
+        "label": "(기억) 관직을 내놓고 시골로 내려간다",
+        "requires": {
+          "memory": [
+            "1196-choe"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "side-yi"
+          },
+          {
+            "type": "flag",
+            "unset": "official"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "1196년 봄이 오기 전에 이의민 곁을 떠났다."
+          }
+        ],
+        "result": "당신은 병을 핑계로 관직을 내놓았다. 동료들은 당신을 비웃었다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "factions-1170",
+      "regression-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1196-choe",
+    "kind": "choice",
+    "when": {
+      "year": 1196,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "side-yi"
+      ]
+    },
+    "text": "4월, 최충헌 형제가 이의민을 죽이고 그 일가와 따르던 사람들을 잡아들였다.",
+    "choices": [
+      {
+        "id": "flee",
+        "label": "개경을 빠져나간다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.25
+          },
+          {
+            "type": "flag",
+            "unset": "side-yi"
+          },
+          {
+            "type": "flag",
+            "unset": "official"
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "당신은 가진 것을 버리고 달아났다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -20
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "beg",
+        "label": "최충헌의 집 앞에 엎드려 목숨을 빈다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.35
+          },
+          {
+            "type": "flag",
+            "unset": "side-yi"
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "당신은 귀양을 가는 것으로 목숨을 건졌다.",
+            "effects": [
+              {
+                "type": "flag",
+                "unset": "official"
+              },
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -15
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1196-choe",
+    "sourceRefs": [
+      "era-1170",
+      "factions-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1196-choe-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1196,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 10,
+      "notStatuses": [
+        "royal"
+      ],
+      "notFlags": [
+        "side-yi"
+      ]
+    },
+    "text": "4월, 최충헌이 이의민을 죽이고 권력을 잡았다. 그는 왕에게 봉사 10조를 올려 나라를 바로잡겠다고 했다.",
+    "outcomes": [
+      {
+        "weight": 85,
+        "text": "새 실력자가 들어섰다는 말에 사람들은 세금이 줄어들기만 바랐다."
+      },
+      {
+        "weight": 15,
+        "text": "당신이 알던 사람 하나가 이의민 쪽이었다는 이유로 끌려갔다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -2
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "factions-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1197-king-deposed",
+    "kind": "timeline",
+    "when": {
+      "year": 1197,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "regions": [
+        "gaegyeong"
+      ],
+      "ageMin": 10,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "9월, 최충헌이 왕을 물러나게 하고 왕의 아우를 새 왕으로 세웠다.",
+    "sourceRefs": [
+      "era-1170",
+      "royal-succession-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1198-manjeok",
+    "kind": "choice",
+    "when": {
+      "year": 1198,
+      "month": 5
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "regions": [
+        "gaegyeong"
+      ],
+      "ageMin": 14
+    },
+    "text": "5월, 개경 북산에 나무하러 간 노비들 사이에서 만적이 말했다. 장수와 재상의 씨가 어찌 따로 있겠느냐고. 날을 정해 주인을 치고 천적을 불태우자고 했다. 당신에게도 누런 종이 표식이 건네졌다.",
+    "effects": [
+      {
+        "type": "flag",
+        "set": "manjeok-near"
+      }
+    ],
+    "choices": [
+      {
+        "id": "join",
+        "label": "표식을 받고 이름을 올린다",
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "약속한 날, 모인 사람이 적어 날을 미루었다. 그사이 한 노비가 주인에게 일을 알렸다. 붙잡힌 백여 명이 강에 던져졌다.",
+            "effects": [
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-1170-manjeok"
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -10
+              },
+              {
+                "type": "death",
+                "cause": "punishment",
+                "chance": 0.65
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "stay",
+        "label": "표식을 돌려주고 모른 척한다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -2
+          }
+        ],
+        "result": "며칠 뒤 모의는 새어 나갔다. 함께 나무하던 이들 가운데 여럿이 돌아오지 못했다."
+      },
+      {
+        "id": "report",
+        "label": "주인에게 일을 알린다",
+        "outcomes": [
+          {
+            "weight": 40,
+            "text": "당신보다 먼저 일을 알린 사람이 있었다. 당신은 아무것도 얻지 못하고 사람들의 눈을 피해 다녔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -10
+              }
+            ]
+          },
+          {
+            "weight": 60,
+            "text": "주인은 당신에게 은을 내리고 노비 문서에서 이름을 지웠다. 함께 나무하던 이들은 돌아오지 못했다.",
+            "effects": [
+              {
+                "type": "status",
+                "to": "commoner"
+              },
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": 15
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -15
+              },
+              {
+                "type": "record",
+                "level": "hojeok",
+                "templateId": "hojeok-1170-freed"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-out",
+        "label": "(기억) 모의가 밀고로 무너진다는 것을 안다. 이름을 올리지 않고, 가까운 이들도 말린다",
+        "requires": {
+          "memory": [
+            "1198-manjeok"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "만적의 모의에 이름을 올리지 않고 가까운 이들을 말렸다."
+          }
+        ],
+        "result": "몇은 당신의 말을 듣고 발을 뺐다. 며칠 뒤 모의는 새어 나갔다."
+      },
+      {
+        "id": "memory-stop",
+        "label": "(기억) 밀고할 사람을 안다. 그가 주인에게 가기 전에 붙잡아 둔다",
+        "requires": {
+          "memory": [
+            "1198-manjeok"
+          ]
+        },
+        "outcomes": [
+          {
+            "weight": 35,
+            "text": "당신은 그를 나무하던 산에 붙잡아 두고 날이 지나기를 기다렸다. 그해 개경의 노비들이 모의하였으나 일이 새어 나가지 않았다.",
+            "effects": [
+              {
+                "type": "record",
+                "level": "sillok",
+                "templateId": "sillok-1170-manjeok-hidden"
+              },
+              {
+                "type": "change",
+                "scope": "nation",
+                "text": "만적의 모의가 밀고로 새어 나가지 않았다."
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 8
+              }
+            ]
+          },
+          {
+            "weight": 65,
+            "text": "그는 당신을 뿌리치고 달아났다. 모의는 새어 나갔고, 당신의 이름도 함께 불려 나갔다.",
+            "effects": [
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-1170-manjeok"
+              },
+              {
+                "type": "death",
+                "cause": "punishment",
+                "chance": 0.5
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1198-manjeok",
+    "sourceRefs": [
+      "era-1170",
+      "manjeok-1198"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1198-manjeok-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1198,
+      "month": 6
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 10,
+      "notFlags": [
+        "manjeok-near"
+      ]
+    },
+    "text": "개경의 노비들이 주인을 치려다 일이 드러나 백여 명이 강에 던져졌다는 소문이 돌았다. 모의를 이끈 만적이 장수와 재상의 씨가 어찌 따로 있겠느냐고 말했다고 했다.",
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "당신은 그 말을 오래 곱씹었다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "weight": 30,
+        "text": "주인집은 그해 내내 노비들을 더 엄하게 단속했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -3
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "manjeok-1198"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1171-exploitation",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "commoner",
+        "bugok",
+        "soldier"
+      ],
+      "ageMin": 15,
+      "yearMin": 1171,
+      "yearMax": 1215
+    },
+    "chance": 0.035,
+    "repeatable": true,
+    "text": "권세가의 농장이 고을로 넓혀 왔다.",
+    "outcomes": [
+      {
+        "weight": 50,
+        "text": "관리가 세를 두 번 거두어 갔다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          }
+        ]
+      },
+      {
+        "weight": 30,
+        "text": "당신이 부치던 땅이 권세가의 것이 되었다. 이제 소작료를 내야 한다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -12
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -2
+          }
+        ]
+      },
+      {
+        "weight": 20,
+        "text": "이웃들과 함께 관아에 하소연했다. 돌아온 것은 없었다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 2
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1171-wander",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "commoner",
+        "bugok"
+      ],
+      "ageMin": 16,
+      "ageMax": 50,
+      "yearMin": 1171,
+      "yearMax": 1215,
+      "statMax": {
+        "wealth": 15
+      },
+      "notFlags": [
+        "wanderer"
+      ]
+    },
+    "chance": 0.08,
+    "text": "빚과 세에 짓눌려 더는 버틸 수 없었다. 이웃 몇 집은 이미 땅을 버리고 떠났다.",
+    "choices": [
+      {
+        "id": "stay",
+        "label": "그래도 고향에 남는다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -4
+          }
+        ],
+        "result": "당신은 허리를 졸라매고 다시 밭에 나갔다."
+      },
+      {
+        "id": "leave",
+        "label": "땅을 버리고 떠돈다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "wanderer"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 4
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -6
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -4
+          }
+        ],
+        "result": "당신은 식구들을 데리고 길을 나섰다. 묵을 곳은 날마다 바뀌었다."
+      },
+      {
+        "id": "temple",
+        "label": "절에 몸을 의탁한다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 2
+          },
+          {
+            "type": "stat",
+            "stat": "learning",
+            "delta": 2
+          }
+        ],
+        "result": "당신은 산사에서 일을 거들며 한 해를 났다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1172-wanderer-life",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "wanderer"
+      ]
+    },
+    "chance": 0.15,
+    "repeatable": true,
+    "text": "떠도는 길은 고되었다.",
+    "outcomes": [
+      {
+        "weight": 50,
+        "text": "어느 마을에 머물러 남의 밭일을 거들었다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 3
+          }
+        ]
+      },
+      {
+        "weight": 30,
+        "text": "굶주린 날이 이어졌다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -8
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.03
+          }
+        ]
+      },
+      {
+        "weight": 20,
+        "text": "새 고을에 눌러앉아 다시 땅을 일구었다.",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "wanderer"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1171-hyangri-tax",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "jungin"
+      ],
+      "sex": "male",
+      "ageMin": 18,
+      "yearMin": 1171,
+      "yearMax": 1210
+    },
+    "chance": 0.15,
+    "text": "새로 온 수령이 세를 더 거두라고 했다. 거둔 것의 일부는 개경의 무신 집안으로 간다고 했다.",
+    "choices": [
+      {
+        "id": "comply",
+        "label": "시키는 대로 거둔다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "harsh-collector"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 10
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -8
+          }
+        ],
+        "result": "고을 사람들은 당신을 보면 고개를 돌렸다."
+      },
+      {
+        "id": "soften",
+        "label": "가난한 집은 사정을 봐준다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -6
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 8
+          }
+        ],
+        "result": "수령은 당신을 불러 꾸짖었다. 고을 사람들은 당신에게 고맙다고 했다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1172-revolt-target",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "harsh-collector"
+      ],
+      "yearMin": 1172,
+      "yearMax": 1215
+    },
+    "chance": 0.06,
+    "text": "굶주린 사람들이 무리를 지어 관아로 몰려왔다. 그들이 찾는 이름 가운데 당신이 있었다.",
+    "effects": [
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.3
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "당신은 뒷문으로 빠져나가 목숨을 건졌다. 집은 불탔다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -20
+          },
+          {
+            "type": "flag",
+            "unset": "harsh-collector"
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life",
+      "revolts-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1175-soldier-rise",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "soldier"
+      ],
+      "sex": "male",
+      "ageMin": 20,
+      "yearMin": 1171,
+      "yearMax": 1215,
+      "notFlags": [
+        "official"
+      ]
+    },
+    "chance": 0.06,
+    "text": "무신들이 나라를 잡은 뒤로 군인이 벼슬에 오르는 일이 늘었다.",
+    "outcomes": [
+      {
+        "weight": 40,
+        "text": "당신도 공을 인정받아 낮은 무반 벼슬을 받았다.",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "official"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 5
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 6
+          }
+        ]
+      },
+      {
+        "weight": 60,
+        "text": "당신에게 돌아온 것은 없었다. 윗사람들의 다툼에 끼지 않은 것이 다행이라 여겼다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life",
+      "factions-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1185-slave-dream",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 16,
+      "flags": [
+        "heard-yi-uimin"
+      ],
+      "yearMin": 1184,
+      "yearMax": 1215
+    },
+    "chance": 0.08,
+    "text": "노비의 아들이 나라의 권세를 잡는 세상이었다. 주인집의 다른 노비가 함께 군대에 들어가 공을 세워 보자고 했다.",
+    "choices": [
+      {
+        "id": "stay",
+        "label": "주인집에 남는다",
+        "result": "당신은 그 말을 웃어넘겼다."
+      },
+      {
+        "id": "go",
+        "label": "주인 몰래 떠나 무신 집안의 문객이 된다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 0.08
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 30,
+            "text": "당신은 싸움에서 공을 세워 양인이 되었다.",
+            "effects": [
+              {
+                "type": "status",
+                "to": "commoner"
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 5
+              }
+            ]
+          },
+          {
+            "weight": 70,
+            "text": "당신은 도망 노비로 쫓기는 신세가 되었다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "runaway"
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -5
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life",
+      "factions-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1231-mongol",
+    "kind": "choice",
+    "when": {
+      "year": 1231,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "regions": [
+        "bukgye",
+        "seohae"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "8월, 몽골군이 압록강을 건너 북계의 성들을 에워쌌다. 피난하는 사람들이 길을 메웠다.",
+    "choices": [
+      {
+        "id": "fortress",
+        "label": "가까운 성으로 들어가 지킨다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 0.25
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "성은 오래 버텼다. 당신은 살아남았다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "flee",
+        "label": "산속으로 피한다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 0.12
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.08
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "당신은 겨울을 산속에서 났다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -12
+              },
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-south",
+        "label": "(기억) 몽골군이 올 것을 안다. 그해 봄에 식구들과 남쪽으로 내려가 있었다",
+        "requires": {
+          "memory": [
+            "1231-mongol"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "몽골군이 오기 전에 식구들을 남쪽으로 옮겼다."
+          }
+        ],
+        "result": "북쪽의 소식은 뒤늦게 들려왔다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1231-mongol",
+    "sourceRefs": [
+      "era-1170",
+      "mongol-1231"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1231-mongol-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1231,
+      "month": 12
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "regions": [
+        "gaegyeong",
+        "yanggwang",
+        "gyeongsang",
+        "jeolla",
+        "gyoju",
+        "donggye"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "몽골군이 북쪽 성들을 넘어 개경 가까이까지 왔다는 소식이 들려왔다.",
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "늙은 당신은 젊은 날의 난리들을 떠올렸다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1231-mongol",
+    "sourceRefs": [
+      "era-1170",
+      "mongol-1231"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1232-ganghwa",
+    "kind": "timeline",
+    "when": {
+      "year": 1232,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "regions": [
+        "gaegyeong"
+      ]
+    },
+    "text": "7월, 조정이 강화도로 도읍을 옮겼다. 개경 사람들도 짐을 꾸려 섬으로 건너갔다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -6
+      },
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -4
+      }
+    ],
+    "sourceRefs": [
+      "era-1170",
+      "mongol-1231"
+    ],
+    "confidence": "confirmed"
+  }
+]

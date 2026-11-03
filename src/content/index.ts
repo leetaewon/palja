@@ -10,6 +10,10 @@ import names from '../../content/names.json';
 import sources from '../../content/sources.json';
 import mortality from '../../content/mortality.json';
 import mindsets from '../../content/mindsets.json';
+import era1170 from '../../content/eras/1170.json';
+import events1170 from '../../content/events/1170.json';
+import eventsRoyal1170 from '../../content/events/royal-1170.json';
+import eventsCommon1170 from '../../content/events/common-1170.json';
 import type { Content } from '../engine/types';
 import { validateContent } from './validate';
 
@@ -25,6 +29,10 @@ export const FILES: Record<string, unknown> = {
   'sources.json': sources,
   'mortality.json': mortality,
   'mindsets.json': mindsets,
+  'eras/1170.json': era1170,
+  'events/1170.json': events1170,
+  'events/royal-1170.json': eventsRoyal1170,
+  'events/common-1170.json': eventsCommon1170,
 };
 
 export function buildContent(files: Record<string, unknown> = FILES): unknown {

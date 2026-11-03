@@ -1,0 +1,1805 @@
+[
+  {
+    "id": "c1170-smallpox-child",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 1,
+      "ageMax": 12,
+      "notFlags": [
+        "smallpox-survived"
+      ]
+    },
+    "chance": 0.05,
+    "text": "마마가 고을을 휩쓸었다. 당신도 열에 들떠 앓아누웠다.",
+    "effects": [
+      {
+        "type": "death",
+        "cause": "smallpox",
+        "chance": 0.22
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "열이 내리고 딱지가 앉았다. 당신은 마마를 이겨 냈다.",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "smallpox-survived"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -5
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "smallpox"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-smallpox-adult",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 13,
+      "notFlags": [
+        "smallpox-survived"
+      ]
+    },
+    "chance": 0.008,
+    "text": "마마가 고을을 돌았다. 다 큰 당신도 앓아누웠다.",
+    "choices": [
+      {
+        "id": "endure",
+        "label": "견딘다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "smallpox",
+            "chance": 0.2
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "당신은 마마를 이겨 냈다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "smallpox-survived"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vaccinate",
+        "label": "(지식) 식구들에게 우두법을 쓴다",
+        "requires": {
+          "knowledge": [
+            "vaccination"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "vaccination"
+          },
+          {
+            "type": "death",
+            "cause": "smallpox",
+            "chance": 0.2
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "당신은 가볍게 앓고 일어났다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "smallpox-survived"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "sourceRefs": [
+      "smallpox"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-smallpox-children",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "childrenMin": 1,
+      "ageMin": 17,
+      "ageMax": 50
+    },
+    "chance": 0.05,
+    "repeatable": true,
+    "text": "손님이 들었다. 마마가 돌아 아이들이 앓았다.",
+    "choices": [
+      {
+        "id": "pray",
+        "label": "무당을 불러 손님이 곱게 물러가기를 빈다",
+        "outcomes": [
+          {
+            "weight": 70,
+            "text": "아이들은 모두 견뎌 냈다."
+          },
+          {
+            "weight": 30,
+            "text": "아이 하나가 마마를 앓다 세상을 떠났다.",
+            "effects": [
+              {
+                "type": "family",
+                "event": "child-died"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vaccinate",
+        "label": "(지식) 아이들 팔에 소 두창 고름을 묻힌다",
+        "requires": {
+          "knowledge": [
+            "vaccination"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "vaccination"
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 95,
+            "text": "아이들은 가볍게 앓고 일어났다."
+          },
+          {
+            "weight": 5,
+            "text": "아이 하나가 마마를 앓다 세상을 떠났다.",
+            "effects": [
+              {
+                "type": "family",
+                "event": "child-died"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "sourceRefs": [
+      "smallpox"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-epidemic",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ]
+    },
+    "chance": 0.045,
+    "repeatable": true,
+    "text": "고을에 역병이 돌았다. 절에서는 병을 물리치는 법회가 열렸다.",
+    "choices": [
+      {
+        "id": "endure",
+        "label": "법회에 나가 빌고, 문을 닫아건다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.06
+          }
+        ],
+        "result": "당신은 문을 닫아걸고 역병이 지나가기를 기다렸다."
+      },
+      {
+        "id": "boil",
+        "label": "(지식) 물을 끓여 마시게 한다",
+        "requires": {
+          "knowledge": [
+            "boil-water"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "boil-water"
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.06
+          }
+        ]
+      },
+      {
+        "id": "isolate",
+        "label": "(지식) 앓는 사람을 따로 돌보게 한다",
+        "requires": {
+          "knowledge": [
+            "isolate-sick"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "isolate-sick"
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.06
+          }
+        ]
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "sourceRefs": [
+      "life-expectancy"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-bad-harvest",
+    "kind": "random",
+    "when": {
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ]
+    },
+    "chance": 0.06,
+    "repeatable": true,
+    "text": "가뭄과 메뚜기 떼로 흉년이 들었다.",
+    "choices": [
+      {
+        "id": "endure",
+        "label": "도토리와 풀뿌리로 버틴다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -5
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.02
+          }
+        ],
+        "result": "당신의 식구들은 죽으로 겨울을 났다."
+      },
+      {
+        "id": "store",
+        "label": "(지식) 갈무리해 둔 곡식과 구황 작물로 버틴다",
+        "requires": {
+          "knowledge": [
+            "food-storage"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "food-storage"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -4
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.02
+          }
+        ]
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "sourceRefs": [
+      "life-expectancy"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-spring-hunger",
+    "kind": "random",
+    "when": {
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 5,
+      "statMax": {
+        "wealth": 35
+      },
+      "notFlags": [
+        "monk"
+      ]
+    },
+    "chance": 0.05,
+    "repeatable": true,
+    "text": "봄이 되자 묵은 곡식이 떨어지고 보리는 아직 여물지 않았다.",
+    "choices": [
+      {
+        "id": "endure",
+        "label": "나물과 소나무 껍질로 끼니를 잇는다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -6
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.04
+          }
+        ],
+        "result": "당신의 식구들은 묽은 죽으로 봄을 넘겼다."
+      },
+      {
+        "id": "store",
+        "label": "(지식) 갈무리해 둔 곡식을 아껴 푼다",
+        "requires": {
+          "knowledge": [
+            "food-storage"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "food-storage"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -2
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.04
+          }
+        ]
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "sourceRefs": [
+      "life-expectancy"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-child-fever",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 5,
+      "ageMax": 14
+    },
+    "chance": 0.03,
+    "text": "당신은 여름 내내 열병을 앓았다.",
+    "effects": [
+      {
+        "type": "death",
+        "cause": "illness",
+        "chance": 0.15
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "가을바람이 불 무렵 당신은 겨우 자리에서 일어났다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -6
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "life-expectancy"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-good-harvest",
+    "kind": "random",
+    "when": {
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 12
+    },
+    "chance": 0.06,
+    "repeatable": true,
+    "text": "풍년이 들었다. 마당에 볏단이 쌓였다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": 5
+      },
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": 3
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-marriage-male",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "sex": "male",
+      "ageMin": 16,
+      "ageMax": 32,
+      "married": false,
+      "notFlags": [
+        "widowed",
+        "monk"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "chance": 0.25,
+    "text": "혼인했다. 관례대로 당신은 처가에 들어가 살림을 시작했다.",
+    "effects": [
+      {
+        "type": "family",
+        "event": "married"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 3
+      }
+    ],
+    "sourceRefs": [
+      "marriage-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-marriage-female",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "sex": "female",
+      "ageMin": 14,
+      "ageMax": 24,
+      "married": false,
+      "notFlags": [
+        "widowed",
+        "monk"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "chance": 0.32,
+    "text": "혼인했다. 남편이 당신 집으로 들어와 함께 살았다.",
+    "effects": [
+      {
+        "type": "family",
+        "event": "married"
+      }
+    ],
+    "sourceRefs": [
+      "marriage-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-remarriage",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "widowed"
+      ],
+      "married": false,
+      "ageMin": 20,
+      "ageMax": 45,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "chance": 0.15,
+    "text": "혼자가 된 지 몇 해가 지났다. 중매가 들어와 다시 혼인했다. 고을 사람들은 그 일을 이상히 여기지 않았다.",
+    "effects": [
+      {
+        "type": "family",
+        "event": "married"
+      },
+      {
+        "type": "flag",
+        "unset": "widowed"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 2
+      }
+    ],
+    "sourceRefs": [
+      "marriage-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-childbirth",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "sex": "female",
+      "married": true,
+      "ageMin": 16,
+      "ageMax": 42
+    },
+    "chance": 0.28,
+    "repeatable": true,
+    "text": "산달이 차서 아이를 낳았다.",
+    "choices": [
+      {
+        "id": "midwife",
+        "label": "친정 어머니와 산파에게 맡긴다",
+        "effects": [
+          {
+            "type": "family",
+            "event": "child-born"
+          },
+          {
+            "type": "death",
+            "cause": "childbirth",
+            "chance": 0.012
+          }
+        ],
+        "result": "산파의 손을 빌려 아이가 태어났다."
+      },
+      {
+        "id": "clean",
+        "label": "(지식) 물을 끓이고 천을 삶아 산실을 준비한다",
+        "requires": {
+          "knowledge": [
+            "clean-birth"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "clean-birth"
+          },
+          {
+            "type": "family",
+            "event": "child-born"
+          },
+          {
+            "type": "death",
+            "cause": "childbirth",
+            "chance": 0.012
+          }
+        ]
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "sourceRefs": [
+      "childbirth"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-child-born-male",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "sex": "male",
+      "married": true,
+      "ageMin": 17,
+      "ageMax": 55
+    },
+    "chance": 0.25,
+    "repeatable": true,
+    "text": "아내가 아이를 낳았다.",
+    "outcomes": [
+      {
+        "weight": 97,
+        "text": "아이의 울음소리가 처가 마당을 채웠다.",
+        "effects": [
+          {
+            "type": "family",
+            "event": "child-born"
+          }
+        ]
+      },
+      {
+        "weight": 3,
+        "text": "아내가 아이를 낳다가 세상을 떠났다.",
+        "effects": [
+          {
+            "type": "family",
+            "event": "spouse-died"
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "childbirth"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-child-death",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "childrenMin": 1,
+      "ageMax": 55
+    },
+    "chance": 0.06,
+    "repeatable": true,
+    "text": "아이 하나가 열병을 앓다 세상을 떠났다.",
+    "effects": [
+      {
+        "type": "family",
+        "event": "child-died"
+      },
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -3
+      }
+    ],
+    "sourceRefs": [
+      "life-expectancy"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-father-death",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 3,
+      "notFlags": [
+        "father-dead"
+      ]
+    },
+    "chance": 0.03,
+    "text": "아버지가 세상을 떠났다.",
+    "effects": [
+      {
+        "type": "flag",
+        "set": "father-dead"
+      },
+      {
+        "type": "family",
+        "event": "parent-died"
+      },
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -3
+      }
+    ],
+    "sourceRefs": [
+      "life-expectancy"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-mother-death",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 3,
+      "notFlags": [
+        "mother-dead"
+      ]
+    },
+    "chance": 0.03,
+    "text": "어머니가 세상을 떠났다.",
+    "effects": [
+      {
+        "type": "flag",
+        "set": "mother-dead"
+      },
+      {
+        "type": "family",
+        "event": "parent-died"
+      },
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -2
+      }
+    ],
+    "sourceRefs": [
+      "life-expectancy"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-inheritance",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "father-dead"
+      ],
+      "ageMin": 15,
+      "statuses": [
+        "yangban",
+        "jungin",
+        "soldier",
+        "commoner"
+      ]
+    },
+    "chance": 0.3,
+    "text": "아버지가 남긴 땅과 노비를 아들딸 가리지 않고 형제들이 고르게 나누었다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": 5
+      }
+    ],
+    "sourceRefs": [
+      "marriage-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-spouse-death",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "married": true,
+      "ageMin": 25
+    },
+    "chance": 0.02,
+    "repeatable": true,
+    "text": "배우자가 병을 앓다 세상을 떠났다.",
+    "effects": [
+      {
+        "type": "family",
+        "event": "spouse-died"
+      },
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -3
+      }
+    ],
+    "sourceRefs": [
+      "life-expectancy"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-slave-first-work",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 10,
+      "ageMax": 12
+    },
+    "chance": 0.6,
+    "text": "당신은 처음으로 주인집 밭에 나가 일을 거들었다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -2
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 2
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-slave-year",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 15,
+      "notFlags": [
+        "runaway"
+      ]
+    },
+    "chance": 0.08,
+    "repeatable": true,
+    "text": "주인집 일은 해마다 같았다.",
+    "outcomes": [
+      {
+        "weight": 50,
+        "text": "추수가 끝나고 주인집에서 쌀 몇 말을 내주었다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 3
+          }
+        ]
+      },
+      {
+        "weight": 35,
+        "text": "고된 일에 몸이 상했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -6
+          }
+        ]
+      },
+      {
+        "weight": 15,
+        "text": "당신은 틈틈이 짚신을 삼아 장에 내다 팔았다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 5
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-slave-run",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 16,
+      "ageMax": 40,
+      "notFlags": [
+        "runaway"
+      ]
+    },
+    "chance": 0.04,
+    "text": "주인의 매질이 심해졌다. 함께 일하던 노비 하나가 밤에 달아나자고 했다.",
+    "choices": [
+      {
+        "id": "stay",
+        "label": "주인집에 남는다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -3
+          }
+        ],
+        "result": "당신은 고개를 저었다. 동무는 혼자 떠났다."
+      },
+      {
+        "id": "run",
+        "label": "함께 달아난다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "runaway"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -5
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -3
+          }
+        ],
+        "result": "당신은 맨발로 산길을 넘었다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-runaway-pursuit",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "runaway"
+      ],
+      "statuses": [
+        "slave"
+      ]
+    },
+    "chance": 0.06,
+    "repeatable": true,
+    "text": "도망 노비를 찾는 사람들이 고을에 왔다.",
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "당신은 이름을 바꾸고 숨어 지냈다."
+      },
+      {
+        "weight": 30,
+        "text": "붙잡혀 옛 주인집으로 끌려갔다.",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "runaway"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -10
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -5
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-runaway-settle",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "runaway"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 18
+    },
+    "chance": 0.06,
+    "text": "먼 고을에 자리를 잡았다. 당신을 노비로 아는 사람은 없었다.",
+    "effects": [
+      {
+        "type": "status",
+        "to": "commoner"
+      },
+      {
+        "type": "flag",
+        "unset": "runaway"
+      }
+    ],
+    "sourceRefs": [
+      "era-1170-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-corvee",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "commoner",
+        "bugok"
+      ],
+      "sex": "male",
+      "ageMin": 16,
+      "ageMax": 59,
+      "notFlags": [
+        "monk",
+        "wanderer"
+      ]
+    },
+    "chance": 0.08,
+    "repeatable": true,
+    "text": "부역에 불려 나가 성을 쌓고 길을 닦았다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -5
+      },
+      {
+        "type": "death",
+        "cause": "accident",
+        "chance": 0.01
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-bugok-tribute",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "bugok"
+      ],
+      "ageMin": 12
+    },
+    "chance": 0.1,
+    "repeatable": true,
+    "text": "소에 매긴 공물을 채우느라 한 해 내내 쉬지 못했다. 양민 마을보다 짐이 무거웠다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "당신은 손이 부르트도록 일했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -4
+          }
+        ]
+      },
+      {
+        "weight": 40,
+        "text": "모자란 공물을 채우느라 집에 있던 곡식을 내놓았다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "bugok-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-accident",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 6,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "chance": 0.012,
+    "repeatable": true,
+    "text": "산에서 나무를 하다 발을 헛디뎠다.",
+    "outcomes": [
+      {
+        "weight": 92,
+        "text": "다리를 다쳐 한동안 누워 지냈다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -10
+          }
+        ]
+      },
+      {
+        "weight": 8,
+        "text": "당신은 다시 일어나지 못했다.",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "accident",
+            "chance": 1
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-market",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "commoner",
+        "jungin",
+        "soldier"
+      ],
+      "ageMin": 16,
+      "notFlags": [
+        "monk"
+      ]
+    },
+    "chance": 0.05,
+    "repeatable": true,
+    "text": "장에 베와 곡식을 내다 바꾸어 이문을 남겼다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": 6
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-lantern",
+    "kind": "random",
+    "when": {
+      "month": 2
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 6,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "chance": 0.05,
+    "repeatable": true,
+    "text": "연등회 날, 집집마다 등불을 내걸었다. 당신도 등을 들고 절까지 걸었다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 1
+      },
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": 1
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-grandchildren",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 50,
+      "childrenMin": 1
+    },
+    "chance": 0.15,
+    "text": "손주들이 마당에서 뛰어노는 것을 보았다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 2
+      },
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": 1
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-school-noble",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "sex": "male",
+      "ageMin": 7,
+      "ageMax": 10
+    },
+    "chance": 0.5,
+    "text": "사학에 나가 경전을 배우기 시작했다. 스승은 과거에 급제한 늙은 문신이었다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "learning",
+        "delta": 7
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-school-hyangri",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "jungin"
+      ],
+      "sex": "male",
+      "ageMin": 7,
+      "ageMax": 11
+    },
+    "chance": 0.45,
+    "text": "고을 향교에 나가 글을 배우기 시작했다. 아버지는 관아의 문서를 맡길 생각이었다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "learning",
+        "delta": 6
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-girl-letters",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "yangban",
+        "jungin"
+      ],
+      "sex": "female",
+      "ageMin": 7,
+      "ageMax": 12
+    },
+    "chance": 0.4,
+    "text": "어머니에게서 글과 길쌈을 배웠다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "learning",
+        "delta": 4
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-eumseo",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "sex": "male",
+      "ageMin": 15,
+      "ageMax": 25,
+      "notFlags": [
+        "official",
+        "retired-1170"
+      ]
+    },
+    "chance": 0.12,
+    "text": "조상의 공으로 음서를 받아 벼슬길에 나섰다.",
+    "effects": [
+      {
+        "type": "flag",
+        "set": "official"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 6
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-gwageo",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "yangban",
+        "jungin"
+      ],
+      "sex": "male",
+      "ageMin": 18,
+      "ageMax": 50,
+      "statMin": {
+        "learning": 45
+      },
+      "notFlags": [
+        "official",
+        "monk"
+      ]
+    },
+    "chance": 0.2,
+    "repeatable": true,
+    "text": "과거 시험이 열린다는 소식이 왔다.",
+    "choices": [
+      {
+        "id": "take",
+        "label": "시험을 치러 개경으로 간다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -3
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 12,
+            "text": "급제자 명단에 당신의 이름이 올랐다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "official"
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 15
+              },
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-1170-gwageo"
+              }
+            ]
+          },
+          {
+            "weight": 88,
+            "text": "이번에도 명단에 당신의 이름은 없었다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "learning",
+                "delta": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "skip",
+        "label": "이번에는 건너뛴다",
+        "result": "당신은 다음을 기약하며 책을 덮었다."
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-promotion",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "flags": [
+        "official"
+      ],
+      "ageMin": 30,
+      "statMin": {
+        "learning": 60,
+        "trust": 55
+      },
+      "notFlags": [
+        "high-official"
+      ]
+    },
+    "chance": 0.05,
+    "text": "벼슬이 높아져 재상들의 자리에 가까워졌다. 조정에서 당신의 말을 듣는 사람이 늘었다.",
+    "effects": [
+      {
+        "type": "flag",
+        "set": "high-official"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 5
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-temple",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "commoner",
+        "jungin",
+        "yangban"
+      ],
+      "sex": "male",
+      "ageMin": 12,
+      "ageMax": 30,
+      "married": false,
+      "notFlags": [
+        "monk",
+        "official"
+      ]
+    },
+    "chance": 0.02,
+    "text": "고을 절의 스님이 당신을 눈여겨보고 출가를 권했다.",
+    "choices": [
+      {
+        "id": "stay",
+        "label": "집에 남는다",
+        "result": "당신은 합장하고 돌아섰다."
+      },
+      {
+        "id": "enter",
+        "label": "머리를 깎고 절에 들어간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "monk"
+          },
+          {
+            "type": "stat",
+            "stat": "learning",
+            "delta": 6
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ],
+        "result": "당신은 계를 받고 승려가 되었다. 절의 땅과 일꾼을 돌보는 일이 맡겨졌다."
+      }
+    ],
+    "sourceRefs": [
+      "daily-life-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "c1170-regressed-infant",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 1,
+      "ageMax": 1,
+      "regressed": true
+    },
+    "chance": 1,
+    "text": "당신은 말을 배우기도 전에 지난 삶을 기억하고 있었다.",
+    "choices": [
+      {
+        "id": "grow",
+        "label": "아무것도 할 수 없다. 그저 자란다",
+        "result": "당신은 다른 아이들처럼 자랐다."
+      },
+      {
+        "id": "boiled",
+        "label": "(지식) 날물을 밀어내고 끓인 숭늉만 받아먹는다",
+        "requires": {
+          "knowledge": [
+            "boil-water"
+          ]
+        },
+        "effects": [
+          {
+            "type": "protect",
+            "cause": "illness",
+            "factor": 0.85
+          },
+          {
+            "type": "protect",
+            "cause": "epidemic",
+            "factor": 0.8
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": 4
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "어머니가 집에서 끓인 물을 늘 마련해 두게 되었다."
+          }
+        ],
+        "result": "어머니는 아이가 유난히 까다롭다며 웃었다. 그해부터 집에서는 숭늉을 늘 끓여 두었다."
+      }
+    ],
+    "sourceRefs": [
+      "modern-knowledge"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "c1170-modern-idea",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "ageMin": 12,
+      "regressed": true
+    },
+    "chance": 0.25,
+    "repeatable": true,
+    "text": "당신은 이 시대 사람들이 모르는 것을 알고 있다. 올해는 무엇을 해 볼까.",
+    "choices": [
+      {
+        "id": "not-now",
+        "label": "지금은 때가 아니다",
+        "result": "당신은 아는 것을 마음에 담아 두었다."
+      },
+      {
+        "id": "farming",
+        "label": "(지식) 거름과 물 관리를 시험해 본다",
+        "requires": {
+          "knowledge": [
+            "farming"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "farming"
+          }
+        ]
+      },
+      {
+        "id": "bookkeeping",
+        "label": "(지식) 장부를 쓰고 시세를 따져 본다",
+        "requires": {
+          "knowledge": [
+            "bookkeeping"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "bookkeeping"
+          }
+        ]
+      },
+      {
+        "id": "teach",
+        "label": "(지식) 식구와 이웃 아이들에게 셈과 글자를 가르친다",
+        "requires": {
+          "knowledge": [
+            "teach-hangul"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "learning",
+            "delta": 4
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 2
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 55,
+            "text": "한글은 아직 없는 시대였다. 당신은 한자 몇 자와 셈하는 법을 가르쳤다. 이웃 아이들이 하나둘 모여들었다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "teacher-1170"
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 4
+              },
+              {
+                "type": "change",
+                "scope": "village",
+                "text": "마을 아이들이 셈과 글자 몇 자를 익혔다."
+              }
+            ]
+          },
+          {
+            "weight": 45,
+            "text": "한글은 아직 없는 시대였다. 한자는 어렵고 일은 바빴다. 식구들만 셈하는 법을 익혔다.",
+            "effects": [
+              {
+                "type": "change",
+                "scope": "family",
+                "text": "식구들이 셈하는 법을 익혔다."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "storage",
+        "label": "(지식) 곡식을 갈무리하고 구황 작물을 심는다",
+        "requires": {
+          "knowledge": [
+            "food-storage"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "food-storage"
+          }
+        ]
+      },
+      {
+        "id": "vaccination",
+        "label": "(지식) 우두법으로 마마를 막는다",
+        "requires": {
+          "knowledge": [
+            "vaccination"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "vaccination"
+          }
+        ]
+      },
+      {
+        "id": "hygiene",
+        "label": "(지식) 물을 끓여 마시게 한다",
+        "requires": {
+          "knowledge": [
+            "boil-water"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "boil-water"
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "modern-knowledge"
+    ],
+    "confidence": "adapted"
+  }
+]
