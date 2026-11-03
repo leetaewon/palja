@@ -39,9 +39,8 @@ export function CodexScreen() {
             </h2>
             {s.era ? (
               <ul className="codex__grid">
-                {[...s.era.statuses]
-                  .sort((a, b) => b.influenceBase - a.influenceBase || a.weight - b.weight)
-                  .map((st) => {
+                {/* 시점 파일의 신분 순서(위계 순)를 그대로 따른다 */}
+                {s.era.statuses.map((st) => {
                     const cell = codex.cells[`${s.era?.id}/${st.id}`];
                     return (
                       <li key={st.id} className={`codex__cell ${cell ? 'is-filled' : ''}`}>

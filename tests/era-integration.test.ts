@@ -14,6 +14,8 @@ import {
   templateFitsEra,
   type LifeState,
 } from '../src/engine/index';
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { content } from './helpers';
 
 const ERAS = content.eras.map((e) => e.id);
@@ -181,5 +183,35 @@ describe('B. 같은 해 연쇄 사건', () => {
     const ev = content.events.find((e) => e.id === '1593-jinju-fall')!;
     const s = createLife(content, createBirth(content, 'cond', { eraId: '1592' }));
     expect(checkConditions(content, s, ev.conditions)).toBe(false);
+  });
+});
+
+describe('근거 보기 연결 (4개 시점)', () => {
+  const sourceIds = new Set(content.sources.map((s) => s.id));
+
+  it('시점마다 연표·기록 근거가 있고, 신분·시점 근거가 모두 실제 자료를 가리킨다', () => {
+    for (const era of content.eras) {
+      for (const id of [`era-${era.id}`, `records-${era.id}`, `status-${era.id}`]) expect(sourceIds.has(id), `${era.id}: ${id}`).toBe(true);
+      for (const st of era.statuses) expect(sourceIds.has(st.sourceRef), `${era.id}/${st.id}`).toBe(true);
+      for (const id of era.sourceRefs) expect(sourceIds.has(id), `${era.id}: ${id}`).toBe(true);
+    }
+  });
+
+  it('시점마다 연표 사건이 10개 이상이고 모두 근거와 신뢰도를 단다', () => {
+    for (const era of content.eras) {
+      const tl = content.events.filter((e) => e.kind === 'timeline' && e.when?.year !== undefined && e.conditions.eras?.includes(era.id));
+      expect(tl.length, era.id).toBeGreaterThanOrEqual(10);
+      for (const e of tl) {
+        expect(e.sourceRefs.length, e.id).toBeGreaterThan(0);
+        expect(['confirmed', 'estimated', 'adapted']).toContain(e.confidence);
+      }
+    }
+  });
+
+  it('근거 문서 링크가 저장소에 있는 문서를 가리킨다', () => {
+    for (const s of content.sources) {
+      const path = s.doc.split('#')[0];
+      expect(existsSync(resolve(__dirname, '..', path)), `${s.id}: ${s.doc}`).toBe(true);
+    }
   });
 });
