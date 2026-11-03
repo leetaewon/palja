@@ -1,0 +1,3266 @@
+[
+  {
+    "id": "642-daeyaseong",
+    "kind": "timeline",
+    "when": {
+      "year": 642,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "ageMin": 5
+    },
+    "text": "이해 백제 군사가 신라의 40여 성을 빼앗고, 8월에는 대야성마저 함락했다는 소식이 들렸다.",
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "사람들은 나라가 강해졌다고 했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "weight": 30,
+        "text": "변경에서 돌아오지 못한 장정들의 이야기도 함께 들려왔다."
+      }
+    ],
+    "sourceRefs": [
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "645-ansi",
+    "kind": "timeline",
+    "when": {
+      "year": 645,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "ageMin": 5
+    },
+    "text": "당나라 황제가 몸소 고구려를 치러 왔으나, 안시성을 넘지 못하고 돌아갔다는 소식이 들렸다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "사람들은 바다 건너 일이라며 대수롭지 않게 여겼다."
+      },
+      {
+        "weight": 40,
+        "text": "큰 나라의 군사가 언젠가 이 땅에도 올 수 있다는 말이 돌았다."
+      }
+    ],
+    "sourceRefs": [
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "650s-levy",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "statuses": [
+        "commoner"
+      ],
+      "sex": "male",
+      "ageMin": 16,
+      "ageMax": 45,
+      "yearMin": 642,
+      "yearMax": 659,
+      "notFlags": [
+        "army-660"
+      ]
+    },
+    "chance": 0.12,
+    "text": "신라와 맞닿은 변경의 성을 지키라는 군역이 내려왔다.",
+    "choices": [
+      {
+        "id": "go",
+        "label": "창을 메고 변경의 성으로 간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "army-660"
+          }
+        ],
+        "result": "당신은 식구들에게 인사하고 동쪽 변경으로 떠났다."
+      },
+      {
+        "id": "hide",
+        "label": "산으로 숨어 군역을 피한다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -3
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 65,
+            "text": "몇 달 뒤 마을로 돌아왔다. 아무도 묻지 않았다."
+          },
+          {
+            "weight": 35,
+            "text": "관리가 집을 찾아와 식구들을 다그쳤다. 곡식을 내주고 겨우 무마했다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -12
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "send-grain",
+        "label": "곡식을 내고 다른 장정을 대신 보낸다",
+        "requires": {
+          "statMin": {
+            "wealth": 40
+          }
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -20
+          }
+        ],
+        "result": "당신은 곡식 몇 섬을 내고 집에 남았다."
+      }
+    ],
+    "sourceRefs": [
+      "era-660-life"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "650s-border-battle",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "flags": [
+        "army-660"
+      ],
+      "yearMin": 642,
+      "yearMax": 659
+    },
+    "chance": 0.25,
+    "repeatable": true,
+    "text": "변경의 성에서 신라 군사와 맞붙었다.",
+    "outcomes": [
+      {
+        "weight": 62,
+        "text": "싸움이 끝나고 당신은 살아남았다."
+      },
+      {
+        "weight": 18,
+        "text": "화살에 맞아 한동안 일어나지 못했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -15
+          }
+        ]
+      },
+      {
+        "weight": 15,
+        "text": "군역을 마치고 고향으로 돌아왔다.",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "army-660"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ]
+      },
+      {
+        "weight": 5,
+        "text": "그 싸움에서 당신은 돌아오지 못했다.",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 1
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-660",
+      "era-660-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "650s-port-work",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "regions": [
+        "geumgang",
+        "sabi"
+      ],
+      "statuses": [
+        "commoner",
+        "slave"
+      ],
+      "ageMin": 14,
+      "yearMax": 659
+    },
+    "chance": 0.06,
+    "repeatable": true,
+    "text": "포구에 바다 건너 왜와 당으로 가는 배가 들어왔다. 당신은 짐을 지어 날랐다.",
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "품삯으로 베 몇 자를 받았다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 4
+          }
+        ]
+      },
+      {
+        "weight": 30,
+        "text": "낯선 말을 쓰는 뱃사람들에게서 바다 건너 소식을 들었다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "learning",
+            "delta": 1
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-660-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "650s-noble-rank",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "sex": "male",
+      "ageMin": 15,
+      "ageMax": 40,
+      "yearMax": 659,
+      "notFlags": [
+        "official"
+      ]
+    },
+    "chance": 0.35,
+    "text": "당신은 집안의 이름으로 관등을 받고 관청에 나가기 시작했다.",
+    "effects": [
+      {
+        "type": "flag",
+        "set": "official"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 5
+      }
+    ],
+    "sourceRefs": [
+      "era-660-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "noble-lineage",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "sex": "male",
+      "ageMin": 14,
+      "notFlags": [
+        "lineage-660"
+      ]
+    },
+    "chance": 0.85,
+    "text": "집안 어른들이 당신의 이름을 집안 계보에 올렸다.",
+    "effects": [
+      {
+        "type": "flag",
+        "set": "lineage-660"
+      },
+      {
+        "type": "record",
+        "level": "jokbo",
+        "templateId": "jokbo-660-noble-male"
+      }
+    ],
+    "sourceRefs": [
+      "records-660"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "660-omens",
+    "kind": "timeline",
+    "when": {
+      "year": 660,
+      "month": 2
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "ageMin": 8
+    },
+    "text": "전해지기로는, 이해 봄 도성의 우물물이 핏빛으로 변했다고 한다. 사람들 사이에 불길한 소문이 돌았다.",
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "당신은 소문을 흘려들었다."
+      },
+      {
+        "weight": 30,
+        "text": "어른들은 밤마다 문단속을 단단히 했다."
+      }
+    ],
+    "sourceRefs": [
+      "legend-660"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "660-spring-memory",
+    "kind": "choice",
+    "when": {
+      "year": 660,
+      "month": 3
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "memory": [
+        "660-sabi-falls"
+      ],
+      "ageMin": 10,
+      "notStatuses": [
+        "royal"
+      ],
+      "notFlags": [
+        "deported-660",
+        "exile-660"
+      ]
+    },
+    "text": "660년 봄이 왔다. 당신은 넉 달 뒤 이 나라에 무슨 일이 닥치는지 기억하고 있다.",
+    "choices": [
+      {
+        "id": "nothing",
+        "label": "아무것도 하지 않는다. 말해도 믿지 않을 것이다",
+        "result": "당신은 아는 것을 마음에 묻었다."
+      },
+      {
+        "id": "move",
+        "label": "(기억) 7월이 오기 전에 가족을 데리고 군사가 지나지 않을 깊은 산골로 옮긴다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ],
+          "notStatuses": [
+            "slave"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.6
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "7월이 오기 전에 가족을 데리고 깊은 산골로 옮겼다."
+          }
+        ],
+        "result": "당신은 가족을 설득해 짐을 꾸렸다. 이웃들은 고개를 갸웃했다."
+      },
+      {
+        "id": "hut",
+        "label": "(기억) 식구들과 숨어 지낼 산속 움막을 미리 마련해 둔다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ],
+          "statuses": [
+            "slave"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-660"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -3
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.6
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "난리가 나기 전에 식구들이 숨을 움막을 마련했다."
+          }
+        ],
+        "result": "당신은 틈틈이 산에 올라 움막을 지었다. 주인집에는 나무를 하러 간다고 했다."
+      },
+      {
+        "id": "bury",
+        "label": "(기억) 곡식을 산속 구덩이에 묻어 둔다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "grain-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          },
+          {
+            "type": "protect",
+            "cause": "famine",
+            "factor": 0.5
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "난리가 나기 전에 곡식을 산속에 묻어 두었다."
+          }
+        ],
+        "result": "당신은 밤마다 곡식 자루를 지고 산에 올랐다."
+      },
+      {
+        "id": "warn",
+        "label": "(기억) 마을 사람들에게 여름이 오기 전에 산성으로 곡식을 옮기자고 한다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ],
+          "statMin": {
+            "trust": 50
+          },
+          "notStatuses": [
+            "slave"
+          ]
+        },
+        "outcomes": [
+          {
+            "weight": 40,
+            "text": "마을 사람 몇이 당신의 말을 듣고 산성으로 곡식과 식구를 옮겼다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "safe-660"
+              },
+              {
+                "type": "protect",
+                "cause": "war",
+                "factor": 0.7
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 5
+              },
+              {
+                "type": "change",
+                "scope": "village",
+                "text": "마을 사람들이 난리 전에 산성으로 곡식과 식구를 옮겼다."
+              },
+              {
+                "type": "record",
+                "level": "munjip",
+                "templateId": "munjip-660-forewarn",
+                "chance": 0.35
+              }
+            ]
+          },
+          {
+            "weight": 60,
+            "text": "사람들은 당신의 말을 귀담아듣지 않았다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -3
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-660",
+      "modern-knowledge"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "660-noble-warning",
+    "kind": "choice",
+    "when": {
+      "year": 660,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "memory": [
+        "660-sabi-falls"
+      ],
+      "ageMin": 16,
+      "notFlags": [
+        "deported-660",
+        "exile-660"
+      ]
+    },
+    "text": "660년 정월. 당신은 이해 여름 동쪽 고개와 서쪽 강어귀로 적이 몰려온다는 것을 기억하고 있다.",
+    "choices": [
+      {
+        "id": "silent",
+        "label": "아무 말도 하지 않는다",
+        "result": "당신은 입을 다물었다."
+      },
+      {
+        "id": "petition",
+        "label": "(기억) 관청에 고개와 강어귀의 방비를 굳히자고 청한다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ]
+        },
+        "outcomes": [
+          {
+            "weight": 75,
+            "text": "당신의 말은 받아들여지지 않았다. 오히려 근심이 지나치다는 핀잔을 들었다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -3
+              }
+            ]
+          },
+          {
+            "weight": 25,
+            "text": "성주 몇이 당신의 말을 듣고 성문을 손보고 곡식을 쌓았다.",
+            "effects": [
+              {
+                "type": "protect",
+                "cause": "war",
+                "factor": 0.7
+              },
+              {
+                "type": "change",
+                "scope": "county",
+                "text": "고을 성주가 난리 전에 성을 손보고 곡식을 쌓게 했다."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "move-wealth",
+        "label": "(기억) 재물을 챙겨 식구들을 남쪽 시골 농장으로 옮긴다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.6
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "난리 전에 재물을 챙겨 식구들을 시골 농장으로 옮겼다."
+          }
+        ],
+        "result": "당신은 집안 사람들을 이끌고 도성을 떠났다."
+      }
+    ],
+    "sourceRefs": [
+      "era-660",
+      "modern-knowledge"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "660-hwangsan-army",
+    "kind": "timeline",
+    "when": {
+      "year": 660,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "flags": [
+        "army-660"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "7월, 당신이 속한 부대도 황산벌로 불려 나갔다. 계백 장군의 결사대가 신라의 큰 군사를 막아섰으나 끝내 패했다.",
+    "effects": [
+      {
+        "type": "flag",
+        "unset": "army-660"
+      }
+    ],
+    "choices": [
+      {
+        "id": "fight",
+        "label": "끝까지 진을 지킨다",
+        "outcomes": [
+          {
+            "weight": 40,
+            "text": "그 싸움에서 당신은 돌아오지 못했다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          },
+          {
+            "weight": 35,
+            "text": "크게 다쳐 쓰러졌다가 밤에 겨우 빠져나왔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -25
+              },
+              {
+                "type": "flag",
+                "set": "fled-660"
+              }
+            ]
+          },
+          {
+            "weight": 25,
+            "text": "진이 무너질 때 산으로 달아났다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "fled-660"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "retreat",
+        "label": "진이 무너지자 산으로 달아난다",
+        "outcomes": [
+          {
+            "weight": 75,
+            "text": "당신은 산길을 따라 고향 쪽으로 걸었다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "fled-660"
+              }
+            ]
+          },
+          {
+            "weight": 15,
+            "text": "쫓아오던 군사의 창에 다쳤다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -20
+              },
+              {
+                "type": "flag",
+                "set": "fled-660"
+              }
+            ]
+          },
+          {
+            "weight": 10,
+            "text": "달아나다 붙잡혀 목숨을 잃었다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 이 싸움은 진다. 싸움이 붙기 전날 밤 진을 빠져나온다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-660"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -5
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "황산벌 싸움 전에 진을 빠져나와 목숨을 건졌다."
+          }
+        ],
+        "result": "당신은 어둠을 틈타 진을 떠났다. 뒤를 돌아보지 않았다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "660-sabi-falls",
+    "sourceRefs": [
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "660-hwangsan",
+    "kind": "timeline",
+    "when": {
+      "year": 660,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "regions": [
+        "hwangsan"
+      ],
+      "ageMin": 14,
+      "notFlags": [
+        "safe-660",
+        "army-660",
+        "deported-660",
+        "exile-660"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "7월, 신라의 큰 군사가 황산벌로 몰려왔다. 계백 장군의 결사대가 막아섰으나 끝내 패했다.",
+    "choices": [
+      {
+        "id": "flee",
+        "label": "식구들을 데리고 산으로 피한다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 85,
+            "text": "당신은 식구들을 이끌고 산길로 들어섰다. 집에 두고 온 것들을 생각할 겨를이 없었다."
+          },
+          {
+            "weight": 10,
+            "text": "피난길에 어린 식구 하나를 잃었다.",
+            "effects": [
+              {
+                "type": "family",
+                "event": "sibling-died"
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -5
+              }
+            ]
+          },
+          {
+            "weight": 5,
+            "text": "산길에서 군사들과 마주쳤다. 당신은 살아 돌아오지 못했다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "stay",
+        "label": "집에 숨어 지나가기를 기다린다",
+        "outcomes": [
+          {
+            "weight": 55,
+            "text": "군사들이 마을을 지나갔다. 당신은 숨을 죽이고 버텼다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -10
+              }
+            ]
+          },
+          {
+            "weight": 30,
+            "text": "군사들에게 곡식과 소를 빼앗겼다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -25
+              }
+            ]
+          },
+          {
+            "weight": 10,
+            "text": "집이 불탔다. 식구들과 겨우 몸만 빠져나왔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -35
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -10
+              }
+            ]
+          },
+          {
+            "weight": 5,
+            "text": "마을에 들이닥친 군사들 손에 당신은 목숨을 잃었다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fight",
+        "label": "결사대 뒤를 따라 싸움터로 나간다",
+        "requires": {
+          "sex": "male",
+          "ageMin": 15,
+          "notStatuses": [
+            "slave"
+          ]
+        },
+        "outcomes": [
+          {
+            "weight": 40,
+            "text": "그 싸움에서 당신은 돌아오지 못했다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          },
+          {
+            "weight": 35,
+            "text": "크게 다쳐 쓰러졌다가 겨우 목숨을 건졌다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -25
+              },
+              {
+                "type": "flag",
+                "set": "fled-660"
+              }
+            ]
+          },
+          {
+            "weight": 25,
+            "text": "싸움이 무너지자 당신은 산으로 달아났다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "fled-660"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 황산벌이 무너지는 것을 안다. 싸움이 붙기 전에 식구들과 서쪽 산으로 피한다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.6
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "군사가 들이닥치기 전에 식구들을 데리고 몸을 피했다."
+          }
+        ],
+        "result": "당신은 기억해 둔 산길로 식구들을 이끌었다. 군사들이 지나간 길과는 멀었다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "660-sabi-falls",
+    "sourceRefs": [
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "660-gibeolpo",
+    "kind": "timeline",
+    "when": {
+      "year": 660,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "regions": [
+        "geumgang"
+      ],
+      "ageMin": 14,
+      "notFlags": [
+        "safe-660",
+        "army-660",
+        "deported-660",
+        "exile-660"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "7월, 당나라 군사가 배를 타고 와서 기벌포에 내렸다. 강가를 지키던 군사들이 흩어졌다.",
+    "choices": [
+      {
+        "id": "flee",
+        "label": "식구들을 데리고 산으로 피한다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 85,
+            "text": "당신은 식구들을 이끌고 산길로 들어섰다. 집에 두고 온 것들을 생각할 겨를이 없었다."
+          },
+          {
+            "weight": 10,
+            "text": "피난길에 어린 식구 하나를 잃었다.",
+            "effects": [
+              {
+                "type": "family",
+                "event": "sibling-died"
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -5
+              }
+            ]
+          },
+          {
+            "weight": 5,
+            "text": "산길에서 군사들과 마주쳤다. 당신은 살아 돌아오지 못했다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "stay",
+        "label": "집에 숨어 지나가기를 기다린다",
+        "outcomes": [
+          {
+            "weight": 55,
+            "text": "군사들이 마을을 지나갔다. 당신은 숨을 죽이고 버텼다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -10
+              }
+            ]
+          },
+          {
+            "weight": 30,
+            "text": "군사들에게 곡식과 소를 빼앗겼다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -25
+              }
+            ]
+          },
+          {
+            "weight": 10,
+            "text": "집이 불탔다. 식구들과 겨우 몸만 빠져나왔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -35
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -10
+              }
+            ]
+          },
+          {
+            "weight": 5,
+            "text": "마을에 들이닥친 군사들 손에 당신은 목숨을 잃었다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fight",
+        "label": "강가를 지키는 군사들 틈에 든다",
+        "requires": {
+          "sex": "male",
+          "ageMin": 15,
+          "notStatuses": [
+            "slave"
+          ]
+        },
+        "outcomes": [
+          {
+            "weight": 40,
+            "text": "그 싸움에서 당신은 돌아오지 못했다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          },
+          {
+            "weight": 35,
+            "text": "크게 다쳐 쓰러졌다가 겨우 목숨을 건졌다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -25
+              },
+              {
+                "type": "flag",
+                "set": "fled-660"
+              }
+            ]
+          },
+          {
+            "weight": 25,
+            "text": "싸움이 무너지자 당신은 산으로 달아났다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "fled-660"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 당군이 내릴 포구를 안다. 미리 강 상류 골짜기로 식구들을 옮긴다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.6
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "군사가 들이닥치기 전에 식구들을 데리고 몸을 피했다."
+          }
+        ],
+        "result": "당신은 짐을 꾸려 강을 거슬러 올라갔다. 포구 쪽 하늘이 붉게 물드는 것을 멀리서 보았다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "660-sabi-falls",
+    "sourceRefs": [
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "660-sabi-falls",
+    "kind": "timeline",
+    "when": {
+      "year": 660,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "regions": [
+        "sabi"
+      ],
+      "ageMin": 14,
+      "notFlags": [
+        "safe-660",
+        "army-660",
+        "deported-660",
+        "exile-660"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "7월, 나당연합군이 사비성을 에워쌌다. 대왕이 웅진성으로 몸을 피했다는 말이 돌았고, 곧 성문이 열렸다.",
+    "choices": [
+      {
+        "id": "flee",
+        "label": "식구들을 데리고 산으로 피한다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 85,
+            "text": "당신은 식구들을 이끌고 산길로 들어섰다. 집에 두고 온 것들을 생각할 겨를이 없었다."
+          },
+          {
+            "weight": 10,
+            "text": "피난길에 어린 식구 하나를 잃었다.",
+            "effects": [
+              {
+                "type": "family",
+                "event": "sibling-died"
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -5
+              }
+            ]
+          },
+          {
+            "weight": 5,
+            "text": "산길에서 군사들과 마주쳤다. 당신은 살아 돌아오지 못했다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "stay",
+        "label": "집에 숨어 지나가기를 기다린다",
+        "outcomes": [
+          {
+            "weight": 55,
+            "text": "군사들이 마을을 지나갔다. 당신은 숨을 죽이고 버텼다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -10
+              }
+            ]
+          },
+          {
+            "weight": 30,
+            "text": "군사들에게 곡식과 소를 빼앗겼다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -25
+              }
+            ]
+          },
+          {
+            "weight": 10,
+            "text": "집이 불탔다. 식구들과 겨우 몸만 빠져나왔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -35
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -10
+              }
+            ]
+          },
+          {
+            "weight": 5,
+            "text": "마을에 들이닥친 군사들 손에 당신은 목숨을 잃었다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fight",
+        "label": "성벽에 올라 성을 지킨다",
+        "requires": {
+          "sex": "male",
+          "ageMin": 15,
+          "notStatuses": [
+            "slave"
+          ]
+        },
+        "outcomes": [
+          {
+            "weight": 40,
+            "text": "그 싸움에서 당신은 돌아오지 못했다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          },
+          {
+            "weight": 35,
+            "text": "크게 다쳐 쓰러졌다가 겨우 목숨을 건졌다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -25
+              },
+              {
+                "type": "flag",
+                "set": "fled-660"
+              }
+            ]
+          },
+          {
+            "weight": 25,
+            "text": "싸움이 무너지자 당신은 산으로 달아났다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "fled-660"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 성문이 열리는 날을 안다. 그 전에 식구들을 데리고 성 밖 산으로 나간다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.6
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "군사가 들이닥치기 전에 식구들을 데리고 몸을 피했다."
+          }
+        ],
+        "result": "당신은 성이 에워싸이기 전에 식구들을 데리고 성문을 나섰다."
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "660-ungjin",
+    "kind": "timeline",
+    "when": {
+      "year": 660,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "regions": [
+        "ungjin"
+      ],
+      "ageMin": 14,
+      "notFlags": [
+        "safe-660",
+        "army-660",
+        "deported-660",
+        "exile-660"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "7월, 사비를 떠난 대왕이 웅진성으로 피해 왔다. 며칠 뒤 대왕은 성을 나가 항복했다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "성 안팎이 숨죽인 듯 조용했다. 당신은 식구들과 집을 지켰다."
+      },
+      {
+        "weight": 30,
+        "text": "성을 드나드는 군사들에게 곡식을 빼앗겼다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -15
+          }
+        ]
+      },
+      {
+        "weight": 10,
+        "text": "어수선한 틈에 집안 어른 한 분이 다쳐 세상을 떠났다.",
+        "effects": [
+          {
+            "type": "family",
+            "event": "parent-died"
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "660-sabi-falls",
+    "sourceRefs": [
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "660-fall-news",
+    "kind": "timeline",
+    "when": {
+      "year": 660,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "regions": [
+        "imjon",
+        "yeongsan"
+      ],
+      "ageMin": 8,
+      "notFlags": [
+        "safe-660",
+        "army-660",
+        "deported-660",
+        "exile-660"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "7월, 사비성이 함락되고 대왕이 항복했다는 소식이 들렸다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "마을 어른들이 모여 앉아 한참 말이 없었다."
+      },
+      {
+        "weight": 40,
+        "text": "앞으로 누구에게 세금을 내야 하느냐는 말이 오갔다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "660-sabi-falls",
+    "sourceRefs": [
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "660-invasion-child",
+    "kind": "timeline",
+    "when": {
+      "year": 660,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "regions": [
+        "sabi",
+        "ungjin",
+        "geumgang",
+        "hwangsan"
+      ],
+      "ageMax": 13,
+      "notFlags": [
+        "safe-660",
+        "deported-660",
+        "exile-660"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "7월, 군사들이 몰려왔다. 어른들이 당신의 손을 잡고 산으로 뛰었다.",
+    "outcomes": [
+      {
+        "weight": 82,
+        "text": "당신은 어른들 등에 업혀 산을 넘었다. 무엇이 무너졌는지는 나중에야 알았다.",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-660"
+          }
+        ]
+      },
+      {
+        "weight": 12,
+        "text": "피난길에 식구 하나를 잃었다.",
+        "effects": [
+          {
+            "type": "family",
+            "event": "parent-died"
+          },
+          {
+            "type": "flag",
+            "set": "fled-660"
+          }
+        ]
+      },
+      {
+        "weight": 6,
+        "text": "당신은 그 난리를 넘기지 못했다.",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 1
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "660-sabi-falls",
+    "sourceRefs": [
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "660-plunder",
+    "kind": "timeline",
+    "when": {
+      "year": 660,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "regions": [
+        "sabi",
+        "ungjin",
+        "geumgang",
+        "hwangsan"
+      ],
+      "ageMin": 10,
+      "notFlags": [
+        "safe-660",
+        "deported-660",
+        "exile-660"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "8월, 성을 차지한 군사들이 마을을 돌며 곡식과 사람을 거두어 갔다.",
+    "choices": [
+      {
+        "id": "endure",
+        "label": "숨어서 버틴다",
+        "outcomes": [
+          {
+            "weight": 50,
+            "text": "당신의 집은 겨우 화를 피했다."
+          },
+          {
+            "weight": 30,
+            "text": "곡식과 가축을 빼앗겼다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -20
+              }
+            ]
+          },
+          {
+            "weight": 10,
+            "text": "신라 군사에게 붙잡혀 끌려갔다. 당신은 노비가 되었다.",
+            "effects": [
+              {
+                "type": "status",
+                "to": "slave"
+              },
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -30
+              }
+            ]
+          },
+          {
+            "weight": 6,
+            "text": "끌려가는 사람들 틈에서 식구 하나가 돌아오지 못했다.",
+            "effects": [
+              {
+                "type": "family",
+                "event": "sibling-died"
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -5
+              }
+            ]
+          },
+          {
+            "weight": 4,
+            "text": "당신은 그 난리 통에 목숨을 잃었다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 군사들이 마을을 돌 날을 안다. 곡식을 지고 식구들과 산성으로 들어간다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "군사들이 마을을 돌기 전에 곡식을 지고 산성으로 피했다."
+          }
+        ],
+        "result": "당신은 기억해 둔 날보다 이틀 먼저 마을을 떠났다."
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "sourceRefs": [
+      "era-660",
+      "era-660-life"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "660-slave-chaos",
+    "kind": "choice",
+    "when": {
+      "year": 660,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 12,
+      "notFlags": [
+        "deported-660",
+        "exile-660"
+      ]
+    },
+    "text": "난리 통에 주인집이 흩어졌다. 노비 문서를 챙길 사람도 없었다.",
+    "choices": [
+      {
+        "id": "run",
+        "label": "이 틈에 가족을 데리고 멀리 떠난다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "runaway-660"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -3
+          }
+        ],
+        "result": "당신은 밤길을 걸어 아무도 당신을 모르는 고을로 갔다."
+      },
+      {
+        "id": "stay",
+        "label": "남아서 주인집의 남은 식구를 따른다",
+        "outcomes": [
+          {
+            "weight": 60,
+            "text": "주인집 식구들과 함께 피난 짐을 졌다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 3
+              }
+            ]
+          },
+          {
+            "weight": 40,
+            "text": "주인집이 몰락하자 당신은 다른 집에 넘겨졌다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 이 혼란이 몇 해 간다는 것을 안다. 식구들을 데리고 남쪽 산골에 터를 잡는다",
+        "requires": {
+          "memory": [
+            "660-sabi-falls"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "runaway-660"
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.6
+          },
+          {
+            "type": "protect",
+            "cause": "famine",
+            "factor": 0.7
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "난리 통에 식구들을 데리고 산골에 새 터를 잡았다."
+          }
+        ],
+        "result": "당신은 식구들을 데리고 군사들이 닿지 않을 남쪽 산골로 들어갔다."
+      }
+    ],
+    "sourceRefs": [
+      "era-660-life"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "660-deportation",
+    "kind": "timeline",
+    "when": {
+      "year": 660,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "regions": [
+        "sabi",
+        "ungjin",
+        "geumgang",
+        "hwangsan"
+      ],
+      "ageMin": 10,
+      "notFlags": [
+        "safe-660",
+        "fled-660",
+        "escaped-660",
+        "deported-660",
+        "exile-660"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "chance": 0.14,
+    "text": "9월, 당의 장수가 대왕과 왕족, 신료들, 그리고 백성 1만 2천 명을 배에 태워 당으로 끌고 갔다. 당신도 붙잡힌 사람들 틈에 있었다.",
+    "choices": [
+      {
+        "id": "go",
+        "label": "끌려가는 대로 배에 오른다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "deported-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -40
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -10
+          },
+          {
+            "type": "death",
+            "cause": "illness",
+            "chance": 0.06
+          }
+        ],
+        "result": "배는 서쪽 바다로 나아갔다. 당신은 고향 쪽 하늘을 오래 바라보았다."
+      },
+      {
+        "id": "escape",
+        "label": "강가에서 밤을 틈타 달아난다",
+        "outcomes": [
+          {
+            "weight": 45,
+            "text": "당신은 갈대밭에 몸을 숨겼다가 새벽에 고향 쪽으로 걸었다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "escaped-660"
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -5
+              }
+            ]
+          },
+          {
+            "weight": 40,
+            "text": "곧 붙잡혀 배에 실렸다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "deported-660"
+              },
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -40
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -15
+              }
+            ]
+          },
+          {
+            "weight": 15,
+            "text": "달아나다 붙잡혀 목숨을 잃었다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 지난 삶에서 끌려간 길을 안다. 배에 오르기 전 갈대밭으로 빠져나간다",
+        "requires": {
+          "memory": [
+            "660-deportation"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "escaped-660"
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "당으로 끌려가는 행렬에서 빠져나와 고향에 남았다."
+          }
+        ],
+        "result": "당신은 기억해 둔 갈대밭으로 몸을 숨겼다. 배가 떠나는 소리를 멀리서 들었다."
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "deportation-660",
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "660-deportation-noble",
+    "kind": "timeline",
+    "when": {
+      "year": 660,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "regions": [
+        "sabi",
+        "ungjin",
+        "geumgang",
+        "hwangsan"
+      ],
+      "ageMin": 15,
+      "notFlags": [
+        "safe-660",
+        "escaped-660",
+        "deported-660",
+        "exile-660"
+      ]
+    },
+    "chance": 0.4,
+    "text": "9월, 당의 장수가 대왕과 왕족, 신료 93명을 배에 태워 당으로 데려갔다. 관등을 가진 당신 집안도 그 명단에 들었다.",
+    "choices": [
+      {
+        "id": "go",
+        "label": "끌려가는 대로 배에 오른다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "deported-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -40
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -10
+          },
+          {
+            "type": "death",
+            "cause": "illness",
+            "chance": 0.06
+          }
+        ],
+        "result": "배는 서쪽 바다로 나아갔다. 당신은 고향 쪽 하늘을 오래 바라보았다."
+      },
+      {
+        "id": "escape",
+        "label": "강가에서 밤을 틈타 달아난다",
+        "outcomes": [
+          {
+            "weight": 45,
+            "text": "당신은 갈대밭에 몸을 숨겼다가 새벽에 고향 쪽으로 걸었다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "escaped-660"
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -5
+              }
+            ]
+          },
+          {
+            "weight": 40,
+            "text": "곧 붙잡혀 배에 실렸다.",
+            "effects": [
+              {
+                "type": "flag",
+                "set": "deported-660"
+              },
+              {
+                "type": "stat",
+                "stat": "wealth",
+                "delta": -40
+              },
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -15
+              }
+            ]
+          },
+          {
+            "weight": 15,
+            "text": "달아나다 붙잡혀 목숨을 잃었다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "war",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 지난 삶에서 끌려간 길을 안다. 배에 오르기 전 갈대밭으로 빠져나간다",
+        "requires": {
+          "memory": [
+            "660-deportation"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "escaped-660"
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "당으로 끌려가는 행렬에서 빠져나와 고향에 남았다."
+          }
+        ],
+        "result": "당신은 기억해 둔 갈대밭으로 몸을 숨겼다. 배가 떠나는 소리를 멀리서 들었다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "660-deportation",
+    "sourceRefs": [
+      "deportation-660",
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "660-revival-call",
+    "kind": "choice",
+    "when": {
+      "month": 10
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "sex": "male",
+      "ageMin": 15,
+      "ageMax": 50,
+      "yearMin": 660,
+      "yearMax": 662,
+      "notStatuses": [
+        "royal"
+      ],
+      "notFlags": [
+        "revival-660",
+        "deported-660",
+        "exile-660"
+      ]
+    },
+    "chance": 0.4,
+    "text": "복신과 도침, 흑치상지 같은 이들이 흩어진 군사를 모아 나라를 되찾자고 했다. 산성마다 사람들이 모여들었다.",
+    "choices": [
+      {
+        "id": "join",
+        "label": "부흥군에 든다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "revival-660"
+          },
+          {
+            "type": "flag",
+            "set": "was-revival-660"
+          }
+        ],
+        "result": "당신은 창을 들고 산성으로 들어갔다."
+      },
+      {
+        "id": "stay",
+        "label": "새 질서 아래 조용히 산다",
+        "result": "당신은 식구들 곁에 남았다. 밭일을 하며 소식만 들었다."
+      },
+      {
+        "id": "supply",
+        "label": "곡식을 보내 부흥군을 돕는다",
+        "requires": {
+          "statMin": {
+            "wealth": 30
+          }
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -12
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 4
+          },
+          {
+            "type": "flag",
+            "set": "was-revival-660"
+          }
+        ],
+        "result": "당신은 밤마다 곡식 자루를 산성으로 날랐다."
+      },
+      {
+        "id": "memory-stay",
+        "label": "(기억) 부흥군은 663년에 무너진다. 가담하지 않고 식구를 지킨다",
+        "requires": {
+          "memory": [
+            "663-baekgang"
+          ]
+        },
+        "effects": [
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.6
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "부흥군이 무너질 것을 알고 식구들 곁에 남았다."
+          }
+        ],
+        "result": "당신은 산성으로 가는 장정들을 배웅만 했다."
+      },
+      {
+        "id": "memory-join",
+        "label": "(기억) 부흥군에 들되, 663년 큰 싸움이 오기 전에 빠져나온다",
+        "requires": {
+          "memory": [
+            "663-baekgang"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "revival-660"
+          },
+          {
+            "type": "flag",
+            "set": "was-revival-660"
+          },
+          {
+            "type": "flag",
+            "set": "leave-early-660"
+          }
+        ],
+        "result": "당신은 창을 들고 산성으로 들어갔다. 떠날 해를 마음속에 정해 두었다."
+      }
+    ],
+    "sourceRefs": [
+      "revival-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "revival-battle",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "flags": [
+        "revival-660"
+      ],
+      "yearMin": 660,
+      "yearMax": 663
+    },
+    "chance": 0.5,
+    "repeatable": true,
+    "text": "부흥군이 나당연합군과 맞붙었다.",
+    "outcomes": [
+      {
+        "weight": 55,
+        "text": "당신의 무리는 산성으로 물러났다. 당신은 살아남았다."
+      },
+      {
+        "weight": 23,
+        "text": "창에 찔려 한동안 일어나지 못했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -18
+          }
+        ]
+      },
+      {
+        "weight": 12,
+        "text": "그 싸움에서 당신은 돌아오지 못했다.",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 1
+          }
+        ]
+      },
+      {
+        "weight": 10,
+        "text": "싸움에 져서 무리가 흩어졌다. 당신은 고향으로 숨어들었다.",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "revival-660"
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "revival-660"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "661-prince-returns",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "ageMin": 10,
+      "yearMin": 661,
+      "yearMax": 662,
+      "notFlags": [
+        "deported-660",
+        "exile-660"
+      ]
+    },
+    "chance": 0.6,
+    "text": "왜에 머물던 왕자 부여풍이 돌아와 부흥군의 왕으로 받들어졌다는 소식이 들렸다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "사람들은 나라가 다시 설지도 모른다고 수군거렸다."
+      },
+      {
+        "weight": 40,
+        "text": "당신은 그 소식을 듣고도 밭에서 손을 떼지 않았다."
+      }
+    ],
+    "sourceRefs": [
+      "revival-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "661-famine",
+    "kind": "timeline",
+    "when": {
+      "year": 661,
+      "month": 3
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "notFlags": [
+        "deported-660",
+        "exile-660"
+      ]
+    },
+    "text": "전란에 논밭이 버려져 곡식이 모자랐다. 나무껍질과 풀뿌리로 끼니를 잇는 사람이 늘었다.",
+    "choices": [
+      {
+        "id": "endure",
+        "label": "허리띠를 졸라맨다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -8
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.03
+          }
+        ],
+        "result": "당신은 하루 한 끼로 봄을 넘겼다."
+      },
+      {
+        "id": "dig",
+        "label": "(기억) 묻어 둔 곡식을 꺼낸다",
+        "requires": {
+          "flags": [
+            "grain-660"
+          ],
+          "memory": [
+            "660-sabi-falls"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -2
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "묻어 둔 곡식으로 식구들이 굶주림을 넘겼다."
+          }
+        ],
+        "result": "당신은 산속에 묻어 둔 곡식을 꺼내 식구들과 나누었다."
+      },
+      {
+        "id": "food",
+        "label": "(지식) 갈무리한 곡식과 거친 땅의 작물로 버틴다",
+        "requires": {
+          "knowledge": [
+            "food-storage"
+          ],
+          "notStatuses": [
+            "royal"
+          ],
+          "notFlags": [
+            "high-official"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "food-storage"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -4
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.03
+          }
+        ]
+      },
+      {
+        "id": "food-royal",
+        "label": "(지식) 갈무리한 곡식과 거친 땅의 작물로 버틴다",
+        "requires": {
+          "knowledge": [
+            "food-storage"
+          ],
+          "statuses": [
+            "royal"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "food-storage",
+            "attempt": 3
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -4
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.03
+          }
+        ]
+      },
+      {
+        "id": "food-high",
+        "label": "(지식) 갈무리한 곡식과 거친 땅의 작물로 버틴다",
+        "requires": {
+          "knowledge": [
+            "food-storage"
+          ],
+          "notStatuses": [
+            "royal"
+          ],
+          "flags": [
+            "high-official"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "food-storage",
+            "attempt": 3
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -4
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.03
+          }
+        ]
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "sourceRefs": [
+      "era-660-life",
+      "life-expectancy"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "663-leave-early",
+    "kind": "timeline",
+    "when": {
+      "year": 663,
+      "month": 6
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "flags": [
+        "revival-660",
+        "leave-early-660"
+      ]
+    },
+    "text": "663년 여름, 당신은 기억해 둔 대로 큰 싸움이 벌어지기 전에 부흥군을 떠났다.",
+    "effects": [
+      {
+        "type": "flag",
+        "unset": "revival-660"
+      },
+      {
+        "type": "change",
+        "scope": "family",
+        "text": "부흥군이 무너지기 전에 빠져나와 목숨을 건졌다."
+      }
+    ],
+    "sourceRefs": [
+      "revival-660",
+      "modern-knowledge"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "663-baekgang",
+    "kind": "timeline",
+    "when": {
+      "year": 663,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "flags": [
+        "revival-660"
+      ]
+    },
+    "text": "8월, 백강 어귀에서 부흥군을 도우러 온 왜의 배들이 나당연합군에 크게 졌다. 부흥군은 무너졌다.",
+    "effects": [
+      {
+        "type": "flag",
+        "unset": "revival-660"
+      },
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.2
+      }
+    ],
+    "choices": [
+      {
+        "id": "japan",
+        "label": "왜로 돌아가는 배에 오른다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "exile-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -30
+          },
+          {
+            "type": "death",
+            "cause": "accident",
+            "chance": 0.05
+          }
+        ],
+        "result": "당신은 남은 무리와 함께 동쪽 바다를 건넜다."
+      },
+      {
+        "id": "surrender",
+        "label": "무기를 내려놓고 고향으로 돌아간다",
+        "outcomes": [
+          {
+            "weight": 70,
+            "text": "당신은 이름을 숨기고 고향 마을로 돌아갔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -3
+              }
+            ]
+          },
+          {
+            "weight": 20,
+            "text": "붙잡혀 노비가 되었다.",
+            "effects": [
+              {
+                "type": "status",
+                "to": "slave"
+              }
+            ]
+          },
+          {
+            "weight": 10,
+            "text": "부흥군에 들었던 죄로 처형되었다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "punishment",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "hide",
+        "label": "산으로 숨어든다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -10
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 85,
+            "text": "당신은 한 해를 산에서 보내고 몰래 고향으로 내려왔다."
+          },
+          {
+            "weight": 15,
+            "text": "산에서 겨울을 나지 못했다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "famine",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 백강에서 진다는 것을 안다. 싸움 전에 강을 벗어나 왜로 갈 배를 미리 구해 둔다",
+        "requires": {
+          "memory": [
+            "663-baekgang"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "exile-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -15
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "백강 싸움 전에 배를 구해 왜로 건너갔다."
+          }
+        ],
+        "result": "당신은 싸움이 붙기 전에 미리 구해 둔 배에 올랐다."
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "revival-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "663-baekgang-news",
+    "kind": "timeline",
+    "when": {
+      "year": 663,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "ageMin": 8,
+      "notFlags": [
+        "revival-660",
+        "deported-660",
+        "exile-660"
+      ]
+    },
+    "text": "8월, 백강에서 왜의 지원군이 졌다는 소식이 들렸다. 부흥군이 무너졌다고 했다.",
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "사람들은 이제 정말 끝났다고 했다."
+      },
+      {
+        "weight": 30,
+        "text": "산성에 갔던 이웃집 장정은 끝내 돌아오지 않았다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "663-baekgang",
+    "sourceRefs": [
+      "revival-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "663-exodus",
+    "kind": "timeline",
+    "when": {
+      "year": 663,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "ageMin": 14,
+      "notFlags": [
+        "revival-660",
+        "deported-660",
+        "exile-660"
+      ]
+    },
+    "text": "9월, 많은 사람들이 왜로 건너가는 배에 오른다는 말이 돌았다. 포구마다 짐을 진 사람들이 모였다.",
+    "choices": [
+      {
+        "id": "stay",
+        "label": "고향에 남는다",
+        "result": "당신은 떠나는 배들을 바라보다 발길을 돌렸다."
+      },
+      {
+        "id": "go",
+        "label": "배에 오른다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "exile-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -20
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 92,
+            "text": "며칠 뒤 배는 낯선 바닷가에 닿았다."
+          },
+          {
+            "weight": 8,
+            "text": "바다에서 풍랑을 만났다. 당신은 뭍에 닿지 못했다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "accident",
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "revival-660",
+      "exile-660"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "exile-life",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "flags": [
+        "exile-660"
+      ]
+    },
+    "chance": 0.3,
+    "repeatable": true,
+    "text": "왜 땅에서 당신은 하루하루를 살아 냈다.",
+    "outcomes": [
+      {
+        "weight": 40,
+        "text": "백제에서 건너온 사람들이 모여 사는 마을에 터를 잡았다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 4
+          }
+        ]
+      },
+      {
+        "weight": 35,
+        "text": "그곳 말과 풍습에 조금씩 익숙해졌다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "weight": 25,
+        "text": "고향 꿈을 자주 꾸었다."
+      }
+    ],
+    "sourceRefs": [
+      "exile-660"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "exile-noble-rank",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "flags": [
+        "exile-660"
+      ],
+      "statuses": [
+        "yangban",
+        "royal"
+      ],
+      "ageMin": 20,
+      "notFlags": [
+        "official"
+      ]
+    },
+    "chance": 0.25,
+    "text": "왜 조정이 백제에서 건너온 관인들에게 관위를 주고 머물 땅을 내렸다. 당신의 이름도 거기 있었다.",
+    "effects": [
+      {
+        "type": "flag",
+        "set": "official"
+      },
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": 15
+      },
+      {
+        "type": "record",
+        "level": "munjip",
+        "templateId": "munjip-660-japan-rank",
+        "chance": 0.5
+      }
+    ],
+    "sourceRefs": [
+      "exile-660"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "tang-life",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "flags": [
+        "deported-660"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "chance": 0.3,
+    "repeatable": true,
+    "text": "낯선 당나라 땅에서 당신은 하루하루를 버텼다.",
+    "outcomes": [
+      {
+        "weight": 50,
+        "text": "당신은 그곳 말을 조금씩 알아듣게 되었다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "learning",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "weight": 35,
+        "text": "고된 일에 몸이 상했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -8
+          }
+        ]
+      },
+      {
+        "weight": 15,
+        "text": "먼저 끌려온 백제 사람들을 만나 고향 소식을 들었다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 2
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "deportation-660"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "tang-office",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "flags": [
+        "deported-660"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "ageMin": 18,
+      "notFlags": [
+        "tang-office-660"
+      ]
+    },
+    "chance": 0.2,
+    "text": "당의 관청에서 백제 사람 가운데 글을 알고 관등을 지냈던 이를 찾았다.",
+    "choices": [
+      {
+        "id": "accept",
+        "label": "당의 벼슬을 받는다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "tang-office-660"
+          },
+          {
+            "type": "flag",
+            "set": "official"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 15
+          },
+          {
+            "type": "record",
+            "level": "munjip",
+            "templateId": "munjip-660-myoji-office",
+            "chance": 0.5
+          }
+        ],
+        "result": "당신은 당의 관복을 입게 되었다."
+      },
+      {
+        "id": "decline",
+        "label": "나서지 않는다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "tang-office-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          }
+        ],
+        "result": "당신은 조용히 살기를 택했다."
+      }
+    ],
+    "sourceRefs": [
+      "deportation-660",
+      "exile-660"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "silla-office",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "ageMin": 18,
+      "yearMin": 663,
+      "yearMax": 685,
+      "notFlags": [
+        "silla-office-660",
+        "revival-660",
+        "deported-660",
+        "exile-660"
+      ]
+    },
+    "chance": 0.2,
+    "text": "신라가 백제의 옛 관인들에게 관등을 내리겠다고 했다.",
+    "choices": [
+      {
+        "id": "accept",
+        "label": "신라의 관등을 받는다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "silla-office-660"
+          },
+          {
+            "type": "flag",
+            "set": "official"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 10
+          },
+          {
+            "type": "record",
+            "level": "munjip",
+            "templateId": "munjip-660-silla-office",
+            "chance": 0.5
+          }
+        ],
+        "result": "당신은 신라의 관등을 받고 고을의 일을 맡았다."
+      },
+      {
+        "id": "decline",
+        "label": "옛 나라의 관인으로 남는다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "silla-office-660"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          }
+        ],
+        "result": "당신은 집으로 돌아가 문을 닫았다."
+      }
+    ],
+    "sourceRefs": [
+      "exile-660",
+      "era-660-life"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "runaway-settle",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "flags": [
+        "runaway-660"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 15
+    },
+    "chance": 0.15,
+    "text": "새 고을에서 당신은 백성처럼 살았다. 누구도 당신의 옛 주인을 묻지 않았다.",
+    "effects": [
+      {
+        "type": "status",
+        "to": "commoner"
+      },
+      {
+        "type": "flag",
+        "unset": "runaway-660"
+      },
+      {
+        "type": "flag",
+        "set": "settled-660"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 3
+      }
+    ],
+    "sourceRefs": [
+      "era-660-life"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "runaway-pursuit",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "flags": [
+        "runaway-660"
+      ],
+      "statuses": [
+        "slave"
+      ]
+    },
+    "chance": 0.06,
+    "repeatable": true,
+    "text": "도망한 노비를 찾는 사람들이 고을에 왔다.",
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "당신은 이름을 바꾸고 숨어 지냈다."
+      },
+      {
+        "weight": 30,
+        "text": "붙잡혀 새 주인집으로 끌려갔다.",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "runaway-660"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -10
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -5
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-660-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "664-new-order",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "ageMin": 12,
+      "yearMin": 664,
+      "yearMax": 675,
+      "notFlags": [
+        "deported-660",
+        "exile-660"
+      ]
+    },
+    "chance": 0.3,
+    "text": "세금과 부역을 거두는 사람이 바뀌었다. 말씨가 다른 관리들이 고을을 오갔다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "당신은 새 관리에게 베와 곡식을 바쳤다. 살림은 크게 달라지지 않았다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -3
+          }
+        ]
+      },
+      {
+        "weight": 25,
+        "text": "사람들은 낯선 관리 앞에서 말을 아꼈다."
+      },
+      {
+        "weight": 15,
+        "text": "새 관리가 땅을 다시 재어 세금을 늘렸다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-660-life"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "668-goguryeo",
+    "kind": "timeline",
+    "when": {
+      "year": 668,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "660"
+      ],
+      "ageMin": 8,
+      "notFlags": [
+        "exile-660"
+      ]
+    },
+    "text": "9월, 고구려의 평양성이 무너졌다는 소식이 들렸다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "사람들은 북쪽 나라마저 무너졌다고 했다."
+      },
+      {
+        "weight": 40,
+        "text": "당신은 백제가 무너지던 해를 떠올렸다."
+      }
+    ],
+    "sourceRefs": [
+      "era-660"
+    ],
+    "confidence": "confirmed"
+  }
+]
