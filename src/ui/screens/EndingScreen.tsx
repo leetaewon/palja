@@ -52,6 +52,10 @@ export function EndingScreen({
   const short = (life.dead?.age ?? 0) < 5;
   const rec = ending.record;
   const status = findStatus(content, life.birth.eraId, life.statusId);
+  // 이 시점의 기록 엔딩 근거와 사망 모델 근거를 먼저 보여 준다
+  const endingSources = [`records-${life.birth.eraId}`, 'life-expectancy', 'mortality-model'].filter((id) =>
+    content.sources.some((s) => s.id === id),
+  );
 
   return (
     <div className="page">
@@ -186,7 +190,7 @@ export function EndingScreen({
             <button type="button" className="btn" onClick={() => nav.push({ name: 'codex' })}>
               인생 도감
             </button>
-            <button type="button" className="btn" onClick={() => nav.push({ name: 'sources' })}>
+            <button type="button" className="btn" onClick={() => nav.push({ name: 'sources', focus: endingSources })}>
               근거 보기
             </button>
           </div>

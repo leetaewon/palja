@@ -907,7 +907,7 @@
         "captive"
       ]
     },
-    "chance": 0.35,
+    "chance": 0.25,
     "text": "고을에 의병을 모은다는 방이 붙었다.",
     "choices": [
       {
@@ -1491,6 +1491,7 @@
       "year": 1593,
       "month": 5
     },
+    "chance": 0.25,
     "conditions": {
       "eras": [
         "1592"
@@ -2268,7 +2269,7 @@
         "stayed-japan"
       ]
     },
-    "chance": 0.35,
+    "chance": 0.25,
     "text": "조선에서 포로를 데려가려는 사신의 배가 왔다는 소식을 들었다.",
     "choices": [
       {

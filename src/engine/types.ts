@@ -162,6 +162,14 @@ export interface KnowledgeDef {
   /** 막는 정도: 해당 사인의 사망 확률 배수 (기본 0.5) */
   protectFactor?: number;
   byInfluence: Partial<Record<'1' | '2' | '3' | '4', KnowledgeTier>>;
+  /** 시점별 문장 덮어쓰기. 단계마다 기본 단계 위에 얕게 덮는다 (예: 고려에는 "한글" 대신 "글자") */
+  byEra?: Record<string, KnowledgeEraOverride>;
+}
+
+export interface KnowledgeEraOverride {
+  name?: string;
+  intro?: string;
+  byInfluence?: Partial<Record<'1' | '2' | '3' | '4', KnowledgeTier>>;
 }
 
 export interface KnowledgeFile {
@@ -360,7 +368,8 @@ export interface LifeState {
   experienced: string[];
   knowledgeUsed: string[];
   /** 올해 아직 처리하지 않은 사건 (월 순) */
-  queue: { id: string; month: number }[];
+  /** 올해 남은 사건. deferred는 연초에 조건이 맞지 않아 그 달에 조건과 확률을 다시 보는 연표 사건 */
+  queue: { id: string; month: number; deferred?: boolean }[];
   /** 올해 처리 단계: 'start'(아직 시작 전) | 'events'(사건 처리 중) */
   phase: 'start' | 'events';
   pending: PendingChoice | null;

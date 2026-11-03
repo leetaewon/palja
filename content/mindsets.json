@@ -2,17 +2,17 @@
   {
     "id": "child", "name": "어린 시절", "selectable": false,
     "effects": { "health": 1, "learning": 1 },
-    "byStatus": { "slave": { "learning": 0 }, "commoner": { "learning": 0 }, "yangban": { "learning": 2 }, "royal": { "learning": 2 } }
+    "byStatus": { "slave": { "learning": 0 }, "commoner": { "learning": 0 }, "soldier": { "learning": 0 }, "bugok": { "learning": 0 }, "yangban": { "learning": 2 }, "royal": { "learning": 2 } }
   },
   {
     "id": "work", "name": "일", "selectable": true,
     "effects": { "wealth": 2, "trust": 1, "health": -1 },
-    "byStatus": { "slave": { "wealth": 0.5 }, "yangban": { "health": 0 }, "royal": { "health": 0 } }
+    "byStatus": { "slave": { "wealth": 0.5 }, "bugok": { "wealth": 0.75 }, "yangban": { "health": 0 }, "royal": { "health": 0 } }
   },
   {
     "id": "study", "name": "공부", "selectable": true,
     "effects": { "learning": 3, "wealth": -1 },
-    "byStatus": { "slave": { "learning": 0.3 }, "commoner": { "learning": 0.5 } }
+    "byStatus": { "slave": { "learning": 0.3 }, "bugok": { "learning": 0.4 }, "commoner": { "learning": 0.5 }, "soldier": { "learning": 0.5 } }
   },
   {
     "id": "family", "name": "가족", "selectable": true,

@@ -11,9 +11,10 @@ content/
 ├─ eras/                 # 시점 정의 (시점당 1파일)
 │  └─ 1592.json
 ├─ events/               # 사건 (시점별 + 공통 + 왕족)
-│  ├─ 1592.json
-│  ├─ common.json        # 모든 시점 공통 (conditions.eras: ["*"])
-│  └─ royal-1592.json
+│  ├─ 1592.json          # 시점 사건 (660·1170·1592·1800s 각 1파일)
+│  ├─ common-1592.json   # 그 시점에 맞춰 쓴 일상 사건 (혼인·출산·두창·흉년·부역 등)
+│  ├─ common-shared.json # 여러 시점이 문장까지 똑같이 쓰는 일상 사건 (eras에 시점을 나열)
+│  └─ royal-1592.json    # 왕족 전용
 ├─ knowledge.json        # 현대 지식 행동
 ├─ records.json          # 기록 엔딩 문장 템플릿 + 기록 규칙
 ├─ names.json            # 시대별 이름 풀
@@ -24,6 +25,7 @@ content/
 
 - 새 파일을 만들면 `src/content/index.ts`의 `FILES`에 등록한다. 등록하지 않으면 테스트가 실패한다.
 - `eras/`와 `events/` 아래 파일은 개수 제한 없이 합쳐서 읽는다.
+- 같은 일상 사건을 시점마다 다르게 쓰면 `common-<시점>.json`에, 문장·조건이 모든 해당 시점에서 똑같으면 `common-shared.json`에 한 번만 둔다. 한 시점에서만 문장을 바꾸려면 shared에서 그 시점을 빼고 `common-<시점>.json`에 새로 쓴다.
 
 ## 2. 시점 (`eras/*.json`)
 
@@ -96,6 +98,7 @@ content/
 | `kind` | `timeline`(정해진 해에 반드시) / `random`(조건이 맞으면 `chance` 확률로, 연 1회 판정) / `choice`(갈림길. 선택지 2개 이상) |
 | `when.year` | 있으면 그해에만 일어난다(연표 사건). 없으면 확률 사건 |
 | `when.month` | 일어나는 달 (음력). 없으면 무작위. 같은 해 사건은 달 순으로 처리 |
+| (연쇄) | 연표 사건은 연초에 조건이 맞지 않아도 그 달이 되면 조건을 다시 보고, 맞으면 그때 `chance`를 굴린다. 그래서 같은 해 앞선 달의 사건·선택이 세운 플래그(`flags`)·신분으로 연표 사건을 열 수 있다 (예: 1593년 5월 진주성 입성 → 6월 함락). 확률 사건(`when.year` 없음)은 연초 상태로만 판정한다 |
 | `chance` | 발생 확률. `random`은 필수. 확률 사건은 한 해 최대 2개 |
 | `repeatable` | 한 인생에서 여러 번 일어날 수 있는가 (기본 false) |
 | `conditions` | 아래 조건 표. `eras`는 필수 (`["*"]`는 모든 시점) |
@@ -141,6 +144,8 @@ content/
 | `knowledge` | `{ "type": "knowledge", "id": "war-prep", "attempt": 3 }` (현대 지식 쓰기. `attempt`는 노리는 범위 1~4, 없으면 자기 영향력) |
 | `log` | `{ "type": "log", "text": "..." }` (연대기에 문장만 추가) |
 
+- 효과는 적힌 순서대로 적용되고, `death`로 죽으면 뒤 효과는 적용되지 않는다. **죽어도 남아야 하는 기록(`record`)은 `death` 앞에 둔다.**
+
 ## 4. 현대 지식 (`knowledge.json`)
 
 ```json
@@ -174,6 +179,15 @@ content/
 - `helpsAgainst`의 사인은 `protectFactor`(기본 0.5)만큼 사망 확률이 줄어든다.
 - 성공한 단계마다 "이번 생에서 바꾼 것"(`changes`)이 쌓인다. 4단계 `record`는 가상 실록 후보가 된다.
 - 문장 안 `{statusName}`, `{regionName}`, `{name}`은 엔진이 바꿔 넣는다.
+- **시점별 문장 (`byEra`)**: 단계 문장이나 기록 템플릿이 그 시점에 맞지 않으면 시점 id별로 덮어쓴다. `name`, `intro`, `byInfluence`의 단계별 필드(`text`, `successText`, `failText`, `effects`, `record`)를 기본값 위에 얕게 덮는다.
+  ```json
+  "byEra": {
+    "1170": { "name": "셈과 글자 가르치기",
+              "byInfluence": { "1": { "text": "...한글은 아직 없는 시대였다." },
+                               "4": { "successText": "...", "record": { "level": "sillok", "templateId": "sillok-1170-letters" } } } }
+  }
+  ```
+- 콘텐츠 검증은 사건이 쓰는 현대 지식의 모든 단계 `record` 템플릿이 그 사건의 시점에 맞는지 확인한다.
 
 ## 5. 기록 (`records.json`)
 
@@ -184,7 +198,7 @@ content/
   ],
   "rules": [
     { "id": "rule-jokbo-yangban-male", "level": "jokbo", "templateId": "jokbo-yangban-male",
-      "conditions": { "statuses": ["yangban"], "sex": "male", "ageMin": 16 }, "chance": 0.85 }
+      "conditions": { "eras": ["1592", "1800s"], "statuses": ["yangban"], "sex": "male", "ageMin": 16 }, "chance": 0.85 }
   ]
 }
 ```
@@ -192,6 +206,7 @@ content/
 - `level` 순서: `none` < `hojeok`(호적) < `jokbo`(족보) < `munjip`(문집·읍지) < `sillok`(실록)
 - 기록 후보 = 사건의 `record` 효과 + 죽을 때 조건이 맞고 `chance`에 걸린 규칙. 가장 높은 것 하나가 남는다. 없으면 "기록 없음".
 - 규칙 조건의 나이는 **죽은 나이**다.
+- **템플릿의 `eras`는 그 문장을 쓸 수 있는 시점이다.** 엔진(`judgeRecord`)은 지금 시점이 `eras`에 없는 후보를 건너뛴다(`"*"`는 모든 시점). 콘텐츠 검증은 규칙 `conditions.eras`(없으면 모든 시점)와 사건 기록 효과의 시점이 모두 템플릿 `eras` 안에 있는지 확인하므로, 규칙에는 `eras`를 적는다. 조선 두 시점(1592·1800s)은 호적·족보·선원록 문장을 함께 쓴다.
 - 템플릿 자리표시: `{name}`(여성 양반·중인은 "김씨"), `{givenName}`, `{surname}`, `{term}`, `{region}`, `{birthReign}`, `{deathReign}`, `{eventReign}`(기록이 생긴 해), `{month}`(죽은 달), `{age}`, `{children}`
 - 조사(이/가)가 이름에 따라 바뀌는 문장은 피한다 (예: "{name}의", "{name}." 처럼 끝낸다).
 
@@ -232,7 +247,7 @@ content/
 [{ "id": "body", "name": "몸 돌보기", "selectable": true, "effects": { "health": 2, "wealth": -1 }, "hazard": 0.85 }]
 ```
 - `child`(0~9세 자동, 고를 수 없음), `work`, `study`, `family`, `body`, `hide`가 있어야 한다.
-- `byStatus`: 신분별 능력치 변화 배수 (예: 노비의 공부는 학식이 0.3배만 오른다)
+- `byStatus`: 신분별 능력치 변화 배수 (예: 노비의 공부는 학식이 0.3배만 오른다). 신분 id 기준이라 시점이 달라도 같은 id면 같은 배수를 쓴다. 새 신분 id를 만들면 여기에도 넣을지 정한다 (없으면 1배)
 - `eventDeath`: 사건 사망 확률 배수 (예: 숨죽이기는 전란·형벌 위험이 줄어든다)
 
 ## 9. 근거 (`sources.json`)

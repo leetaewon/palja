@@ -2,7 +2,7 @@
 // 새 파일을 content/에 추가하면 여기 FILES에도 등록한다 (테스트가 빠진 파일을 잡는다).
 import era1592 from '../../content/eras/1592.json';
 import events1592 from '../../content/events/1592.json';
-import eventsCommon from '../../content/events/common.json';
+import eventsCommon1592 from '../../content/events/common-1592.json';
 import eventsRoyal1592 from '../../content/events/royal-1592.json';
 import era1800s from '../../content/eras/1800s.json';
 import events1800s from '../../content/events/1800s.json';
@@ -22,6 +22,7 @@ import era1170 from '../../content/eras/1170.json';
 import events1170 from '../../content/events/1170.json';
 import eventsRoyal1170 from '../../content/events/royal-1170.json';
 import eventsCommon1170 from '../../content/events/common-1170.json';
+import eventsCommonShared from '../../content/events/common-shared.json';
 import type { Content } from '../engine/types';
 import { validateContent } from './validate';
 
@@ -29,7 +30,7 @@ import { validateContent } from './validate';
 export const FILES: Record<string, unknown> = {
   'eras/1592.json': era1592,
   'events/1592.json': events1592,
-  'events/common.json': eventsCommon,
+  'events/common-1592.json': eventsCommon1592,
   'events/royal-1592.json': eventsRoyal1592,
   'eras/1800s.json': era1800s,
   'events/1800s.json': events1800s,
@@ -49,6 +50,8 @@ export const FILES: Record<string, unknown> = {
   'events/1170.json': events1170,
   'events/royal-1170.json': eventsRoyal1170,
   'events/common-1170.json': eventsCommon1170,
+  // 여러 시점이 문장까지 똑같이 쓰는 공통 사건 (시점 순서·출생에 영향이 없도록 맨 뒤)
+  'events/common-shared.json': eventsCommonShared,
 };
 
 export function buildContent(files: Record<string, unknown> = FILES): unknown {

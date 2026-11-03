@@ -49,6 +49,33 @@
             "templateId": "sillok-hygiene"
           }
         }
+      },
+      "byEra": {
+        "660": {
+          "byInfluence": {
+            "3": {
+              "successText": "고을을 맡은 관리가 고을의 우물을 살피게 했다."
+            },
+            "4": {
+              "successText": "조정이 5방에 우물을 살피라는 명을 내렸다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-660-hygiene"
+              }
+            }
+          }
+        },
+        "1170": {
+          "byInfluence": {
+            "4": {
+              "successText": "조정이 여러 고을에 우물을 살피라는 명을 내렸다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-1170-hygiene"
+              }
+            }
+          }
+        }
       }
     },
     {
@@ -82,6 +109,33 @@
           "record": {
             "level": "sillok",
             "templateId": "sillok-hygiene"
+          }
+        }
+      },
+      "byEra": {
+        "660": {
+          "byInfluence": {
+            "3": {
+              "successText": "고을을 맡은 관리가 역병이 돈 마을의 출입을 막았다."
+            },
+            "4": {
+              "successText": "조정이 역병이 돈 고을의 출입을 막으라는 명을 내렸다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-660-hygiene"
+              }
+            }
+          }
+        },
+        "1170": {
+          "byInfluence": {
+            "4": {
+              "successText": "조정이 역병이 돈 고을의 출입을 막으라는 명을 내렸다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-1170-hygiene"
+              }
+            }
           }
         }
       }
@@ -120,6 +174,33 @@
             "templateId": "sillok-vaccination"
           }
         }
+      },
+      "byEra": {
+        "660": {
+          "byInfluence": {
+            "3": {
+              "successText": "고을을 맡은 관리가 고을 아이들에게 이 법을 쓰게 했다."
+            },
+            "4": {
+              "successText": "조정이 마마를 막는 이 법을 시험하게 했다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-660-vaccination"
+              }
+            }
+          }
+        },
+        "1170": {
+          "byInfluence": {
+            "4": {
+              "successText": "조정이 마마를 막는 이 법을 시험하게 했다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-1170-vaccination"
+              }
+            }
+          }
+        }
       }
     },
     {
@@ -140,6 +221,15 @@
         },
         "3": {
           "successText": "수령이 고을 산파들에게 이 법을 알리게 했다."
+        }
+      },
+      "byEra": {
+        "660": {
+          "byInfluence": {
+            "3": {
+              "successText": "고을을 맡은 관리가 고을 산파들에게 이 법을 알리게 했다."
+            }
+          }
         }
       }
     },
@@ -181,6 +271,33 @@
           "record": {
             "level": "sillok",
             "templateId": "sillok-famine"
+          }
+        }
+      },
+      "byEra": {
+        "660": {
+          "byInfluence": {
+            "3": {
+              "successText": "고을을 맡은 관리가 고을 창고를 늘려 곡식을 쌓게 했다."
+            },
+            "4": {
+              "successText": "조정이 5방에 명하여 흉년에 대비해 곡식을 갈무리하게 했다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-660-famine"
+              }
+            }
+          }
+        },
+        "1170": {
+          "byInfluence": {
+            "4": {
+              "successText": "조정이 여러 고을에 흉년에 대비해 곡식을 갈무리하게 했다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-1170-famine"
+              }
+            }
           }
         }
       }
@@ -231,6 +348,44 @@
             "templateId": "sillok-hangul"
           }
         }
+      },
+      "byEra": {
+        "660": {
+          "name": "셈과 글자 가르치기",
+          "byInfluence": {
+            "1": {
+              "text": "당신은 식구들에게 셈과 글자 몇 자를 가르쳤다. 이 땅에는 아직 누구나 쓸 글자가 없었다."
+            },
+            "3": {
+              "successText": "고을을 맡은 관리가 아이들에게 셈과 글자를 가르치게 했다."
+            },
+            "4": {
+              "successText": "조정이 5방의 아이들에게 셈과 글자를 가르치게 했다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-660-letters"
+              }
+            }
+          }
+        },
+        "1170": {
+          "name": "셈과 글자 가르치기",
+          "byInfluence": {
+            "1": {
+              "text": "당신은 식구들에게 셈과 한자 몇 자를 가르쳤다. 한글은 아직 없는 시대였다."
+            },
+            "3": {
+              "successText": "수령이 고을 향교에 백성의 아이들도 받게 했다."
+            },
+            "4": {
+              "successText": "조정이 여러 고을에서 백성의 아이들에게도 글을 가르치게 했다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-1170-letters"
+              }
+            }
+          }
+        }
       }
     },
     {
@@ -265,6 +420,35 @@
           "record": {
             "level": "sillok",
             "templateId": "sillok-war-prophecy"
+          }
+        }
+      },
+      "byEra": {
+        "660": {
+          "intro": "당신은 당과 신라의 군대가 언제, 어느 길로 들어오는지 알고 있다.",
+          "byInfluence": {
+            "3": {
+              "successText": "고을을 맡은 관리가 산성을 손보고 군량을 모으게 했다."
+            },
+            "4": {
+              "successText": "당신의 청이 조정에 올라갔다. 믿는 사람은 많지 않았다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-660-memorial"
+              }
+            }
+          }
+        },
+        "1170": {
+          "intro": "당신은 북쪽에서 큰 군대가 언제, 어느 길로 내려오는지 알고 있다.",
+          "byInfluence": {
+            "4": {
+              "successText": "조정이 북계의 성들에 미리 군량과 무기를 모으게 했다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-1170-mongol"
+              }
+            }
           }
         }
       }
@@ -309,6 +493,33 @@
             "templateId": "sillok-farming"
           }
         }
+      },
+      "byEra": {
+        "660": {
+          "byInfluence": {
+            "3": {
+              "successText": "고을을 맡은 관리가 고을의 둑을 고치게 했다."
+            },
+            "4": {
+              "successText": "조정이 거름 쓰는 법과 물 대는 법을 5방에 알렸다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-660-farming"
+              }
+            }
+          }
+        },
+        "1170": {
+          "byInfluence": {
+            "4": {
+              "successText": "조정이 거름 쓰는 법을 적어 여러 고을에 내려보냈다.",
+              "record": {
+                "level": "sillok",
+                "templateId": "sillok-1170-farming"
+              }
+            }
+          }
+        }
       }
     },
     {
@@ -345,6 +556,15 @@
         },
         "3": {
           "successText": "고을 향리들이 당신이 쓰는 장부 형식을 따랐다."
+        }
+      },
+      "byEra": {
+        "660": {
+          "byInfluence": {
+            "3": {
+              "successText": "고을 관리들이 당신이 쓰는 장부 형식을 따랐다."
+            }
+          }
         }
       }
     }

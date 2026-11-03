@@ -20,10 +20,11 @@ export {
   getEvent,
   renderText,
   useKnowledge,
+  resolveKnowledge,
   healthBaseline,
   MAX_REGRESSIONS,
   CHILD_AGE,
   type LifeOptions,
 } from './life';
-export { judgeEnding, judgeRecord, reignLabel, recordRank, causeName } from './ending';
+export { judgeEnding, judgeRecord, reignLabel, recordRank, causeName, templateFitsEra } from './ending';
 export { autoLive, continueAuto, neighbors, type BotPolicy, type NeighborSummary } from './bot';

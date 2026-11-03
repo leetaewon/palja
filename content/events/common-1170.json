@@ -688,103 +688,6 @@
     "confidence": "estimated"
   },
   {
-    "id": "c1170-child-death",
-    "kind": "random",
-    "conditions": {
-      "eras": [
-        "1170"
-      ],
-      "childrenMin": 1,
-      "ageMax": 55
-    },
-    "chance": 0.06,
-    "repeatable": true,
-    "text": "아이 하나가 열병을 앓다 세상을 떠났다.",
-    "effects": [
-      {
-        "type": "family",
-        "event": "child-died"
-      },
-      {
-        "type": "stat",
-        "stat": "health",
-        "delta": -3
-      }
-    ],
-    "sourceRefs": [
-      "life-expectancy"
-    ],
-    "confidence": "estimated"
-  },
-  {
-    "id": "c1170-father-death",
-    "kind": "random",
-    "conditions": {
-      "eras": [
-        "1170"
-      ],
-      "ageMin": 3,
-      "notFlags": [
-        "father-dead"
-      ]
-    },
-    "chance": 0.03,
-    "text": "아버지가 세상을 떠났다.",
-    "effects": [
-      {
-        "type": "flag",
-        "set": "father-dead"
-      },
-      {
-        "type": "family",
-        "event": "parent-died"
-      },
-      {
-        "type": "stat",
-        "stat": "wealth",
-        "delta": -3
-      }
-    ],
-    "sourceRefs": [
-      "life-expectancy"
-    ],
-    "confidence": "adapted"
-  },
-  {
-    "id": "c1170-mother-death",
-    "kind": "random",
-    "conditions": {
-      "eras": [
-        "1170"
-      ],
-      "ageMin": 3,
-      "notFlags": [
-        "mother-dead"
-      ]
-    },
-    "chance": 0.03,
-    "text": "어머니가 세상을 떠났다.",
-    "effects": [
-      {
-        "type": "flag",
-        "set": "mother-dead"
-      },
-      {
-        "type": "family",
-        "event": "parent-died"
-      },
-      {
-        "type": "stat",
-        "stat": "health",
-        "delta": -2
-      }
-    ],
-    "sourceRefs": [
-      "life-expectancy"
-    ],
-    "confidence": "adapted"
-  },
-  {
     "id": "c1170-inheritance",
     "kind": "random",
     "conditions": {
@@ -815,35 +718,6 @@
       "marriage-1170"
     ],
     "confidence": "estimated"
-  },
-  {
-    "id": "c1170-spouse-death",
-    "kind": "random",
-    "conditions": {
-      "eras": [
-        "1170"
-      ],
-      "married": true,
-      "ageMin": 25
-    },
-    "chance": 0.02,
-    "repeatable": true,
-    "text": "배우자가 병을 앓다 세상을 떠났다.",
-    "effects": [
-      {
-        "type": "family",
-        "event": "spouse-died"
-      },
-      {
-        "type": "stat",
-        "stat": "health",
-        "delta": -3
-      }
-    ],
-    "sourceRefs": [
-      "life-expectancy"
-    ],
-    "confidence": "adapted"
   },
   {
     "id": "c1170-slave-first-work",
@@ -1590,63 +1464,6 @@
       "daily-life-1170"
     ],
     "confidence": "estimated"
-  },
-  {
-    "id": "c1170-regressed-infant",
-    "kind": "random",
-    "conditions": {
-      "eras": [
-        "1170"
-      ],
-      "ageMin": 1,
-      "ageMax": 1,
-      "regressed": true
-    },
-    "chance": 1,
-    "text": "당신은 말을 배우기도 전에 지난 삶을 기억하고 있었다.",
-    "choices": [
-      {
-        "id": "grow",
-        "label": "아무것도 할 수 없다. 그저 자란다",
-        "result": "당신은 다른 아이들처럼 자랐다."
-      },
-      {
-        "id": "boiled",
-        "label": "(지식) 날물을 밀어내고 끓인 숭늉만 받아먹는다",
-        "requires": {
-          "knowledge": [
-            "boil-water"
-          ]
-        },
-        "effects": [
-          {
-            "type": "protect",
-            "cause": "illness",
-            "factor": 0.85
-          },
-          {
-            "type": "protect",
-            "cause": "epidemic",
-            "factor": 0.8
-          },
-          {
-            "type": "stat",
-            "stat": "health",
-            "delta": 4
-          },
-          {
-            "type": "change",
-            "scope": "family",
-            "text": "어머니가 집에서 끓인 물을 늘 마련해 두게 되었다."
-          }
-        ],
-        "result": "어머니는 아이가 유난히 까다롭다며 웃었다. 그해부터 집에서는 숭늉을 늘 끓여 두었다."
-      }
-    ],
-    "sourceRefs": [
-      "modern-knowledge"
-    ],
-    "confidence": "adapted"
   },
   {
     "id": "c1170-modern-idea",
