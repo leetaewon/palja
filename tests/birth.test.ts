@@ -4,7 +4,7 @@ import { content } from './helpers';
 
 describe('출생 결정 (PRD 4장)', () => {
   const N = 30000;
-  const births = Array.from({ length: N }, (_, i) => createBirth(content, `birth-${i}`));
+  const births = Array.from({ length: N }, (_, i) => createBirth(content, `birth-${i}`, { eraId: '1592' }));
 
   it('왕족 출생 확률 1% ±0.3%p', () => {
     const royal = births.filter((b) => b.statusId === 'royal').length / N;
