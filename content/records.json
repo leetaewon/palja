@@ -20,7 +20,22 @@
     { "id": "sillok-famine", "level": "sillok", "eras": ["1592"], "template": "{eventReign}, {term} {name}의 말에 따라 각 도에 구황할 작물을 심게 하였다." },
     { "id": "sillok-hangul", "level": "sillok", "eras": ["1592"], "template": "{eventReign}, {term} {name}의 청에 따라 언문으로 농사와 구황의 법을 적어 백성에게 나누어 주었다." },
     { "id": "sillok-farming", "level": "sillok", "eras": ["1592"], "template": "{eventReign}, {term} {name}의 말에 따라 거름 쓰는 법을 적어 각 도에 내려보냈다." },
-    { "id": "sillok-royal-death", "level": "sillok", "eras": ["1592"], "template": "{deathReign} {month}월, {term} {name} 졸. 조회를 사흘 동안 멈추었다." }
+    { "id": "sillok-royal-death", "level": "sillok", "eras": ["1592"], "template": "{deathReign} {month}월, {term} {name} 졸. 조회를 사흘 동안 멈추었다." },
+    { "id": "hojeok-1800s-yuhak", "level": "hojeok", "eras": ["1800s"], "template": "{deathReign} {region} 호적대장. 유학 {name}, 나이 {age}. 군역 칸은 비어 있다." },
+    { "id": "hojeok-1800s-freed", "level": "hojeok", "eras": ["1800s"], "template": "{eventReign} {region} 호적. 양인 {name}. 신유년 내수사 노비안을 불살라 양인이 됨." },
+    { "id": "hojeok-1800s-sokryang", "level": "hojeok", "eras": ["1800s"], "template": "{eventReign} {region} 호적. 양인 {name}. 속전을 바치고 노비 문서에서 이름을 지움." },
+    { "id": "hojeok-1800s-yuhak-bought", "level": "hojeok", "eras": ["1800s"], "template": "{eventReign} {region} 호적대장. {name}. 이번 식년부터 직역을 유학으로 고쳐 적음." },
+    { "id": "hojeok-1800s-gongmyeong", "level": "hojeok", "eras": ["1800s"], "template": "{eventReign} {region} 호적대장. {name}. 공명첩으로 받은 첨지 벼슬 이름을 직역란에 적음." },
+    { "id": "jokbo-1800s-bought", "level": "jokbo", "eras": ["1800s"], "template": "{surname}씨 족보 별책. {givenName}. 뒤에 덧붙인 장에 이름이 올랐다. {deathReign} 졸." },
+    { "id": "jokbo-1800s-yuhak", "level": "jokbo", "eras": ["1800s"], "template": "{surname}씨 족보. {givenName}. 벼슬 없음. {birthReign} 생, {deathReign} {month}월 졸." },
+    { "id": "munjip-1800s-hong", "level": "munjip", "eras": ["1800s"], "template": "평서 난리를 적은 기록. {region} 사람 {name}. 신미년 겨울 봉기한 군에 들었다." },
+    { "id": "munjip-1800s-imsul", "level": "munjip", "eras": ["1800s"], "template": "임술록. {region} 사람 {name}. 고을 봉기에 앞장섰다 하여 관아에 잡혀 왔다." },
+    { "id": "munjip-1800s-martyr", "level": "munjip", "eras": ["1800s"], "template": "교우들이 남긴 순교자 기록. {region}의 교우 {name}. {eventReign}에 잡혀가 믿음을 버리지 않았다." },
+    { "id": "munjip-1800s-tongcheong", "level": "munjip", "eras": ["1800s"], "template": "중인 통청 상소의 연명부. {region} 사람 {name}의 이름이 보인다." },
+    { "id": "munjip-1800s-teacher", "level": "munjip", "eras": ["1800s"], "template": "{region} 읍지 인물조. {name}. 벼슬 없이 마을 아이들을 가르쳤는데, 배운 이가 많았다." },
+    { "id": "sillok-1800s-reform", "level": "sillok", "eras": ["1800s"], "template": "{eventReign}, {term} {name}의 상소에 환곡의 폐단을 아뢰니, 비변사에 내려 의논케 하였다." },
+    { "id": "sillok-1800s-exile", "level": "sillok", "eras": ["1800s"], "template": "{eventReign}, 역적의 공초에 {term} {name}의 이름이 나왔다. 대간이 거듭 아뢰니 섬에 안치하였다." },
+    { "id": "sillok-1800s-cholera", "level": "sillok", "eras": ["1800s"], "template": "{eventReign}, {term} {name}의 청에 따라 괴질이 도는 고을에 물을 끓여 먹게 하고 앓는 이를 따로 두게 하였다." }
   ],
   "rules": [
     { "id": "rule-jokbo-royal", "level": "jokbo", "templateId": "jokbo-royal", "conditions": { "statuses": ["royal"] }, "chance": 1 },
@@ -32,6 +47,9 @@
     { "id": "rule-munjip-militia", "level": "munjip", "templateId": "munjip-militia-member", "conditions": { "flags": ["was-militia"], "ageMin": 16 }, "chance": 0.2 },
     { "id": "rule-munjip-teacher", "level": "munjip", "templateId": "munjip-teacher", "conditions": { "flags": ["village-teacher"], "ageMin": 30 }, "chance": 0.3 },
     { "id": "rule-hojeok-yangban", "level": "hojeok", "templateId": "hojeok-generic", "conditions": { "statuses": ["yangban"], "ageMin": 16 }, "chance": 0.6 },
-    { "id": "rule-hojeok", "level": "hojeok", "templateId": "hojeok-generic", "conditions": { "statuses": ["jungin", "commoner", "slave"], "ageMin": 16 }, "chance": 0.3 }
+    { "id": "rule-hojeok", "level": "hojeok", "templateId": "hojeok-generic", "conditions": { "statuses": ["jungin", "commoner", "slave"], "ageMin": 16 }, "chance": 0.3 },
+    { "id": "rule-1800s-jokbo-yuhak", "level": "jokbo", "templateId": "jokbo-1800s-yuhak", "conditions": { "eras": ["1800s"], "statuses": ["yuhak"], "sex": "male", "ageMin": 16 }, "chance": 0.4 },
+    { "id": "rule-1800s-hojeok-yuhak", "level": "hojeok", "templateId": "hojeok-1800s-yuhak", "conditions": { "eras": ["1800s"], "statuses": ["yuhak"], "ageMin": 16 }, "chance": 0.6 },
+    { "id": "rule-1800s-munjip-teacher", "level": "munjip", "templateId": "munjip-1800s-teacher", "conditions": { "eras": ["1800s"], "flags": ["village-teacher"], "ageMin": 40, "statMin": { "trust": 60 } }, "chance": 0.3 }
   ]
 }

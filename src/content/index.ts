@@ -4,6 +4,10 @@ import era1592 from '../../content/eras/1592.json';
 import events1592 from '../../content/events/1592.json';
 import eventsCommon from '../../content/events/common.json';
 import eventsRoyal1592 from '../../content/events/royal-1592.json';
+import era1800s from '../../content/eras/1800s.json';
+import events1800s from '../../content/events/1800s.json';
+import eventsCommon1800s from '../../content/events/common-1800s.json';
+import eventsRoyal1800s from '../../content/events/royal-1800s.json';
 import knowledge from '../../content/knowledge.json';
 import records from '../../content/records.json';
 import names from '../../content/names.json';
@@ -19,6 +23,10 @@ export const FILES: Record<string, unknown> = {
   'events/1592.json': events1592,
   'events/common.json': eventsCommon,
   'events/royal-1592.json': eventsRoyal1592,
+  'eras/1800s.json': era1800s,
+  'events/1800s.json': events1800s,
+  'events/common-1800s.json': eventsCommon1800s,
+  'events/royal-1800s.json': eventsRoyal1800s,
   'knowledge.json': knowledge,
   'records.json': records,
   'names.json': names,

@@ -117,5 +117,138 @@
     "summary": "1623년 인조반정, 1627년 정묘호란, 1636년 병자호란. 오래 산 인생이면 겪을 수 있다.",
     "confidence": "confirmed",
     "doc": "docs/02-research/eras/1592-imjin-war.md#1-연표"
+  },
+  {
+    "id": "era-1800s",
+    "title": "세도정치기 연표",
+    "summary": "1800년 6월 정조가 승하하고 11세 순조가 즉위해 정순왕후가 수렴청정했다. 1801년 공노비 해방과 신유박해, 1811년 12월 홍경래의 난(1812년 4월 정주성 함락), 1821년 괴질(콜레라) 유행과 1822년 재유행, 1860년 동학 창시, 1862년 임술농민봉기, 1866년 병인박해·병인양요가 이어졌다. 날짜는 음력이다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#1-연표"
+  },
+  {
+    "id": "era-1800s-life",
+    "title": "세도정치기 신분별 삶",
+    "summary": "과거는 세도 가문 중심으로 좁아졌고 몰락 양반이 늘었다. 상민은 삼정의 수탈과 군포에 시달리면서도 족보 매입·공명첩·유학 칭호로 호적상 양반이 되기도 했다. 1801년 공노비가 해방되었지만 사노비는 남았고, 도망·속량이 이전보다 쉬워졌다. 중인은 신분 상승을 요구했다(통청 운동). 게임 속 개인의 사건은 이 흐름을 바탕으로 각색했다.",
+    "confidence": "estimated",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#2-신분별-삶"
+  },
+  {
+    "id": "status-1800s",
+    "title": "19세기 초 조선의 신분 구성",
+    "summary": "대구 호적 연구로 호적상 양반 호가 크게 늘고 노비 호가 크게 줄었다는 결과가 널리 인용되지만, 이는 호주의 직역 기준이다. 실제 양반은 5~10%였다는 주장도 있다. 게임은 실질 양반 10%, 유학을 칭하는 몰락·신흥 양반 15%, 중인·향리 4%, 상민 51%, 노비·천민 20%를 바탕으로, 왕족 1%를 비례로 빼서 정했다.",
+    "confidence": "estimated",
+    "doc": "docs/02-research/status-ratios.md#2-4-1800년대-초-조선-세도정치기"
+  },
+  {
+    "id": "regions-1800s",
+    "title": "출생 지역 비율 (1800s)",
+    "summary": "지역 인구 비율에 대한 근거 자료를 따로 정리하지 않아, 1592 시점의 비율을 바탕으로 19세기에 인구가 늘어난 평안·함경도의 비중을 조금 높여 게임용으로 정했다.",
+    "confidence": "adapted",
+    "doc": "docs/progress/1800s.md"
+  },
+  {
+    "id": "reigns-1800s",
+    "title": "세도정치기의 왕위 계승",
+    "summary": "정조(1776 즉위), 순조(1800 즉위, 11세), 헌종(1834 즉위, 8세), 철종(1849 즉위, 강화도에 살던 종친), 고종(1863 즉위, 12세, 아버지 흥선대원군 섭정). 기록 문장의 재위 연도 계산에 쓴다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#1-연표"
+  },
+  {
+    "id": "gongnobi-1801",
+    "title": "1801년 공노비 해방",
+    "summary": "1801년(순조 1년) 정월 내수사와 중앙 관청에 딸린 공노비 66,067명을 양인으로 삼고 노비 문서를 불태웠다. 사노비는 그대로 남았다. 게임에서 노비로 태어난 사람 가운데 일부(15%)를 공노비로 정한 것은 각색이다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/status-ratios.md#2-4-1800년대-초-조선-세도정치기"
+  },
+  {
+    "id": "sinyu-1801",
+    "title": "신유박해 (1801)",
+    "summary": "1801년 천주교를 금하는 영이 내리고 많은 신자가 처형되거나 유배되었다. 왕실 종친 집안도 연루되었다. 게임은 특정 신앙을 옹호하거나 폄하하지 않고 역사적 사실로만 다룬다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#1-연표"
+  },
+  {
+    "id": "catholic-1800s",
+    "title": "천주교와 박해",
+    "summary": "19세기 조선의 천주교인들은 신분을 넘어 모였고, 박해를 피해 산골 교우촌을 이루기도 했다. 1801년 신유박해와 1866년 병인박해가 컸다. 게임 속 개인의 신앙과 박해 사건은 각색이다.",
+    "confidence": "estimated",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#6-주의할-점"
+  },
+  {
+    "id": "hong-1811",
+    "title": "홍경래의 난 (1811~1812)",
+    "summary": "1811년 12월 평안도 가산에서 홍경래가 군사를 일으켜 청천강 북쪽 고을을 차지했다. 서북 지역에 대한 차별이 배경이다. 관군에 밀려 정주성에서 버티다 1812년 4월 관군이 성 밑을 화약으로 무너뜨려 진압되었다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#1-연표"
+  },
+  {
+    "id": "cholera-1821",
+    "title": "1821년 괴질 (콜레라)",
+    "summary": "1821년 8~9월 괴질(콜레라)이 평안도 의주로 들어와 전국으로 번졌다. 열흘 만에 평양에서 1천여 명, 한양에서 1만여 명이 죽었다는 기록이 있고, 1822년 다시 유행했다. 사망자 규모는 추정이다. 게임 속 사망 확률은 각색이다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/life-death.md#4-주요-사망-원인"
+  },
+  {
+    "id": "samjeong",
+    "title": "세도정치와 삼정 문란",
+    "summary": "안동 김씨 등 외척 가문이 권력을 쥐고, 전정·군정·환곡의 이른바 삼정이 문란해졌다. 죽은 사람이나 어린아이에게 군포를 매기거나 환곡에 이자를 부풀리는 일이 있었다. 게임 속 개별 사건은 이를 바탕으로 각색했다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#1-연표"
+  },
+  {
+    "id": "jokbo-buying",
+    "title": "호적상 양반의 증가",
+    "summary": "19세기에는 족보 매입, 공명첩, 호적의 직역을 유학으로 적는 일 등으로 호적상 양반이 크게 늘었다. 호적상 양반이 늘었다고 실제 양반이 늘어난 것은 아니다.",
+    "confidence": "estimated",
+    "doc": "docs/02-research/status-ratios.md#2-4-1800년대-초-조선-세도정치기"
+  },
+  {
+    "id": "donghak-1860",
+    "title": "동학 창시 (1860)",
+    "summary": "1860년 경주에서 동학이 창시되었다. 사람이 하늘을 모신다는 가르침으로 삼남에 퍼졌다. 게임 속 개인의 입교와 단속 사건은 각색이다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#1-연표"
+  },
+  {
+    "id": "imsul-1862",
+    "title": "임술농민봉기 (1862)",
+    "summary": "1862년 2월 진주에서 시작된 농민 봉기가 삼남을 중심으로 전국 70여 곳으로 번졌다. 환곡과 결세 등 삼정의 수탈이 배경이다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#1-연표"
+  },
+  {
+    "id": "byeongin-1866",
+    "title": "병인박해와 병인양요 (1866)",
+    "summary": "1866년 천주교인을 크게 잡아들인 병인박해가 일어났고, 같은 해 가을 프랑스 함대가 강화도에 쳐들어와 병인양요가 벌어졌다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#1-연표"
+  },
+  {
+    "id": "royal-1800s",
+    "title": "세도정치기의 왕실",
+    "summary": "세도 가문 아래 왕실의 힘은 약했고, 종친은 역모에 엮일 위험이 컸다. 가까운 종친일수록 오히려 위험한 시대였다. 게임 속 왕족의 개인 사건은 각색이다.",
+    "confidence": "adapted",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#2-신분별-삶"
+  },
+  {
+    "id": "regression-1800s",
+    "title": "1800s의 팔자 고치기",
+    "summary": "괴질이 오는 때, 홍경래의 난이 정주성에서 끝난다는 것, 임술년 봉기 같은 기억으로 대비할 수 있다. 왕족·고위 관료는 삼정 개혁을 아뢰어 가상 실록에 이름을 남길 수 있다. 모두 게임 각색이다.",
+    "confidence": "adapted",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#4-팔자-고치기-회귀-지식"
+  },
+  {
+    "id": "records-1800s",
+    "title": "1800s의 기록 엔딩",
+    "summary": "이 시대에는 호적대장 한 줄이 가장 그럴듯한 남은 흔적이다. 돈으로 산 족보, 『순조실록』·『철종실록』식 가상 기사, 순교자 기록, 민란 처벌 기록 같은 형식을 쓴다.",
+    "confidence": "adapted",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#5-기록-엔딩-소재"
+  },
+  {
+    "id": "population-1800s",
+    "title": "19세기 초의 인구 감소",
+    "summary": "국가가 파악한 인구가 1807년 약 760만 명에서 1835년 약 660만 명으로 줄었다. 흉년·역병·괴질 등 여러 재난이 겹친 결과로 본다. 게임은 이 시기에 흉년 끝 돌림병이 더 자주 도는 것으로 각색했다.",
+    "confidence": "estimated",
+    "doc": "docs/02-research/eras/1800s-sedo-politics.md#1-연표"
   }
 ]
