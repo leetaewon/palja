@@ -1,0 +1,31 @@
+[
+  {
+    "id": "child", "name": "어린 시절", "selectable": false,
+    "effects": { "health": 1, "learning": 1 },
+    "byStatus": { "slave": { "learning": 0 }, "commoner": { "learning": 0 }, "yangban": { "learning": 2 }, "royal": { "learning": 2 } }
+  },
+  {
+    "id": "work", "name": "일", "selectable": true,
+    "effects": { "wealth": 2, "trust": 1, "health": -1 },
+    "byStatus": { "slave": { "wealth": 0.5 }, "yangban": { "health": 0 }, "royal": { "health": 0 } }
+  },
+  {
+    "id": "study", "name": "공부", "selectable": true,
+    "effects": { "learning": 3, "wealth": -1 },
+    "byStatus": { "slave": { "learning": 0.3 }, "commoner": { "learning": 0.5 } }
+  },
+  {
+    "id": "family", "name": "가족", "selectable": true,
+    "effects": { "trust": 2 }
+  },
+  {
+    "id": "body", "name": "몸 돌보기", "selectable": true,
+    "effects": { "health": 2, "wealth": -1 },
+    "hazard": 0.85
+  },
+  {
+    "id": "hide", "name": "숨죽이기", "selectable": true,
+    "effects": { "trust": -1 },
+    "eventDeath": { "war": 0.7, "punishment": 0.5 }
+  }
+]

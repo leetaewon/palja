@@ -1,0 +1,59 @@
+{
+  "id": "1592",
+  "title": "임진왜란",
+  "birthYears": [1565, 1580],
+  "regions": [
+    { "id": "gyeonggi", "name": "경기도", "weight": 16 },
+    { "id": "chungcheong", "name": "충청도", "weight": 16 },
+    { "id": "jeolla", "name": "전라도", "weight": 20 },
+    { "id": "gyeongsang", "name": "경상도", "weight": 24 },
+    { "id": "gangwon", "name": "강원도", "weight": 5 },
+    { "id": "hwanghae", "name": "황해도", "weight": 8 },
+    { "id": "pyeongan", "name": "평안도", "weight": 8 },
+    { "id": "hamgyeong", "name": "함경도", "weight": 3 }
+  ],
+  "statuses": [
+    {
+      "id": "royal", "name": "왕족", "weight": 1, "sourceRef": "status-royal",
+      "recordTerm": "종친", "recordTermFemale": "종녀", "nameGroup": "royal",
+      "influenceBase": 3, "persuasion": 1.0, "mortality": 0.75,
+      "start": { "health": [55, 80], "wealth": [80, 95], "learning": [5, 15], "trust": [45, 60] },
+      "regions": ["gyeonggi"]
+    },
+    {
+      "id": "yangban", "name": "양반", "weight": 7.92, "sourceRef": "status-1592",
+      "recordTerm": "유학", "recordTermFemale": "처", "nameGroup": "yangban",
+      "influenceBase": 2, "persuasion": 1.0, "mortality": 0.8,
+      "start": { "health": [45, 75], "wealth": [50, 80], "learning": [5, 15], "trust": [35, 55] }
+    },
+    {
+      "id": "jungin", "name": "중인·향리", "weight": 2.97, "sourceRef": "status-1592",
+      "recordTerm": "향리", "recordTermFemale": "처", "nameGroup": "common",
+      "influenceBase": 2, "persuasion": 0.9, "mortality": 0.9,
+      "start": { "health": [40, 70], "wealth": [35, 65], "learning": [5, 15], "trust": [30, 50] }
+    },
+    {
+      "id": "commoner", "name": "상민", "weight": 53.46, "sourceRef": "status-1592",
+      "recordTerm": "양인", "recordTermFemale": "양녀", "nameGroup": "common",
+      "influenceBase": 1, "persuasion": 0.8, "mortality": 1.0,
+      "start": { "health": [35, 70], "wealth": [10, 40], "learning": [0, 5], "trust": [25, 45] }
+    },
+    {
+      "id": "slave", "name": "노비", "weight": 34.65, "sourceRef": "status-1592",
+      "recordTerm": "사노", "recordTermFemale": "사비", "nameGroup": "slave",
+      "influenceBase": 1, "persuasion": 0.6, "mortality": 1.12,
+      "start": { "health": [30, 65], "wealth": [0, 15], "learning": [0, 3], "trust": [20, 40] }
+    }
+  ],
+  "mortality": { "eraModifier": 1.0 },
+  "reigns": [
+    { "name": "명종", "accession": 1545, "firstYear": 1546 },
+    { "name": "선조", "accession": 1567, "firstYear": 1568 },
+    { "name": "광해군", "accession": 1608, "firstYear": 1609 },
+    { "name": "인조", "accession": 1623, "firstYear": 1623 },
+    { "name": "효종", "accession": 1649, "firstYear": 1650 },
+    { "name": "현종", "accession": 1659, "firstYear": 1660 },
+    { "name": "숙종", "accession": 1674, "firstYear": 1675 }
+  ],
+  "sourceRefs": ["era-1592", "status-1592", "regions-1592"]
+}
