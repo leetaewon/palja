@@ -18,6 +18,10 @@ import era660 from '../../content/eras/660.json';
 import events660 from '../../content/events/660.json';
 import eventsRoyal660 from '../../content/events/royal-660.json';
 import eventsCommon660 from '../../content/events/common-660.json';
+import era1170 from '../../content/eras/1170.json';
+import events1170 from '../../content/events/1170.json';
+import eventsRoyal1170 from '../../content/events/royal-1170.json';
+import eventsCommon1170 from '../../content/events/common-1170.json';
 import type { Content } from '../engine/types';
 import { validateContent } from './validate';
 
@@ -41,6 +45,10 @@ export const FILES: Record<string, unknown> = {
   'events/660.json': events660,
   'events/royal-660.json': eventsRoyal660,
   'events/common-660.json': eventsCommon660,
+  'eras/1170.json': era1170,
+  'events/1170.json': events1170,
+  'events/royal-1170.json': eventsRoyal1170,
+  'events/common-1170.json': eventsCommon1170,
 };
 
 export function buildContent(files: Record<string, unknown> = FILES): unknown {

@@ -1,0 +1,72 @@
+{
+  "id": "1170",
+  "title": "무신정변",
+  "birthYears": [1145, 1165],
+  "regions": [
+    { "id": "gaegyeong", "name": "개경과 경기", "weight": 14 },
+    { "id": "yanggwang", "name": "양광도", "weight": 18 },
+    { "id": "gyeongsang", "name": "경상도", "weight": 22 },
+    { "id": "jeolla", "name": "전라도", "weight": 18 },
+    { "id": "gyoju", "name": "교주도", "weight": 6 },
+    { "id": "seohae", "name": "서해도", "weight": 7 },
+    { "id": "bukgye", "name": "북계(서북면)", "weight": 10 },
+    { "id": "donggye", "name": "동계(동북면)", "weight": 5 }
+  ],
+  "statuses": [
+    {
+      "id": "royal", "name": "왕족", "weight": 1, "sourceRef": "status-royal",
+      "recordTerm": "종실", "recordTermFemale": "종녀", "nameGroup": "royal",
+      "influenceBase": 3, "persuasion": 1.0, "mortality": 0.7,
+      "start": { "health": [55, 80], "wealth": [80, 95], "learning": [5, 15], "trust": [40, 55] },
+      "regions": ["gaegyeong"]
+    },
+    {
+      "id": "yangban", "name": "문벌귀족·관료", "weight": 1.98, "sourceRef": "status-1170",
+      "recordTerm": "관인", "recordTermFemale": "처", "nameGroup": "noble",
+      "influenceBase": 2, "persuasion": 1.0, "mortality": 0.72,
+      "start": { "health": [45, 75], "wealth": [55, 85], "learning": [5, 15], "trust": [35, 55] }
+    },
+    {
+      "id": "jungin", "name": "향리·하급 관리", "weight": 2.97, "sourceRef": "status-1170",
+      "recordTerm": "향리", "recordTermFemale": "처", "nameGroup": "common",
+      "influenceBase": 2, "persuasion": 0.9, "mortality": 0.9,
+      "start": { "health": [40, 70], "wealth": [35, 65], "learning": [5, 15], "trust": [30, 50] }
+    },
+    {
+      "id": "soldier", "name": "군인", "weight": 2.97, "sourceRef": "status-1170",
+      "recordTerm": "군인", "recordTermFemale": "처", "nameGroup": "common",
+      "influenceBase": 1, "persuasion": 0.85, "mortality": 0.95,
+      "start": { "health": [45, 75], "wealth": [20, 45], "learning": [0, 8], "trust": [30, 50] }
+    },
+    {
+      "id": "commoner", "name": "양민", "weight": 76.23, "sourceRef": "status-1170",
+      "recordTerm": "양인", "recordTermFemale": "양녀", "nameGroup": "common",
+      "influenceBase": 1, "persuasion": 0.8, "mortality": 1.0,
+      "start": { "health": [35, 70], "wealth": [10, 40], "learning": [0, 5], "trust": [25, 45] }
+    },
+    {
+      "id": "bugok", "name": "향·소·부곡민", "weight": 6.93, "sourceRef": "bugok-1170",
+      "recordTerm": "부곡인", "recordTermFemale": "부곡녀", "nameGroup": "common",
+      "influenceBase": 1, "persuasion": 0.7, "mortality": 1.05,
+      "start": { "health": [35, 65], "wealth": [5, 30], "learning": [0, 3], "trust": [25, 45] }
+    },
+    {
+      "id": "slave", "name": "노비", "weight": 7.92, "sourceRef": "status-1170",
+      "recordTerm": "사노", "recordTermFemale": "사비", "nameGroup": "slave",
+      "influenceBase": 1, "persuasion": 0.6, "mortality": 1.12,
+      "start": { "health": [30, 65], "wealth": [0, 15], "learning": [0, 3], "trust": [20, 40] }
+    }
+  ],
+  "mortality": { "eraModifier": 1.0 },
+  "reigns": [
+    { "name": "인종", "accession": 1122, "firstYear": 1123 },
+    { "name": "의종", "accession": 1146, "firstYear": 1147 },
+    { "name": "명종", "accession": 1170, "firstYear": 1171 },
+    { "name": "신종", "accession": 1197, "firstYear": 1198 },
+    { "name": "희종", "accession": 1204, "firstYear": 1205 },
+    { "name": "강종", "accession": 1211, "firstYear": 1212 },
+    { "name": "고종", "accession": 1213, "firstYear": 1214 },
+    { "name": "원종", "accession": 1259, "firstYear": 1260 }
+  ],
+  "sourceRefs": ["era-1170", "status-1170", "bugok-1170", "regions-1170"]
+}

@@ -1,0 +1,838 @@
+[
+  {
+    "id": "royal-1170-birth",
+    "kind": "random",
+    "when": {
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMax": 0
+    },
+    "chance": 1,
+    "text": "당신은 개경의 종실 집안에서 태어났다. 왕실의 계보에 당신의 이름이 올랐다.",
+    "effects": [
+      {
+        "type": "record",
+        "level": "jokbo",
+        "templateId": "jokbo-royal-1170"
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-1170-letters",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 6,
+      "ageMax": 9
+    },
+    "chance": 0.6,
+    "text": "스승을 모시고 글을 배우기 시작했다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "learning",
+        "delta": 8
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-1170-rites",
+    "kind": "random",
+    "when": {
+      "month": 11
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 8,
+      "notFlags": [
+        "royal-exile"
+      ]
+    },
+    "chance": 0.15,
+    "repeatable": true,
+    "text": "11월 팔관회에 나가 왕의 뒤에 섰다. 밤새 등불과 풍악이 이어졌다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 3
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "royal-1170-study",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 10,
+      "ageMax": 40
+    },
+    "chance": 0.2,
+    "repeatable": true,
+    "text": "종실 사람들과 경전과 불경을 읽는 자리에 나갔다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "learning",
+        "delta": 4
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-1170-marriage",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 13,
+      "ageMax": 22,
+      "married": false,
+      "notFlags": [
+        "monk"
+      ]
+    },
+    "chance": 0.4,
+    "text": "왕실의 관례대로 종실 안에서 혼처가 정해졌다.",
+    "effects": [
+      {
+        "type": "family",
+        "event": "married"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 2
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "royal-1170-coup-memory",
+    "kind": "choice",
+    "when": {
+      "year": 1170,
+      "month": 3
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 5,
+      "memory": [
+        "royal-1170-coup"
+      ]
+    },
+    "text": "1170년 봄이 왔다. 당신은 그해 가을 왕이 쫓겨나는 것을 기억하고 있다.",
+    "choices": [
+      {
+        "id": "wait",
+        "label": "아무것도 하지 않는다",
+        "result": "당신은 기억을 가슴에 묻었다."
+      },
+      {
+        "id": "memory-petition",
+        "label": "(기억) 왕에게 글을 올려 무신들의 원망을 달래고 놀이 행차를 줄이라고 아뢴다",
+        "requires": {
+          "memory": [
+            "royal-1170-coup"
+          ],
+          "ageMin": 14
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": "글은 올라갔으나 행차는 그대로 이루어졌다. 당신의 이름만 궁 안에 남았다.",
+            "effects": [
+              {
+                "type": "record",
+                "level": "sillok",
+                "templateId": "sillok-1170-warning"
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 3
+              },
+              {
+                "type": "change",
+                "scope": "nation",
+                "text": "보현원 행차 전에 무신들의 원망을 달래라는 글을 올렸다."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-temple",
+        "label": "(기억) 가을이 오기 전에 궁을 떠나 산사에 머문다",
+        "requires": {
+          "memory": [
+            "royal-1170-coup"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "royal-away"
+          },
+          {
+            "type": "protect",
+            "cause": "punishment",
+            "factor": 0.5
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "정변이 일어나기 전에 궁을 떠나 산사에 머물렀다."
+          }
+        ],
+        "result": "당신은 병을 다스린다는 핑계로 산사에 들었다."
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170",
+      "regression-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-1170-coup",
+    "kind": "choice",
+    "when": {
+      "year": 1170,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 5
+    },
+    "text": "9월, 무신들이 왕을 거제로 내쫓고 왕의 아우를 새 왕으로 세웠다. 태자도 섬으로 보내졌다. 궁 안의 종실들은 숨을 죽였다.",
+    "choices": [
+      {
+        "id": "quiet",
+        "label": "궁 밖 출입을 끊고 지낸다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -2
+          }
+        ],
+        "result": "당신은 문을 닫고 손님을 들이지 않았다."
+      },
+      {
+        "id": "greet",
+        "label": "새 왕과 무신들에게 축하 인사를 올린다",
+        "outcomes": [
+          {
+            "weight": 70,
+            "text": "무신들은 당신을 쓸 만한 종실로 여겼다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": 4
+              },
+              {
+                "type": "flag",
+                "set": "royal-tied"
+              }
+            ]
+          },
+          {
+            "weight": 30,
+            "text": "옛 왕 쪽 사람들은 당신을 등을 돌린 사람으로 보았다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-calm",
+        "label": "(기억) 무신들이 종실을 해치지는 않는다는 것을 안다. 평소처럼 지내며 예를 갖춘다",
+        "requires": {
+          "memory": [
+            "royal-1170-coup"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 4
+          }
+        ],
+        "result": "당신은 담담하게 새 왕을 뵈었다. 사람들은 당신의 침착함을 눈여겨보았다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "royal-1170-coup",
+    "sourceRefs": [
+      "royal-1170",
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "royal-1173",
+    "kind": "choice",
+    "when": {
+      "year": 1173,
+      "month": 10
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 10
+    },
+    "text": "10월, 거제에서 경주로 옮겨졌던 옛 왕이 세상을 떠났다는 소식이 들어왔다. 김보당의 난이 무너진 직후였다.",
+    "choices": [
+      {
+        "id": "silent",
+        "label": "슬픔을 드러내지 않는다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -1
+          }
+        ],
+        "result": "당신은 아무 말도 하지 않았다."
+      },
+      {
+        "id": "mourn",
+        "label": "상복을 입고 곡을 한다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ],
+        "outcomes": [
+          {
+            "weight": 80,
+            "text": "무신들은 못 본 척 넘어갔다."
+          },
+          {
+            "weight": 20,
+            "text": "무신 집안에서 당신을 눈여겨본다는 말이 돌았다.",
+            "effects": [
+              {
+                "type": "death",
+                "cause": "punishment",
+                "chance": 0.1
+              },
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -3
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170",
+      "era-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "royal-1170-strongman",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 16,
+      "yearMin": 1171,
+      "yearMax": 1210,
+      "notFlags": [
+        "royal-tied",
+        "monk"
+      ]
+    },
+    "chance": 0.15,
+    "text": "무신 실력자의 집안에서 사람을 보내왔다. 가까이 지내며 혼사를 맺자고 했다.",
+    "choices": [
+      {
+        "id": "accept",
+        "label": "받아들인다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "royal-tied"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 8
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 2
+          }
+        ],
+        "result": "당신의 집에 무신 집안의 선물이 쌓였다."
+      },
+      {
+        "id": "decline",
+        "label": "정중히 사양한다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -2
+          }
+        ],
+        "result": "손님은 말없이 돌아갔다."
+      },
+      {
+        "id": "memory-decline",
+        "label": "(기억) 실력자는 차례로 쓰러진다. 어느 집안과도 깊이 엮이지 않는다",
+        "requires": {
+          "memory": [
+            "royal-1170-coup"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 2
+          },
+          {
+            "type": "protect",
+            "cause": "punishment",
+            "factor": 0.5
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "무신 집안과 혼사를 맺지 않았다."
+          }
+        ],
+        "result": "당신은 집안 어른의 상중이라며 혼사를 미루었다. 손님은 다시 오지 않았다."
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170",
+      "factions-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-1170-tied-fall",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "flags": [
+        "royal-tied"
+      ],
+      "yearMin": 1179,
+      "yearMax": 1215
+    },
+    "chance": 0.1,
+    "text": "가까이 지내던 무신 집안이 새 실력자에게 무너졌다.",
+    "effects": [
+      {
+        "type": "flag",
+        "unset": "royal-tied"
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "당신은 한동안 궁 밖 출입을 끊었다. 화는 당신에게까지 오지 않았다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -4
+          }
+        ]
+      },
+      {
+        "weight": 30,
+        "text": "당신도 연루되어 섬으로 귀양을 갔다.",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "royal-exile"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -10
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -20
+          },
+          {
+            "type": "death",
+            "cause": "punishment",
+            "chance": 0.15
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170",
+      "factions-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-1170-exile-return",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "flags": [
+        "royal-exile"
+      ]
+    },
+    "chance": 0.2,
+    "text": "귀양에서 풀려나 개경으로 돌아왔다.",
+    "effects": [
+      {
+        "type": "flag",
+        "unset": "royal-exile"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 2
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-1197",
+    "kind": "timeline",
+    "when": {
+      "year": 1197,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 8
+    },
+    "text": "9월, 최충헌이 왕을 물러나게 하고 왕의 아우를 새 왕으로 세웠다. 왕을 세우고 내치는 일이 무신의 손에 달려 있었다.",
+    "outcomes": [
+      {
+        "weight": 80,
+        "text": "당신은 새 왕에게 예를 올렸다."
+      },
+      {
+        "weight": 20,
+        "text": "물러난 왕과 가까웠던 종실 몇이 개경 밖으로 쫓겨났다. 당신은 문을 닫아걸었다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -3
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170",
+      "royal-succession-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "royal-1211",
+    "kind": "timeline",
+    "when": {
+      "year": 1211,
+      "month": 12
+    },
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 8
+    },
+    "text": "12월, 최충헌을 없애려던 일이 드러나 왕이 쫓겨났다. 새 왕이 섰다.",
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "당신은 다시 한 번 새 왕에게 절을 올렸다."
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170",
+      "royal-succession-1170"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "royal-1170-temple",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "sex": "male",
+      "ageMin": 10,
+      "ageMax": 20,
+      "married": false,
+      "notFlags": [
+        "monk"
+      ]
+    },
+    "chance": 0.08,
+    "text": "왕실에서는 왕자와 종실이 출가하는 일이 드물지 않았다. 큰절의 스님이 당신을 제자로 받겠다고 했다.",
+    "choices": [
+      {
+        "id": "stay",
+        "label": "궁에 남는다",
+        "result": "당신은 정중히 사양했다."
+      },
+      {
+        "id": "enter",
+        "label": "출가한다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "monk"
+          },
+          {
+            "type": "stat",
+            "stat": "learning",
+            "delta": 8
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 4
+          },
+          {
+            "type": "protect",
+            "cause": "punishment",
+            "factor": 0.6
+          }
+        ],
+        "result": "당신은 머리를 깎고 산사로 들어갔다. 정치의 바람은 산문 밖에서 멎었다."
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "royal-1170-modern-court",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1170"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 16,
+      "regressed": true,
+      "notFlags": [
+        "royal-exile"
+      ]
+    },
+    "chance": 0.2,
+    "repeatable": true,
+    "text": "왕에게 글을 올릴 기회가 있었다.",
+    "choices": [
+      {
+        "id": "none",
+        "label": "올릴 말이 없다",
+        "result": "당신은 붓을 내려놓았다."
+      },
+      {
+        "id": "hygiene",
+        "label": "(지식) 역병을 막는 법을 아뢴다",
+        "requires": {
+          "knowledge": [
+            "boil-water"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "boil-water",
+            "attempt": 4
+          }
+        ]
+      },
+      {
+        "id": "vaccination",
+        "label": "(지식) 마마를 막는 법을 아뢴다",
+        "requires": {
+          "knowledge": [
+            "vaccination"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "vaccination",
+            "attempt": 4
+          }
+        ]
+      },
+      {
+        "id": "famine",
+        "label": "(지식) 구황 작물을 널리 심자고 아뢴다",
+        "requires": {
+          "knowledge": [
+            "food-storage"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "food-storage",
+            "attempt": 4
+          }
+        ]
+      },
+      {
+        "id": "mongol",
+        "label": "(지식) 북쪽에서 큰 군대가 내려올 것이니 성을 손보고 군량을 모으라고 아뢴다",
+        "requires": {
+          "knowledge": [
+            "war-prep"
+          ],
+          "yearMin": 1200
+        },
+        "outcomes": [
+          {
+            "weight": 35,
+            "text": "글이 받아들여져 북계의 성들에 군량을 모으게 했다.",
+            "effects": [
+              {
+                "type": "record",
+                "level": "sillok",
+                "templateId": "sillok-1170-mongol"
+              },
+              {
+                "type": "change",
+                "scope": "nation",
+                "text": "북계의 성들에 미리 군량을 모으게 했다."
+              }
+            ]
+          },
+          {
+            "weight": 65,
+            "text": "글은 올라갔으나 아무 답도 내려오지 않았다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -2
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "royal-1170",
+      "modern-knowledge"
+    ],
+    "confidence": "adapted"
+  }
+]
