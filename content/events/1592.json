@@ -1,0 +1,2441 @@
+[
+  {
+    "id": "1589-gichuk",
+    "kind": "timeline",
+    "when": {
+      "year": 1589,
+      "month": 10
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "ageMin": 12
+    },
+    "text": "10월, 정여립의 모반 사건으로 큰 옥사가 일어났다. 많은 선비가 연루되어 죽거나 귀양을 갔다.",
+    "outcomes": [
+      {
+        "weight": 85,
+        "text": "당신의 집안은 이 일과 닿은 데가 없었다. 그래도 한동안 손님을 들이지 않았다."
+      },
+      {
+        "weight": 13,
+        "text": "가까이 지내던 선비 몇이 잡혀갔다. 당신은 그들과 주고받은 편지를 모두 태웠다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -5
+          }
+        ]
+      },
+      {
+        "weight": 2,
+        "text": "먼 일가가 연루되어 집안이 문초를 받았다. 재산의 일부를 잃었다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -15
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -10
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "gichuk-1589"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-spring-memory",
+    "kind": "choice",
+    "when": {
+      "year": 1592,
+      "month": 2
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "memory": [
+        "1592-busan-landing"
+      ],
+      "ageMin": 10,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "1592년 봄이 왔다. 당신은 두 달 뒤 남쪽 바다에서 무슨 일이 일어나는지 기억하고 있다.",
+    "choices": [
+      {
+        "id": "move-north",
+        "label": "(기억) 4월이 오기 전에 가족을 데리고 북쪽 산골로 옮긴다",
+        "requires": {
+          "memory": [
+            "1592-busan-landing"
+          ],
+          "notStatuses": [
+            "slave"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-1592"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "4월이 오기 전에 가족을 데리고 북쪽 산골로 옮겼다."
+          }
+        ],
+        "result": "당신은 가족을 설득해 짐을 꾸렸다. 이웃들은 고개를 갸웃했다."
+      },
+      {
+        "id": "hide-place",
+        "label": "(기억) 식구들과 함께 숨어 지낼 산속 움막을 미리 마련해 둔다",
+        "requires": {
+          "memory": [
+            "1592-busan-landing"
+          ],
+          "statuses": [
+            "slave"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-1592"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -3
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "난리가 나기 전에 식구들이 숨을 움막을 마련했다."
+          }
+        ],
+        "result": "당신은 틈틈이 산에 올라 움막을 지었다. 주인집에는 나무를 하러 간다고 했다."
+      },
+      {
+        "id": "store-grain",
+        "label": "(기억) 곡식을 산속 구덩이에 묻어 둔다",
+        "requires": {
+          "memory": [
+            "1592-busan-landing"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "grain-stored"
+          },
+          {
+            "type": "protect",
+            "cause": "famine",
+            "factor": 0.5
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          }
+        ],
+        "result": "당신은 곡식 몇 섬을 산속 깊은 곳에 묻었다."
+      },
+      {
+        "id": "warn-village",
+        "label": "(지식) 마을 사람들에게 왜군이 온다고 알린다",
+        "requires": {
+          "knowledge": [
+            "war-prep"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "war-prep",
+            "attempt": 2
+          }
+        ]
+      },
+      {
+        "id": "warn-county",
+        "label": "(지식) 고을 관아에 왜군이 바다를 건너온다고 알린다",
+        "requires": {
+          "knowledge": [
+            "war-prep"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "war-prep",
+            "attempt": 3
+          }
+        ]
+      },
+      {
+        "id": "wait",
+        "label": "아무것도 하지 않는다",
+        "result": "당신은 기억을 가슴에 묻고 평소처럼 봄 농사를 시작했다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1592",
+      "modern-knowledge"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1592-busan-landing",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "ageMin": 14,
+      "notFlags": [
+        "safe-1592"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "4월, 왜군이 부산에 상륙했다는 소식이 고을에 닿았다.",
+    "choices": [
+      {
+        "id": "flee",
+        "label": "가족을 데리고 피난길에 오른다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-1592"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          }
+        ],
+        "result": "당신은 가족을 이끌고 산길로 들어섰다. 집에 두고 온 것들을 생각할 겨를이 없었다."
+      },
+      {
+        "id": "stay",
+        "label": "집을 지킨다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "home-1592"
+          }
+        ],
+        "result": "당신은 집과 논밭을 두고 떠날 수 없었다."
+      },
+      {
+        "id": "militia",
+        "label": "의병을 찾아간다",
+        "requires": {
+          "sex": "male",
+          "ageMin": 15
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "militia"
+          },
+          {
+            "type": "flag",
+            "set": "was-militia"
+          }
+        ],
+        "result": "당신은 고을 장정들과 함께 의병 진영을 찾아갔다."
+      },
+      {
+        "id": "memory-route",
+        "label": "(기억) 왜군이 지나갈 길을 피해 서쪽 골짜기로 간다",
+        "requires": {
+          "memory": [
+            "1592-busan-landing"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-1592"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "왜군이 올라온 길을 피해 가족을 데리고 몸을 숨겼다."
+          }
+        ],
+        "result": "당신은 기억해 둔 길로 가족을 이끌었다. 왜군이 지나간 길과는 멀었다."
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-busan-landing-child",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "ageMax": 13,
+      "notFlags": [
+        "safe-1592"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "4월, 왜군이 부산에 상륙했다는 소식에 어른들이 밤새 수군거렸다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "부모는 당신의 손을 잡고 피난길에 올랐다.",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-1592"
+          }
+        ]
+      },
+      {
+        "weight": 40,
+        "text": "부모는 집을 떠나지 않기로 했다.",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "home-1592"
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1592-busan-landing",
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-busan-landing-safe",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "flags": [
+        "safe-1592"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "4월, 왜군이 부산에 상륙했다는 소식이 들려왔다. 당신의 가족은 이미 몸을 피해 있었다.",
+    "memorable": true,
+    "memoryKey": "1592-busan-landing",
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-south-overrun",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "gyeongsang"
+      ],
+      "notFlags": [
+        "safe-1592",
+        "fled-1592",
+        "captive",
+        "militia"
+      ]
+    },
+    "text": "왜군이 고을을 지나 북으로 올라갔다. 불에 탄 마을이 늘어 갔다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -20
+      },
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.12
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 70,
+        "text": "당신은 살아남았다. 집은 반쯤 타 있었다."
+      },
+      {
+        "weight": 30,
+        "text": "당신은 다쳤지만 목숨은 건졌다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -15
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-tangeumdae",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "chungcheong",
+        "gyeonggi"
+      ],
+      "ageMin": 8
+    },
+    "text": "4월 그믐 무렵, 충주 탄금대에서 신립이 이끈 군대가 무너졌다는 소식이 들려왔다.",
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-king-leaves",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "gyeonggi"
+      ],
+      "ageMin": 8,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "4월 그믐, 임금의 행차가 한양을 떠나 북으로 갔다는 말이 돌았다.",
+    "sourceRefs": [
+      "era-1592",
+      "royal-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-central-overrun",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 5
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "chungcheong"
+      ],
+      "notFlags": [
+        "safe-1592",
+        "fled-1592",
+        "captive",
+        "militia"
+      ]
+    },
+    "text": "왜군이 고을을 휩쓸고 한양 쪽으로 올라갔다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -15
+      },
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.07
+      }
+    ],
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-hanyang-falls",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 5
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "gyeonggi"
+      ],
+      "ageMin": 5,
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "5월 초, 한양이 왜군의 손에 넘어갔다.",
+    "memorable": true,
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-gyeonggi-overrun",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 5
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "gyeonggi"
+      ],
+      "notFlags": [
+        "safe-1592",
+        "fled-1592",
+        "captive",
+        "militia"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "왜군이 한양 둘레 고을까지 들어왔다. 곡식과 소를 빼앗긴 집이 많았다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -15
+      },
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.07
+      }
+    ],
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-refugee-road",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 5
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "flags": [
+        "fled-1592"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "피난길에 굶주림과 병이 따라왔다. 길가에서 쓰러지는 사람이 있었다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -8
+      },
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -5
+      },
+      {
+        "type": "death",
+        "cause": "famine",
+        "chance": 0.02
+      }
+    ],
+    "sourceRefs": [
+      "era-1592",
+      "postwar-famine-1592"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "1592-slave-chaos",
+    "kind": "choice",
+    "when": {
+      "year": 1592,
+      "month": 5
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "ageMin": 14,
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "난리 통에 관아와 주인집의 노비 문서가 불탔다는 말이 돌았다.",
+    "choices": [
+      {
+        "id": "run",
+        "label": "이 틈에 가족을 데리고 멀리 떠난다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "runaway"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -5
+          }
+        ],
+        "result": "당신은 밤길을 걸어 아무도 당신을 모르는 고을로 갔다."
+      },
+      {
+        "id": "stay",
+        "label": "주인집에 남는다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ],
+        "result": "당신은 주인집 식구들과 함께 피난 짐을 졌다."
+      },
+      {
+        "id": "army",
+        "label": "관군에 들어가 공을 세워 면천을 노린다",
+        "requires": {
+          "sex": "male",
+          "ageMin": 15
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "army"
+          }
+        ],
+        "result": "공을 세운 노비는 양인이 될 수 있다는 말을 들었다. 당신은 관군 진영을 찾아갔다."
+      },
+      {
+        "id": "north",
+        "label": "(기억) 전란이 길어질 것을 안다. 식구들과 북쪽 산골에 터를 잡는다",
+        "requires": {
+          "memory": [
+            "1592-busan-landing"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "runaway"
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.5
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "식구들을 데리고 전란을 피할 산골에 터를 잡았다."
+          }
+        ],
+        "result": "당신은 식구들을 데리고 왜군이 닿지 않을 산골로 들어갔다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1592-life",
+      "napsok-1592"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "1592-yangban-militia",
+    "kind": "choice",
+    "when": {
+      "year": 1592,
+      "month": 6
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "yangban"
+      ],
+      "sex": "male",
+      "ageMin": 17,
+      "notFlags": [
+        "militia",
+        "captive"
+      ]
+    },
+    "text": "고을의 선비들이 의병을 일으키자는 격문을 돌렸다.",
+    "choices": [
+      {
+        "id": "raise",
+        "label": "의병을 일으키는 데 앞장선다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "militia"
+          },
+          {
+            "type": "flag",
+            "set": "was-militia"
+          },
+          {
+            "type": "flag",
+            "set": "militia-leader"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -20
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 10
+          },
+          {
+            "type": "record",
+            "level": "munjip",
+            "templateId": "munjip-militia-leader"
+          }
+        ],
+        "result": "당신은 집안의 곡식을 풀어 장정들을 모았다."
+      },
+      {
+        "id": "support",
+        "label": "격문에 이름을 올리고 군량을 보탠다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 5
+          }
+        ],
+        "result": "당신은 곡식 몇 섬을 의병 진영에 보냈다."
+      },
+      {
+        "id": "flee",
+        "label": "가족을 데리고 더 깊은 곳으로 피난한다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-1592"
+          }
+        ],
+        "result": "당신은 가솔을 이끌고 깊은 산으로 들어갔다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1592",
+      "era-1592-life"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-pyongyang-falls",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 6
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "pyeongan",
+        "hwanghae"
+      ],
+      "notFlags": [
+        "safe-1592",
+        "fled-1592",
+        "captive",
+        "militia"
+      ]
+    },
+    "text": "6월, 평양성이 함락되었다. 임금은 의주까지 피난했다는 소식이 들려왔다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -10
+      },
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.05
+      }
+    ],
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-hansan",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "jeolla",
+        "gyeongsang",
+        "chungcheong"
+      ],
+      "ageMin": 8
+    },
+    "text": "7월, 한산도 앞바다에서 이순신이 이끈 수군이 크게 이겼다는 소식이 전해졌다.",
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-commoner-militia",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "commoner",
+        "jungin"
+      ],
+      "sex": "male",
+      "ageMin": 15,
+      "ageMax": 50,
+      "yearMin": 1592,
+      "yearMax": 1593,
+      "notFlags": [
+        "militia",
+        "army",
+        "captive"
+      ]
+    },
+    "chance": 0.35,
+    "text": "고을에 의병을 모은다는 방이 붙었다.",
+    "choices": [
+      {
+        "id": "join",
+        "label": "의병에 들어간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "militia"
+          },
+          {
+            "type": "flag",
+            "set": "was-militia"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 5
+          }
+        ],
+        "result": "당신은 낫과 죽창을 들고 의병 진영으로 갔다."
+      },
+      {
+        "id": "farm",
+        "label": "농사를 지어야 한다",
+        "result": "당신은 논으로 돌아갔다. 누군가는 곡식을 길러야 했다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1592",
+      "era-1592-life"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "1592-conscription",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "commoner"
+      ],
+      "sex": "male",
+      "ageMin": 16,
+      "ageMax": 50,
+      "yearMin": 1592,
+      "yearMax": 1597,
+      "notFlags": [
+        "army",
+        "militia",
+        "captive",
+        "runaway"
+      ]
+    },
+    "chance": 0.15,
+    "text": "관아에서 군사를 뽑는다는 명이 내려왔다.",
+    "choices": [
+      {
+        "id": "go",
+        "label": "군역에 나간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "army"
+          }
+        ],
+        "result": "당신은 창을 받아 들고 관군 진영으로 갔다."
+      },
+      {
+        "id": "hide",
+        "label": "산에 숨는다",
+        "outcomes": [
+          {
+            "weight": 70,
+            "text": "당신은 산에서 몇 달을 숨어 지냈다. 대신 끌려간 이웃이 있었다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "trust",
+                "delta": -5
+              }
+            ]
+          },
+          {
+            "weight": 30,
+            "text": "숨은 곳이 들켜 매를 맞고 끌려갔다.",
+            "effects": [
+              {
+                "type": "stat",
+                "stat": "health",
+                "delta": -10
+              },
+              {
+                "type": "flag",
+                "set": "army"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1592-life"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "1592-militia-battle",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "flags": [
+        "militia"
+      ],
+      "yearMin": 1592,
+      "yearMax": 1598
+    },
+    "chance": 0.4,
+    "repeatable": true,
+    "text": "의병들은 왜군이 지나는 길목에 숨어 기다렸다.",
+    "outcomes": [
+      {
+        "weight": 62,
+        "text": "싸움은 짧았다. 당신은 살아 돌아왔다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 3
+          }
+        ]
+      },
+      {
+        "weight": 28,
+        "text": "다쳐서 한동안 일어나지 못했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -20
+          }
+        ]
+      },
+      {
+        "weight": 10,
+        "text": "그 싸움에서 당신은 돌아오지 못했다.",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 1
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1592",
+      "era-1592-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1592-army-battle",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "flags": [
+        "army"
+      ],
+      "yearMin": 1592,
+      "yearMax": 1598
+    },
+    "chance": 0.4,
+    "repeatable": true,
+    "text": "관군이 왜군과 맞붙었다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "당신의 부대는 물러섰다. 당신은 살아남았다."
+      },
+      {
+        "weight": 28,
+        "text": "화살에 맞아 한동안 일어나지 못했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -20
+          }
+        ]
+      },
+      {
+        "weight": 12,
+        "text": "그 싸움에서 당신은 돌아오지 못했다.",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "war",
+            "chance": 1
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1592",
+      "era-1592-life"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1592-merit-army",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "flags": [
+        "army"
+      ],
+      "yearMin": 1592,
+      "yearMax": 1598
+    },
+    "chance": 0.15,
+    "text": "싸움에서 세운 공이 장부에 올랐다. 당신은 전공으로 면천되어 양인이 되었다.",
+    "effects": [
+      {
+        "type": "status",
+        "to": "commoner"
+      },
+      {
+        "type": "flag",
+        "set": "freed"
+      },
+      {
+        "type": "flag",
+        "unset": "runaway"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 10
+      },
+      {
+        "type": "record",
+        "level": "hojeok",
+        "templateId": "hojeok-freed-merit"
+      }
+    ],
+    "sourceRefs": [
+      "napsok-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-merit-militia",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "slave"
+      ],
+      "flags": [
+        "militia"
+      ],
+      "yearMin": 1592,
+      "yearMax": 1598
+    },
+    "chance": 0.12,
+    "text": "의병장이 당신의 공을 관아에 알렸다. 당신은 면천되어 양인이 되었다.",
+    "effects": [
+      {
+        "type": "status",
+        "to": "commoner"
+      },
+      {
+        "type": "flag",
+        "set": "freed"
+      },
+      {
+        "type": "flag",
+        "unset": "runaway"
+      },
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 10
+      },
+      {
+        "type": "record",
+        "level": "hojeok",
+        "templateId": "hojeok-freed-merit"
+      }
+    ],
+    "sourceRefs": [
+      "napsok-1592"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "1592-jinju-first",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 10
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "gyeongsang",
+        "jeolla"
+      ],
+      "ageMin": 8
+    },
+    "text": "10월, 진주성이 왜군을 막아 냈다는 소식이 퍼졌다. 성을 지킨 목사는 김시민이었다.",
+    "memorable": true,
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1592-captured",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "gyeongsang",
+        "jeolla",
+        "chungcheong",
+        "gyeonggi"
+      ],
+      "ageMin": 8,
+      "yearMin": 1592,
+      "yearMax": 1598,
+      "notFlags": [
+        "safe-1592",
+        "safe-1597",
+        "captive"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "chance": 0.03,
+    "text": "왜군에게 붙잡혀 배에 실렸다. 바다 건너 일본으로 끌려갔다.",
+    "effects": [
+      {
+        "type": "flag",
+        "set": "captive"
+      },
+      {
+        "type": "flag",
+        "unset": "militia"
+      },
+      {
+        "type": "flag",
+        "unset": "army"
+      },
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -50
+      },
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -10
+      },
+      {
+        "type": "death",
+        "cause": "illness",
+        "chance": 0.08
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "captives-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1593-pyongyang-retaken",
+    "kind": "timeline",
+    "when": {
+      "year": 1593,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "ageMin": 8,
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "1월, 조선과 명의 군대가 평양성을 되찾았다는 소식이 들려왔다.",
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1593-haengju",
+    "kind": "timeline",
+    "when": {
+      "year": 1593,
+      "month": 2
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "gyeonggi",
+        "chungcheong"
+      ],
+      "ageMin": 8,
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "2월, 행주산성에서 권율이 이끈 군사들이 왜군을 물리쳤다는 소식이 들려왔다.",
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1593-famine",
+    "kind": "timeline",
+    "when": {
+      "year": 1593,
+      "month": 3
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "전란에 논밭이 버려져 곡식이 바닥났다. 나무껍질과 풀뿌리로 끼니를 잇는 사람이 늘었다.",
+    "choices": [
+      {
+        "id": "endure",
+        "label": "허리띠를 졸라맨다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -8
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -8
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.03
+          }
+        ],
+        "result": "당신은 하루 한 끼로 버텼다."
+      },
+      {
+        "id": "dig-grain",
+        "label": "(기억) 묻어 둔 곡식을 꺼낸다",
+        "requires": {
+          "flags": [
+            "grain-stored"
+          ],
+          "memory": [
+            "1592-busan-landing"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -2
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "묻어 둔 곡식으로 식구들이 굶주림을 넘겼다."
+          }
+        ],
+        "result": "당신은 산속에 묻어 둔 곡식을 꺼내 식구들과 나누었다."
+      },
+      {
+        "id": "food",
+        "label": "(지식) 구황 작물과 갈무리한 곡식으로 버틴다",
+        "requires": {
+          "knowledge": [
+            "food-storage"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "food-storage"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -4
+          },
+          {
+            "type": "death",
+            "cause": "famine",
+            "chance": 0.03
+          }
+        ]
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "sourceRefs": [
+      "postwar-famine-1592"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "1593-famine-poor",
+    "kind": "timeline",
+    "when": {
+      "year": 1593,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statMax": {
+        "wealth": 15
+      },
+      "notFlags": [
+        "captive",
+        "grain-stored"
+      ]
+    },
+    "text": "먹을 것이 완전히 떨어졌다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -10
+      },
+      {
+        "type": "death",
+        "cause": "famine",
+        "chance": 0.08
+      }
+    ],
+    "sourceRefs": [
+      "postwar-famine-1592"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "1593-jinju-gathering",
+    "kind": "choice",
+    "when": {
+      "year": 1593,
+      "month": 5
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "gyeongsang"
+      ],
+      "ageMin": 12,
+      "notFlags": [
+        "captive",
+        "safe-1592"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "text": "5월, 왜군이 다시 진주로 몰려온다는 소문이 돌았다. 지난해 성을 지켜 낸 진주성으로 사람들이 모여들었다.",
+    "choices": [
+      {
+        "id": "enter",
+        "label": "진주성으로 들어간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "in-jinju-castle"
+          }
+        ],
+        "result": "당신은 가족과 함께 성 안으로 들어갔다. 성 안은 사람으로 가득했다."
+      },
+      {
+        "id": "mountain",
+        "label": "지리산 자락으로 숨어든다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -5
+          }
+        ],
+        "result": "당신은 식구들을 데리고 깊은 골짜기로 들어갔다."
+      },
+      {
+        "id": "leave",
+        "label": "(기억) 진주를 떠나 멀리 서쪽으로 간다. 이번에는 성이 버티지 못한다",
+        "requires": {
+          "memory": [
+            "1593-jinju-fall"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "left-jinju"
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "진주성이 무너지기 전에 가족을 데리고 진주를 떠났다."
+          }
+        ],
+        "result": "당신은 성으로 향하는 사람들을 거슬러 서쪽으로 걸었다."
+      },
+      {
+        "id": "warn",
+        "label": "(지식) 사람들에게 성으로 들어가지 말라고 알린다",
+        "requires": {
+          "knowledge": [
+            "war-prep"
+          ],
+          "memory": [
+            "1593-jinju-fall"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "war-prep",
+            "attempt": 2
+          },
+          {
+            "type": "flag",
+            "set": "left-jinju"
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1593-jinju-fall",
+    "kind": "timeline",
+    "when": {
+      "year": 1593,
+      "month": 6
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "flags": [
+        "in-jinju-castle"
+      ]
+    },
+    "text": "6월, 진주성이 함락되었다. 성 안에 있던 수많은 사람이 목숨을 잃었다.",
+    "effects": [
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.75
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "당신은 무너진 성벽 틈으로 빠져나왔다. 가족의 소식은 끝내 듣지 못했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -20
+          },
+          {
+            "type": "flag",
+            "unset": "in-jinju-castle"
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1593-jinju-fall-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1593,
+      "month": 6
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "gyeongsang",
+        "jeolla"
+      ],
+      "ageMin": 8,
+      "notFlags": [
+        "in-jinju-castle",
+        "captive"
+      ]
+    },
+    "text": "6월, 진주성이 함락되었다는 소식이 들려왔다. 성 안의 사람들은 거의 살아남지 못했다고 했다.",
+    "memorable": true,
+    "memoryKey": "1593-jinju-fall",
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1593-napsok",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "commoner",
+        "slave"
+      ],
+      "ageMin": 16,
+      "yearMin": 1593,
+      "yearMax": 1596,
+      "statMin": {
+        "wealth": 40
+      },
+      "notFlags": [
+        "captive",
+        "napsok"
+      ]
+    },
+    "chance": 0.4,
+    "text": "관아에서 곡식을 바치면 면천해 주거나 벼슬 이름을 내려 준다는 방이 붙었다.",
+    "choices": [
+      {
+        "id": "free",
+        "label": "곡식을 바쳐 면천한다",
+        "requires": {
+          "statuses": [
+            "slave"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -30
+          },
+          {
+            "type": "status",
+            "to": "commoner"
+          },
+          {
+            "type": "flag",
+            "set": "freed"
+          },
+          {
+            "type": "flag",
+            "set": "napsok"
+          },
+          {
+            "type": "flag",
+            "unset": "runaway"
+          },
+          {
+            "type": "record",
+            "level": "hojeok",
+            "templateId": "hojeok-freed-napsok"
+          }
+        ],
+        "result": "당신은 모아 둔 곡식을 바쳤다. 노비 문서에서 당신의 이름이 지워졌다."
+      },
+      {
+        "id": "office",
+        "label": "곡식을 바쳐 벼슬 이름을 받는다",
+        "requires": {
+          "statuses": [
+            "commoner"
+          ]
+        },
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -30
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": 10
+          },
+          {
+            "type": "flag",
+            "set": "napsok"
+          },
+          {
+            "type": "record",
+            "level": "hojeok",
+            "templateId": "hojeok-napsok-office"
+          }
+        ],
+        "result": "당신은 곡식을 바치고 벼슬 이름이 적힌 첩지를 받았다. 마을에서 당신을 보는 눈이 달라졌다."
+      },
+      {
+        "id": "keep",
+        "label": "곡식은 식구들 몫이다",
+        "result": "당신은 곡식 자루를 다시 묶었다."
+      }
+    ],
+    "sourceRefs": [
+      "napsok-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1594-epidemic",
+    "kind": "timeline",
+    "when": {
+      "year": 1594,
+      "month": 3
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "봄부터 역병이 돌았다. 굶주린 사람들부터 쓰러졌다.",
+    "choices": [
+      {
+        "id": "endure",
+        "label": "할 수 있는 것이 없었다",
+        "effects": [
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.06
+          }
+        ],
+        "result": "당신은 문을 닫아걸고 봄이 지나가기를 기다렸다."
+      },
+      {
+        "id": "boil",
+        "label": "(지식) 물을 끓여 마시게 한다",
+        "requires": {
+          "knowledge": [
+            "boil-water"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "boil-water"
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.06
+          }
+        ]
+      },
+      {
+        "id": "isolate",
+        "label": "(지식) 앓는 사람을 따로 돌본다",
+        "requires": {
+          "knowledge": [
+            "isolate-sick"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "isolate-sick"
+          },
+          {
+            "type": "death",
+            "cause": "epidemic",
+            "chance": 0.06
+          }
+        ]
+      }
+    ],
+    "pauseOnlySpecial": true,
+    "memorable": true,
+    "sourceRefs": [
+      "postwar-famine-1592"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "1597-jeongyu",
+    "kind": "timeline",
+    "when": {
+      "year": 1597,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "gyeongsang",
+        "jeolla",
+        "chungcheong"
+      ],
+      "ageMin": 12,
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "정유년, 강화 협상이 깨지고 왜군이 다시 쳐들어왔다.",
+    "choices": [
+      {
+        "id": "flee",
+        "label": "가족을 데리고 북쪽으로 피난한다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-1597"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -10
+          }
+        ],
+        "result": "당신은 다시 피난 짐을 쌌다."
+      },
+      {
+        "id": "stay",
+        "label": "이번에도 집을 지킨다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "home-1597"
+          }
+        ],
+        "result": "당신은 겨우 일군 논밭을 두고 갈 수 없었다."
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 남쪽 고을을 떠나 강원도 산골로 간다",
+        "requires": {
+          "memory": [
+            "1597-jeongyu"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "safe-1597"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": -5
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "정유년 난리 전에 가족을 데리고 강원도 산골로 옮겼다."
+          }
+        ],
+        "result": "당신은 왜군이 닿지 않을 동쪽 산골로 가족을 옮겼다."
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1597-jeongyu-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1597,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "gyeonggi",
+        "gangwon",
+        "hwanghae",
+        "pyeongan",
+        "hamgyeong"
+      ],
+      "ageMin": 8,
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "정유년, 강화 협상이 깨지고 왜군이 다시 남쪽 바다를 건너왔다는 소식이 들려왔다.",
+    "memorable": true,
+    "memoryKey": "1597-jeongyu",
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1597-south-ravaged",
+    "kind": "timeline",
+    "when": {
+      "year": 1597,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "flags": [
+        "home-1597"
+      ]
+    },
+    "text": "8월, 왜군이 남쪽 고을들을 휩쓸었다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -20
+      },
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.12
+      }
+    ],
+    "outcomes": [
+      {
+        "weight": 1,
+        "text": "당신은 불탄 집터로 돌아왔다."
+      }
+    ],
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1597-refugee",
+    "kind": "timeline",
+    "when": {
+      "year": 1597,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "flags": [
+        "fled-1597"
+      ]
+    },
+    "text": "피난길은 지난번보다 길었다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -8
+      },
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.03
+      }
+    ],
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "1597-myeongnyang",
+    "kind": "timeline",
+    "when": {
+      "year": 1597,
+      "month": 9
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "jeolla",
+        "gyeongsang",
+        "chungcheong"
+      ],
+      "ageMin": 8,
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "9월, 명량 바다에서 조선 수군이 적은 배로 왜군을 막아 냈다는 소식이 전해졌다.",
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1598-noryang",
+    "kind": "timeline",
+    "when": {
+      "year": 1598,
+      "month": 11
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "ageMin": 8,
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "11월, 노량 바다의 싸움을 끝으로 왜군이 물러갔다. 수군을 이끌던 이순신이 그 싸움에서 전사했다는 소식이 전해졌다.",
+    "effects": [
+      {
+        "type": "flag",
+        "unset": "militia"
+      },
+      {
+        "type": "flag",
+        "unset": "army"
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1598-war-ends-quiet",
+    "kind": "timeline",
+    "when": {
+      "year": 1598,
+      "month": 12
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "7년 만에 전쟁이 끝났다.",
+    "effects": [
+      {
+        "type": "flag",
+        "unset": "militia"
+      },
+      {
+        "type": "flag",
+        "unset": "army"
+      }
+    ],
+    "sourceRefs": [
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1599-postwar",
+    "kind": "timeline",
+    "when": {
+      "year": 1599,
+      "month": 3
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "전쟁은 끝났지만 버려진 논밭이 많았다. 고을마다 굶주린 사람이 넘쳤다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -5
+      },
+      {
+        "type": "death",
+        "cause": "famine",
+        "chance": 0.02
+      }
+    ],
+    "sourceRefs": [
+      "postwar-famine-1592"
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "1600-reclaim",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "ageMin": 15,
+      "yearMin": 1599,
+      "yearMax": 1612,
+      "notFlags": [
+        "captive"
+      ],
+      "notStatuses": [
+        "royal"
+      ]
+    },
+    "chance": 0.3,
+    "text": "주인을 잃은 묵은 땅이 곳곳에 남아 있었다.",
+    "choices": [
+      {
+        "id": "reclaim",
+        "label": "묵은 땅을 일군다",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 10
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -5
+          }
+        ],
+        "result": "당신은 잡초를 걷어 내고 돌을 골랐다. 몇 해 만에 곡식이 올라왔다."
+      },
+      {
+        "id": "as-before",
+        "label": "하던 일을 계속한다",
+        "result": "당신은 하던 일을 놓지 않았다."
+      },
+      {
+        "id": "farming",
+        "label": "(지식) 거름을 삭혀 쓰고 물길을 낸다",
+        "requires": {
+          "knowledge": [
+            "farming"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "farming"
+          },
+          {
+            "type": "stat",
+            "stat": "wealth",
+            "delta": 5
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "postwar-famine-1592"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1592-captive-life",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "flags": [
+        "captive"
+      ]
+    },
+    "chance": 0.3,
+    "text": "낯선 말이 오가는 곳에서 당신은 하루하루를 버텼다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "당신은 그곳 말을 조금씩 알아듣게 되었다."
+      },
+      {
+        "weight": 40,
+        "text": "고된 일에 몸이 상했다.",
+        "effects": [
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -10
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "captives-1592"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "1607-repatriation",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "flags": [
+        "captive"
+      ],
+      "yearMin": 1607,
+      "yearMax": 1625,
+      "notFlags": [
+        "stayed-japan"
+      ]
+    },
+    "chance": 0.35,
+    "text": "조선에서 포로를 데려가려는 사신의 배가 왔다는 소식을 들었다.",
+    "choices": [
+      {
+        "id": "return",
+        "label": "배를 타고 조선으로 돌아간다",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "captive"
+          },
+          {
+            "type": "flag",
+            "set": "returned-captive"
+          },
+          {
+            "type": "record",
+            "level": "hojeok",
+            "templateId": "hojeok-repatriation"
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -5
+          }
+        ],
+        "result": "당신은 배에 올랐다. 떠나온 지 여러 해 만이었다."
+      },
+      {
+        "id": "stay",
+        "label": "이곳에 남는다. 이미 꾸린 살림이 있다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "stayed-japan"
+          }
+        ],
+        "result": "당신은 떠나는 배를 바라보았다."
+      }
+    ],
+    "sourceRefs": [
+      "captives-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1623-injo",
+    "kind": "timeline",
+    "when": {
+      "year": 1623,
+      "month": 3
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "ageMin": 10,
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "3월, 반정이 일어나 임금이 바뀌었다는 소식이 들려왔다.",
+    "sourceRefs": [
+      "later-wars"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1627-jeongmyo",
+    "kind": "timeline",
+    "when": {
+      "year": 1627,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "pyeongan",
+        "hwanghae"
+      ],
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "1월, 후금의 군대가 압록강을 건너 내려왔다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -10
+      },
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.05
+      }
+    ],
+    "sourceRefs": [
+      "later-wars"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1636-byeongja",
+    "kind": "timeline",
+    "when": {
+      "year": 1636,
+      "month": 12
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "pyeongan",
+        "hwanghae",
+        "gyeonggi"
+      ],
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "12월, 청의 군대가 압록강을 건너 순식간에 한양 가까이 내려왔다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "wealth",
+        "delta": -10
+      },
+      {
+        "type": "death",
+        "cause": "war",
+        "chance": 0.05
+      }
+    ],
+    "sourceRefs": [
+      "later-wars"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "1636-byeongja-news",
+    "kind": "timeline",
+    "when": {
+      "year": 1636,
+      "month": 12
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "regions": [
+        "chungcheong",
+        "jeolla",
+        "gyeongsang",
+        "gangwon",
+        "hamgyeong"
+      ],
+      "notFlags": [
+        "captive"
+      ]
+    },
+    "text": "12월, 청의 군대가 쳐들어와 임금이 남한산성으로 들어갔다는 소식이 들려왔다.",
+    "sourceRefs": [
+      "later-wars"
+    ],
+    "confidence": "confirmed"
+  }
+]

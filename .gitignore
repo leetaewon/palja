@@ -14,3 +14,7 @@ test-results/
 .vscode/
 .idea/
 .obsidian/
+
+# 빌드 부산물
+*.tsbuildinfo
+sim/out/

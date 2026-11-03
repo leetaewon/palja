@@ -1,0 +1,121 @@
+[
+  {
+    "id": "era-1592",
+    "title": "임진왜란 연표",
+    "summary": "1592년 4월 13일 일본군 부산 상륙, 4월 30일 선조 피난, 5월 3일 한양 함락, 6월 평양 함락, 7월 한산도 대첩, 10월 1차 진주성 전투 승리, 1593년 1월 평양 탈환, 2월 행주 대첩, 6월 진주성 함락, 1597년 정유재란, 1598년 11월 노량 해전으로 전쟁이 끝났다. 날짜는 모두 음력이다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1592-imjin-war.md#1-연표"
+  },
+  {
+    "id": "era-1592-life",
+    "title": "임진왜란 때 신분별 삶",
+    "summary": "양반은 피난하거나 의병을 일으켰고, 상민은 징집·피난·기근을 겪었다. 노비 문서가 불타는 혼란 속에 도망치는 노비가 있었고, 전공이나 납속으로 면천할 길도 열렸다. 게임 속 개인의 사건은 이 흐름을 바탕으로 각색했다.",
+    "confidence": "estimated",
+    "doc": "docs/02-research/eras/1592-imjin-war.md#2-신분별-삶"
+  },
+  {
+    "id": "gichuk-1589",
+    "title": "기축옥사 (1589)",
+    "summary": "1589년 정여립 모반 사건으로 큰 옥사가 일어나 많은 선비가 연루되어 죽거나 귀양을 갔다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1592-imjin-war.md#1-연표"
+  },
+  {
+    "id": "napsok-1592",
+    "title": "납속책과 공명첩",
+    "summary": "임진왜란 중 곡식을 바치면 면천해 주거나 관직(이름뿐인 벼슬)을 주는 납속책이 시행됐다. 전공을 세운 노비를 면천하는 일도 있었다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/status-ratios.md#2-3-1592년-무렵-조선-16세기-후반"
+  },
+  {
+    "id": "captives-1592",
+    "title": "포로와 쇄환",
+    "summary": "전쟁 중 수많은 사람이 포로로 일본에 끌려갔다(도공 등). 전쟁 뒤 조선은 사신을 보내 포로를 데려오는 쇄환을 했다. 포로 규모는 연구자마다 추정이 다르다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1592-imjin-war.md#1-연표"
+  },
+  {
+    "id": "postwar-famine-1592",
+    "title": "전쟁 뒤 기근과 역병",
+    "summary": "경지가 150만 결에서 1601년 30만여 결로 줄었다는 추정이 있다. 전쟁 중과 전쟁 뒤에 기근과 역병이 이어졌다.",
+    "confidence": "estimated",
+    "doc": "docs/02-research/life-death.md#4-주요-사망-원인"
+  },
+  {
+    "id": "royal-1592",
+    "title": "임진왜란 때의 왕실",
+    "summary": "선조는 한양을 떠나 의주까지 피난했다. 왕자들은 근왕병을 모으러 갔다가 포로가 되기도 했다(임해군·순화군). 게임 속 종친 플레이어는 가상 인물이다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1592-imjin-war.md#2-신분별-삶"
+  },
+  {
+    "id": "status-royal",
+    "title": "왕족 출생 확률 보정",
+    "summary": "실제 왕족은 인구의 0.01% 미만으로 추정된다(약 1만 명 중 1명보다 드묾). 이 게임은 재미를 위해 100명 중 1명으로 보정했고, 나머지 신분 비율에서 비례로 뺐다.",
+    "confidence": "adapted",
+    "doc": "docs/02-research/status-ratios.md#1-왕족-출생-확률"
+  },
+  {
+    "id": "status-1592",
+    "title": "16세기 후반 조선의 신분 구성",
+    "summary": "조선 초·중기 노비가 인구의 30~40%였다는 견해가 널리 인용된다. 양반은 10% 안팎이었다는 데 대체로 의견이 모인다. 게임은 양반 8%, 중인·향리 3%, 상민 54%, 노비·천민 35%에서 출발해 왕족 1%를 비례로 뺐다. 백정·광대·무당 같은 천민도 노비 칸에 함께 넣었다.",
+    "confidence": "estimated",
+    "doc": "docs/02-research/status-ratios.md#2-3-1592년-무렵-조선-16세기-후반"
+  },
+  {
+    "id": "regions-1592",
+    "title": "출생 지역 비율",
+    "summary": "도별 인구 통계가 마땅치 않아, 남쪽 삼남(경상·전라·충청)에 사람이 많았다는 일반적 인식에 맞춰 게임용으로 정한 값이다.",
+    "confidence": "adapted",
+    "doc": "docs/04-decisions.md"
+  },
+  {
+    "id": "life-expectancy",
+    "title": "수명과 영아 사망",
+    "summary": "18~19세기 족보 분석에서 남성 출생 시 기대수명은 23세로 추정된다. 낮은 기대수명의 가장 큰 이유는 영아·아동 사망이고, 어린 시절을 넘기면 50대 이후까지 사는 사람도 적지 않았다. 국왕 평균 사망 나이는 46세였다.",
+    "confidence": "estimated",
+    "doc": "docs/02-research/life-death.md#1-핵심-수치"
+  },
+  {
+    "id": "mortality-model",
+    "title": "게임의 사망 모델",
+    "summary": "나이 구간별 기본 위험에 신분·시점·건강 보정을 곱하고, 전쟁·역병·출산 같은 사건 사망을 더했다. 평균 사망 나이 20대 중반, 5세 이전 사망 30~40%가 되도록 시뮬레이션으로 맞췄다. 나이는 만 나이로 센다.",
+    "confidence": "adapted",
+    "doc": "docs/02-research/life-death.md#3-게임-사망-모델-제안-각색"
+  },
+  {
+    "id": "smallpox",
+    "title": "두창(마마)",
+    "summary": "두창(천연두)은 아이들의 대표적 사망 원인이었다. '마마', '손님'으로 불렸다. 우두법은 조선에 19세기 말에야 들어왔다.",
+    "confidence": "estimated",
+    "doc": "docs/02-research/life-death.md#4-주요-사망-원인"
+  },
+  {
+    "id": "childbirth",
+    "title": "출산과 산모 사망",
+    "summary": "조선 후기 합계출산율은 6.81명으로 추정된다. 출산은 여성의 큰 사망 원인이었다.",
+    "confidence": "estimated",
+    "doc": "docs/02-research/life-death.md#1-핵심-수치"
+  },
+  {
+    "id": "daily-life",
+    "title": "일상의 사건",
+    "summary": "혼인, 출산, 흉년, 부역, 과거 같은 일상의 사건은 시대 분위기에 맞춰 게임용으로 각색했다.",
+    "confidence": "adapted",
+    "doc": "docs/03-design/writing-guide.md"
+  },
+  {
+    "id": "modern-knowledge",
+    "title": "현대 지식과 영향력",
+    "summary": "회귀한 인생에서는 당시 없던 현대 지식도 쓸 수 있다. 다만 효과는 신분·재산·신뢰에 따라 가족·마을·고을·나라로 범위가 정해진다. 바꾼 결과는 그 인생 안에서만 유지된다. 게임 규칙이다.",
+    "confidence": "adapted",
+    "doc": "docs/04-decisions.md"
+  },
+  {
+    "id": "later-wars",
+    "title": "인조반정과 호란",
+    "summary": "1623년 인조반정, 1627년 정묘호란, 1636년 병자호란. 오래 산 인생이면 겪을 수 있다.",
+    "confidence": "confirmed",
+    "doc": "docs/02-research/eras/1592-imjin-war.md#1-연표"
+  }
+]
