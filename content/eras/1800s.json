@@ -1,0 +1,64 @@
+{
+  "id": "1800s",
+  "title": "세도정치",
+  "birthYears": [1790, 1815],
+  "regions": [
+    { "id": "gyeonggi", "name": "경기도", "weight": 13 },
+    { "id": "chungcheong", "name": "충청도", "weight": 13 },
+    { "id": "jeolla", "name": "전라도", "weight": 18 },
+    { "id": "gyeongsang", "name": "경상도", "weight": 23 },
+    { "id": "gangwon", "name": "강원도", "weight": 4 },
+    { "id": "hwanghae", "name": "황해도", "weight": 9 },
+    { "id": "pyeongan", "name": "평안도", "weight": 13 },
+    { "id": "hamgyeong", "name": "함경도", "weight": 7 }
+  ],
+  "statuses": [
+    {
+      "id": "royal", "name": "왕족", "weight": 1, "sourceRef": "status-royal",
+      "recordTerm": "종친", "recordTermFemale": "종녀", "nameGroup": "royal",
+      "influenceBase": 3, "persuasion": 1.0, "mortality": 0.75,
+      "start": { "health": [55, 80], "wealth": [75, 95], "learning": [5, 15], "trust": [40, 55] },
+      "regions": ["gyeonggi"]
+    },
+    {
+      "id": "yangban", "name": "양반", "weight": 9.9, "sourceRef": "status-1800s",
+      "recordTerm": "유학", "recordTermFemale": "처", "nameGroup": "yangban",
+      "influenceBase": 2, "persuasion": 1.0, "mortality": 0.8,
+      "start": { "health": [45, 75], "wealth": [50, 85], "learning": [5, 15], "trust": [35, 55] }
+    },
+    {
+      "id": "yuhak", "name": "몰락·신흥 양반", "weight": 14.85, "sourceRef": "status-1800s",
+      "recordTerm": "유학", "recordTermFemale": "처", "nameGroup": "yangban",
+      "influenceBase": 1, "persuasion": 0.85, "mortality": 0.95,
+      "start": { "health": [35, 70], "wealth": [15, 45], "learning": [3, 10], "trust": [30, 50] }
+    },
+    {
+      "id": "jungin", "name": "중인·향리", "weight": 3.96, "sourceRef": "status-1800s",
+      "recordTerm": "향리", "recordTermFemale": "처", "nameGroup": "common",
+      "influenceBase": 2, "persuasion": 0.9, "mortality": 0.9,
+      "start": { "health": [40, 70], "wealth": [35, 70], "learning": [5, 15], "trust": [30, 50] }
+    },
+    {
+      "id": "commoner", "name": "상민", "weight": 50.49, "sourceRef": "status-1800s",
+      "recordTerm": "양인", "recordTermFemale": "양녀", "nameGroup": "common",
+      "influenceBase": 1, "persuasion": 0.8, "mortality": 1.0,
+      "start": { "health": [35, 70], "wealth": [8, 40], "learning": [0, 5], "trust": [25, 45] }
+    },
+    {
+      "id": "slave", "name": "노비", "weight": 19.8, "sourceRef": "status-1800s",
+      "recordTerm": "사노", "recordTermFemale": "사비", "nameGroup": "slave",
+      "influenceBase": 1, "persuasion": 0.6, "mortality": 1.12,
+      "start": { "health": [30, 65], "wealth": [0, 15], "learning": [0, 3], "trust": [20, 40] }
+    }
+  ],
+  "mortality": { "eraModifier": 1.06 },
+  "reigns": [
+    { "name": "정조", "accession": 1776, "firstYear": 1777 },
+    { "name": "순조", "accession": 1800, "firstYear": 1801 },
+    { "name": "헌종", "accession": 1834, "firstYear": 1835 },
+    { "name": "철종", "accession": 1849, "firstYear": 1850 },
+    { "name": "고종", "accession": 1863, "firstYear": 1864 },
+    { "name": "순종", "accession": 1907, "firstYear": 1907 }
+  ],
+  "sourceRefs": ["era-1800s", "status-1800s", "regions-1800s", "reigns-1800s"]
+}
