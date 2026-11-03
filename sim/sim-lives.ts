@@ -4,6 +4,7 @@ import { loadContent } from '../src/content/index';
 import {
   autoLive,
   createBirth,
+  findEra,
   findStatus,
   judgeRecord,
   regress,
@@ -40,7 +41,14 @@ function deathAge(s: LifeState): number {
   return s.dead?.age ?? 0;
 }
 
-export function simulate(content: Content, n: number, opts: { eraId?: string; seedPrefix?: string; regression?: boolean } = {}): SimSummary {
+/** 왕족은 출생의 1%라 표본이 작다. 왕족 목표는 왕족만 따로 더 태워 이 수 이상으로 판정한다 */
+export const MIN_ROYAL_SAMPLE = 300;
+
+export function simulate(
+  content: Content,
+  n: number,
+  opts: { eraId?: string; seedPrefix?: string; regression?: boolean; minRoyal?: number } = {},
+): SimSummary {
   const prefix = opts.seedPrefix ?? 'sim';
   const ages: number[] = [];
   const adultAges: number[] = [];
@@ -98,6 +106,19 @@ export function simulate(content: Content, n: number, opts: { eraId?: string; se
     }
   }
 
+  // 왕족 표본 보강: 출생 비율·전체 평균에는 넣지 않고, 신분별 표의 왕족 줄과 왕족 목표에만 쓴다
+  const minRoyal = opts.minRoyal ?? MIN_ROYAL_SAMPLE;
+  if (opts.eraId && minRoyal > 0) {
+    const royal = (byStatus['royal'] ??= { ages: [], adult: [] });
+    for (let i = 0; royal.ages.length < minRoyal && i < minRoyal * 400; i++) {
+      const birth = createBirth(content, `${prefix}-royal-${i}`, { eraId: opts.eraId });
+      if (birth.statusId !== 'royal') continue;
+      const age = deathAge(autoLive(content, birth, { policy: 'random' }));
+      royal.ages.push(age);
+      if (age >= 15) royal.adult.push(age);
+    }
+  }
+
   const meanDeathAge = mean(ages);
   const under5Rate = ages.filter((a) => a < 5).length / n;
   const adultMeanDeathAge = mean(adultAges);
@@ -112,20 +133,22 @@ export function simulate(content: Content, n: number, opts: { eraId?: string; se
     };
   }
   const overall = meanDeathAge;
+  // 상위 신분은 모든 시점에서 id "yangban"으로 둔다 (화면 이름은 시점마다 다름. docs/04-decisions.md)
   const royal = meanByStatus['royal'];
   const yangban = meanByStatus['yangban'];
+  const upperName = opts.eraId ? findStatus(content, opts.eraId, 'yangban').name : '양반';
   const targets = [
     { name: '전체 평균 사망 나이 20대 중반 (22~28세)', value: `${meanDeathAge.toFixed(1)}세`, ok: meanDeathAge >= 22 && meanDeathAge <= 28 },
     { name: '5세 이전 사망 30~40%', value: pct(under5Rate), ok: under5Rate >= 0.3 && under5Rate <= 0.4 },
     { name: '성인(15세 이상) 평균 사망 나이 45~55세', value: `${adultMeanDeathAge.toFixed(1)}세`, ok: adultMeanDeathAge >= 45 && adultMeanDeathAge <= 55 },
     {
       name: '왕족·양반은 평균보다 오래 산다',
-      value: `왕족 ${royal?.mean.toFixed(1) ?? '-'}세, 양반 ${yangban?.mean.toFixed(1) ?? '-'}세 (전체 ${overall.toFixed(1)}세)`,
+      value: `왕족 ${royal?.mean.toFixed(1) ?? '-'}세, ${upperName} ${yangban?.mean.toFixed(1) ?? '-'}세 (전체 ${overall.toFixed(1)}세)`,
       ok: !!royal && !!yangban && royal.mean > overall && yangban.mean > overall,
     },
     {
       name: '장수가 보장되지는 않는다 (왕족·양반도 5세 이전 사망 15% 이상, 성인 중 60세 넘긴 사람 80% 미만)',
-      value: `5세 이전 사망 왕족 ${royal ? pct(royal.under5) : '-'}·양반 ${yangban ? pct(yangban.under5) : '-'}, 성인 중 60세 이상 왕족 ${royal ? pct(royal.over60) : '-'}·양반 ${yangban ? pct(yangban.over60) : '-'}`,
+      value: `5세 이전 사망 왕족 ${royal ? pct(royal.under5) : '-'}·${upperName} ${yangban ? pct(yangban.under5) : '-'}, 성인 중 60세 이상 왕족 ${royal ? pct(royal.over60) : '-'}·${upperName} ${yangban ? pct(yangban.over60) : '-'}`,
       ok: !!royal && !!yangban && royal.under5 >= 0.15 && yangban.under5 >= 0.15 && royal.over60 < 0.8 && yangban.over60 < 0.8,
     },
   ];
@@ -168,13 +191,17 @@ export function formatReport(content: Content, r: SimSummary, eraId: string): st
   for (const t of r.targets) L.push(`- [${t.ok ? 'x' : ' '}] ${t.name}: **${t.value}**`);
   L.push('');
   L.push('### 신분 분포와 신분별 사망 나이');
+  L.push(`왕족 줄은 표본이 작아(출생의 1%) 왕족만 따로 더 태워 ${MIN_ROYAL_SAMPLE}명 이상으로 계산한다. 출생 비율은 본 표본 기준.`);
+  L.push('');
   L.push('| 신분 | 출생 비율 | 평균 사망 나이 | 5세 이전 사망 | 성인 평균 사망 나이 | 성인 중 60세 이상 |');
   L.push('|---|---:|---:|---:|---:|---:|');
-  const order = ['royal', 'yangban', 'jungin', 'commoner', 'slave'];
+  // 표 순서는 시점 파일의 신분 순서를 따른다 (새 신분도 제자리에 나온다)
+  const order = findEra(content, eraId).statuses.map((st) => st.id);
   const keys = Object.keys(r.statusDist).sort((a, b) => order.indexOf(a) - order.indexOf(b));
   for (const k of keys) {
     const m = r.meanByStatus[k];
-    L.push(`| ${statusName(k)} | ${pct(r.statusDist[k])} | ${m.mean.toFixed(1)}세 | ${pct(m.under5)} | ${m.adultMean.toFixed(1)}세 | ${pct(m.over60)} |`);
+    const label = k === 'royal' && m.n > Math.round(r.statusDist[k] * r.n) ? `${statusName(k)} (표본 ${m.n}명)` : statusName(k);
+    L.push(`| ${label} | ${pct(r.statusDist[k])} | ${m.mean.toFixed(1)}세 | ${pct(m.under5)} | ${m.adultMean.toFixed(1)}세 | ${pct(m.over60)} |`);
   }
   L.push('');
   L.push(`- 전체 평균 사망 나이: ${r.meanDeathAge.toFixed(1)}세`);

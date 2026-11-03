@@ -26,7 +26,20 @@ function rulesEras(conds: { eras?: string[] } | undefined): string[] {
 
 describe('A. 기록 템플릿의 시점', () => {
   it('4개 시점이 모두 있다', () => {
-    expect(ERAS.sort()).toEqual(['1170', '1592', '1800s', '660']);
+    expect([...ERAS].sort()).toEqual(['1170', '1592', '1800s', '660']);
+  });
+
+  it('모든 시점에 왕족(royal)과 상위 신분(yangban) id가 있다 (sim 보정 목표가 이 id로 판정한다)', () => {
+    for (const era of content.eras) {
+      const ids = era.statuses.map((s) => s.id);
+      expect(ids, era.id).toContain('royal');
+      expect(ids, era.id).toContain('yangban');
+    }
+  });
+
+  it('마음가짐 신분 배수는 모든 시점의 노비·평민 계층 신분을 다룬다', () => {
+    const study = content.mindsets.find((m) => m.id === 'study')!;
+    for (const id of ['slave', 'commoner', 'bugok', 'soldier']) expect(study.byStatus?.[id], id).toBeDefined();
   });
 
   it('모든 기록 규칙은 걸리는 시점마다 그 시점용 템플릿을 쓴다', () => {
