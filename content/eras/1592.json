@@ -45,7 +45,7 @@
       "start": { "health": [30, 65], "wealth": [0, 15], "learning": [0, 3], "trust": [20, 40] }
     }
   ],
-  "mortality": { "eraModifier": 1.0 },
+  "mortality": { "eraModifier": 0.95 },
   "reigns": [
     { "name": "명종", "accession": 1545, "firstYear": 1546 },
     { "name": "선조", "accession": 1567, "firstYear": 1568 },

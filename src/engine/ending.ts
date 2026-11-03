@@ -4,7 +4,7 @@ import { checkConditions } from './conditions';
 import { findEra } from './birth';
 import { findStatus } from './influence';
 import { regressionsLeft } from './life';
-import type { Content, Ending, LifeState, RecordLevel, RecordResult, ReignDef } from './types';
+import type { Content, Ending, LifeState, RecordLevel, RecordResult, RecordTemplate, ReignDef } from './types';
 import { RECORD_LEVELS } from './types';
 
 export function recordRank(level: RecordLevel): number {
@@ -49,6 +49,11 @@ export function renderRecord(content: Content, s: LifeState, template: string, e
     .replaceAll('{children}', String(s.family.children));
 }
 
+/** 기록 템플릿이 이 시점에 쓸 수 있는 문장인가 */
+export function templateFitsEra(tpl: RecordTemplate, eraId: string): boolean {
+  return tpl.eras.includes('*') || tpl.eras.includes(eraId);
+}
+
 /** 남은 기록: 사건으로 얻은 후보 + 규칙 후보 중 가장 높은 것 하나 */
 export function judgeRecord(content: Content, s: LifeState): RecordResult {
   const rng = { rng: hashSeed(`${s.seed}:record:${s.lifeIndex}:${s.rng}`) };
@@ -59,12 +64,19 @@ export function judgeRecord(content: Content, s: LifeState): RecordResult {
     candidates.push({ level: rule.level, templateId: rule.templateId, year: s.dead?.year ?? s.year });
   }
   let best: (typeof candidates)[number] | undefined;
+  let bestTpl: RecordTemplate | undefined;
   for (const c of candidates) {
-    if (!best || recordRank(c.level) > recordRank(best.level)) best = c;
+    const tpl = content.records.templates.find((t) => t.id === c.templateId);
+    if (!tpl) throw new Error(`기록 템플릿 없음: ${c.templateId}`);
+    // 다른 시점의 기록 문장은 쓰지 않는다 (예: 고려 왕족에게 조선의 "선원록")
+    if (!templateFitsEra(tpl, s.birth.eraId)) continue;
+    if (!best || recordRank(c.level) > recordRank(best.level)) {
+      best = c;
+      bestTpl = tpl;
+    }
   }
-  if (!best) return { level: 'none' };
-  const tpl = content.records.templates.find((t) => t.id === best.templateId);
-  if (!tpl) throw new Error(`기록 템플릿 없음: ${best.templateId}`);
+  if (!best || !bestTpl) return { level: 'none' };
+  const tpl = bestTpl;
   return { level: best.level, templateId: tpl.id, text: renderRecord(content, s, tpl.template, best.year) };
 }
 

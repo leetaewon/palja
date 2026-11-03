@@ -1,6 +1,7 @@
 // 콘텐츠 스키마 검증 (docs/03-design/content-schema.md)
 // 구조 검사 + 서로 가리키는 id(근거, 기록 템플릿, 기억, 지식, 신분, 지역, 사인)가 실제로 있는지 검사한다.
-import type { Conditions, Content, Effect, EventDef, Outcome } from '../engine/types';
+import type { Conditions, Content, Effect, EventDef, KnowledgeDef, Outcome } from '../engine/types';
+import { resolveKnowledge } from '../engine/life';
 import { RECORD_LEVELS, STAT_KEYS } from '../engine/types';
 
 type Obj = Record<string, unknown>;
@@ -321,6 +322,30 @@ export function validateContent(raw: unknown): ValidationResult {
     for (const k of ['regressed', 'married'] as const) if (cond[k] !== undefined && typeof cond[k] !== 'boolean') c.err(`${p}.${k}`, 'boolean');
   };
 
+  // 기록 문장의 시점 맞춤: 사건·규칙이 걸리는 시점마다 그 시점용 템플릿이어야 한다
+  let effectEras: string[] = [];
+  const allEras = () => [...eraIds];
+  const expandEras = (eras: string[] | undefined) => (!eras || eras.length === 0 || eras.includes('*') ? allEras() : eras);
+  const checkTemplateEras = (templateId: string, eras: string[], p: string) => {
+    const tpl = content.records?.templates?.find((t) => t.id === templateId);
+    if (!tpl || !Array.isArray(tpl.eras) || tpl.eras.includes('*')) return;
+    const missing = eras.filter((e) => !tpl.eras.includes(e));
+    if (missing.length > 0) c.err(p, `기록 템플릿 ${templateId}은 시점 ${missing.join(', ')}에 쓸 수 없음 (템플릿 eras: ${tpl.eras.join(', ')})`);
+  };
+  const checkKnowledgeEras = (id: string, eras: string[], p: string) => {
+    for (const era of eras) {
+      let k: KnowledgeDef;
+      try {
+        k = resolveKnowledge(content, id, era);
+      } catch {
+        return;
+      }
+      for (const [tier, def] of Object.entries(k.byInfluence)) {
+        if (def?.record) checkTemplateEras(def.record.templateId, [era], `${p} → 현대 지식 ${id} ${tier}단계(${era})`);
+      }
+    }
+  };
+
   const checkEffects = (effects: Effect[] | undefined, p: string) => {
     if (effects === undefined) return;
     if (!c.arr(effects, p)) return;
@@ -346,6 +371,7 @@ export function validateContent(raw: unknown): ValidationResult {
         case 'record':
           if (!RECORD_LEVELS.includes(ef.level) || (ef.level as string) === 'none') c.err(`${ep}.level`, 'hojeok/jokbo/munjip/sillok');
           if (!templateIds.has(ef.templateId)) c.err(`${ep}.templateId`, `없는 기록 템플릿 ${ef.templateId}`);
+          else checkTemplateEras(ef.templateId, effectEras, ep);
           break;
         case 'family':
           if (!FAMILY_EVENTS.includes(ef.event)) c.err(`${ep}.event`, FAMILY_EVENTS.join('/'));
@@ -360,6 +386,7 @@ export function validateContent(raw: unknown): ValidationResult {
           break;
         case 'knowledge':
           if (!knowledgeIds.has(ef.id)) c.err(`${ep}.id`, `없는 현대 지식 ${ef.id}`);
+          else checkKnowledgeEras(ef.id, effectEras, ep);
           c.num(ef.attempt, `${ep}.attempt`, { optional: true, min: 1, max: 4 });
           break;
         case 'log':
@@ -396,6 +423,7 @@ export function validateContent(raw: unknown): ValidationResult {
       c.num(ev.chance, `${p}.chance`, { optional: true, min: 0, max: 1 });
       checkText(ev.text, `${p}.text`);
       checkConditions(ev.conditions, `${p}.conditions`);
+      effectEras = expandEras(ev.conditions?.eras);
       if (!ev.conditions?.eras || ev.conditions.eras.length === 0) c.err(`${p}.conditions.eras`, '시점을 적어야 함');
       checkEffects(ev.effects, `${p}.effects`);
       checkOutcomes(ev.outcomes, `${p}.outcomes`);
@@ -436,7 +464,7 @@ export function validateContent(raw: unknown): ValidationResult {
     const seen = new Set<string>();
     content.knowledge.actions.forEach((k, i) => {
       const p = `knowledge.actions[${i}](${k.id})`;
-      c.keys(k as unknown as Obj, ['id', 'name', 'category', 'intro', 'helpsAgainst', 'protectFactor', 'byInfluence'], p);
+      c.keys(k as unknown as Obj, ['id', 'name', 'category', 'intro', 'helpsAgainst', 'protectFactor', 'byInfluence', 'byEra'], p);
       c.str(k.id, `${p}.id`);
       if (seen.has(k.id)) c.err(p, '중복 id');
       seen.add(k.id);
@@ -455,6 +483,24 @@ export function validateContent(raw: unknown): ValidationResult {
         checkEffects(def.effects, `${tp}.effects`);
         if (def.record && !templateIds.has(def.record.templateId)) c.err(`${tp}.record`, `없는 기록 템플릿 ${def.record.templateId}`);
       }
+      if (k.byEra !== undefined && c.obj(k.byEra, `${p}.byEra`)) {
+        for (const [era, o] of Object.entries(k.byEra)) {
+          const op = `${p}.byEra.${era}`;
+          if (!eraIds.has(era)) c.err(op, `없는 시점 ${era}`);
+          if (!c.obj(o, op)) continue;
+          c.keys(o as unknown as Obj, ['name', 'intro', 'byInfluence'], op);
+          if (o.name !== undefined) c.str(o.name, `${op}.name`);
+          if (o.intro !== undefined) checkText(o.intro, `${op}.intro`);
+          for (const [tier, def] of Object.entries(o.byInfluence ?? {})) {
+            const tp = `${op}.byInfluence.${tier}`;
+            if (!['1', '2', '3', '4'].includes(tier)) c.err(tp, '단계는 1~4');
+            if (!def) continue;
+            for (const key of ['text', 'successText', 'failText'] as const) if (def[key] !== undefined) checkText(def[key], `${tp}.${key}`);
+            checkEffects(def.effects, `${tp}.effects`);
+            if (def.record && !templateIds.has(def.record.templateId)) c.err(`${tp}.record`, `없는 기록 템플릿 ${def.record.templateId}`);
+          }
+        }
+      }
     });
   }
 
@@ -466,6 +512,7 @@ export function validateContent(raw: unknown): ValidationResult {
       if (!templateIds.has(r.templateId)) c.err(`${p}.templateId`, `없는 기록 템플릿 ${r.templateId}`);
       const tpl = content.records.templates.find((t) => t.id === r.templateId);
       if (tpl && tpl.level !== r.level) c.err(p, `템플릿 등급(${tpl.level})과 규칙 등급(${r.level})이 다름`);
+      if (tpl) checkTemplateEras(r.templateId, expandEras(r.conditions?.eras), p);
       c.num(r.chance, `${p}.chance`, { min: 0, max: 1 });
       checkConditions(r.conditions, `${p}.conditions`);
     });

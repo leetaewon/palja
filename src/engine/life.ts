@@ -12,6 +12,7 @@ import type {
   Content,
   Effect,
   EventDef,
+  KnowledgeDef,
   LifeState,
   LogEntry,
   MindsetDef,
@@ -216,9 +217,22 @@ function rollOutcome(content: Content, s: LifeState, outcomes: Outcome[] | undef
 
 // ───────────── 현대 지식 (PRD 7-3, 7-4) ─────────────
 
+/** 이 시점에 맞춘 현대 지식 (byEra 덮어쓰기 적용) */
+export function resolveKnowledge(content: Content, id: string, eraId: string): KnowledgeDef {
+  const base = content.knowledge.actions.find((x) => x.id === id);
+  if (!base) throw new Error(`알 수 없는 현대 지식: ${id}`);
+  const o = base.byEra?.[eraId];
+  if (!o) return base;
+  const byInfluence: KnowledgeDef['byInfluence'] = { ...base.byInfluence };
+  for (const [tier, def] of Object.entries(o.byInfluence ?? {})) {
+    const t = tier as keyof KnowledgeDef['byInfluence'];
+    byInfluence[t] = { ...base.byInfluence[t], ...def };
+  }
+  return { ...base, name: o.name ?? base.name, intro: o.intro ?? base.intro, byInfluence };
+}
+
 export function useKnowledge(content: Content, s: LifeState, id: string, attempt: number | undefined, month: number) {
-  const k = content.knowledge.actions.find((x) => x.id === id);
-  if (!k) throw new Error(`알 수 없는 현대 지식: ${id}`);
+  const k = resolveKnowledge(content, id, s.birth.eraId);
   const influence = computeInfluence(content, s);
   const target = Math.min(4, Math.max(1, attempt ?? influence));
   log(content, s, 'knowledge', k.intro, month);
@@ -271,17 +285,22 @@ export function availableChoices(content: Content, s: LifeState, ev: EventDef): 
   return (ev.choices ?? []).filter((c) => checkConditions(content, s, c.requires));
 }
 
-function collectEvents(content: Content, s: LifeState): { id: string; month: number }[] {
-  const picked: { id: string; month: number }[] = [];
+function collectEvents(content: Content, s: LifeState): LifeState['queue'] {
+  const picked: LifeState['queue'] = [];
   const randoms: EventDef[] = [];
   for (const ev of content.events) {
     if (!ev.repeatable && s.done.includes(ev.id)) continue;
     const fixedYear = ev.when?.year;
     if (fixedYear !== undefined) {
       if (fixedYear !== s.year) continue;
-      if (!checkConditions(content, s, ev.conditions)) continue;
-      if (!chance(s, ev.chance ?? 1)) continue;
-      picked.push({ id: ev.id, month: ev.when?.month ?? randInt(s, 1, 12) });
+      if (checkConditions(content, s, ev.conditions)) {
+        if (!chance(s, ev.chance ?? 1)) continue;
+        picked.push({ id: ev.id, month: ev.when?.month ?? randInt(s, 1, 12) });
+      } else if (eraMatches(ev, s)) {
+        // 같은 해 앞선 사건이 플래그·신분을 바꾸면 조건이 맞을 수 있다.
+        // 그 달에 조건을 다시 보고, 맞으면 그때 확률을 굴린다.
+        picked.push({ id: ev.id, month: ev.when?.month ?? randInt(s, 1, 12), deferred: true });
+      }
     } else if (checkConditions(content, s, ev.conditions)) {
       randoms.push(ev);
     }
@@ -298,6 +317,11 @@ function collectEvents(content: Content, s: LifeState): { id: string; month: num
   const order = new Map(content.events.map((e, i) => [e.id, i]));
   picked.sort((a, b) => a.month - b.month || (order.get(a.id) ?? 0) - (order.get(b.id) ?? 0));
   return picked;
+}
+
+function eraMatches(ev: EventDef, s: LifeState): boolean {
+  const eras = ev.conditions?.eras;
+  return !eras || eras.length === 0 || eras.includes('*') || eras.includes(s.birth.eraId);
 }
 
 function runEvent(content: Content, s: LifeState, ev: EventDef, month: number) {
@@ -395,11 +419,13 @@ function naturalDeathCheck(content: Content, s: LifeState) {
 
 function continueYear(content: Content, s: LifeState) {
   while (s.queue.length > 0) {
-    const item = s.queue.shift() as { id: string; month: number };
+    const item = s.queue.shift() as LifeState['queue'][number];
     if (item.id.startsWith('@')) continue; // 갈림길 자리표시
     const ev = getEvent(content, item.id);
+    if (!ev.repeatable && s.done.includes(ev.id)) continue;
     // 같은 해 앞선 사건으로 상황이 바뀌었을 수 있어 다시 확인한다
     if (!checkConditions(content, s, ev.conditions)) continue;
+    if (item.deferred && !chance(s, ev.chance ?? 1)) continue;
     runEvent(content, s, ev, item.month);
     if (s.dead || s.pending) return;
   }
