@@ -198,6 +198,7 @@
 | 테스트 | Vitest (엔진·콘텐츠 검증), Playwright (E2E·스크린샷) |
 | 배포 | **Cloudflare Pages** Git 연동 (사람이 대시보드에서 연결). 빌드 명령 `npm run build`, 출력 `dist`, Vite `base: '/'`. Node 버전은 `.node-version` 파일로 고정. main은 프로덕션, 다른 브랜치·PR은 미리보기 배포 |
 | 구조 | `src/engine/` 순수 로직 (React·DOM·`window`·`localStorage` import 금지), `src/ui/`, `content/` 게임 데이터(JSON), `sim/` 시뮬레이터 |
+| 사이트 주소 | 절대 주소(공유 문구의 링크, `og:url`, `og:image`, canonical)는 **설정 한 곳**(`VITE_SITE_URL`, 기본값 `https://palja-game.pages.dev`)에서만 읽는다. 그 밖의 경로는 모두 상대 경로. 도메인을 바꿀 때 이 값 하나만 고치면 되게 한다 |
 | 난수 | 시드 RNG만. `Math.random()` 금지 |
 | 결정론 | 같은 시드 + 같은 선택 → 같은 인생. 테스트로 보장 |
 | 콘텐츠 검증 | `content/`의 모든 파일을 스키마로 검증하는 테스트 (`docs/03-design/content-schema.md`) |

@@ -17,7 +17,7 @@
    - Build output directory: `dist`
    - 환경 변수: 비워 둔다 (Node 버전은 저장소의 `.node-version`이 정한다)
 3. 저장하고 배포. **main에 아직 코드가 없어 첫 배포는 실패한다. 정상이다.** Phase 1 PR부터 미리보기 빌드가 돌고, 병합하면 프로덕션이 뜬다.
-4. 주소: `https://palja.pages.dev` (프로젝트 이름에 따라 다름). 서브도메인 연결은 나중에.
+4. 주소: `https://palja-game.pages.dev` (palja는 이미 사용 중이라 palja-game으로 생성). 커스텀 도메인은 나중에 (`docs/04-decisions.md` 참고).
 
 > Cloudflare는 새 프로젝트에 Workers를 권장하지만, 이 게임은 정적 사이트라 Pages로 충분하다.
 
