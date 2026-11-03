@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "sim:lives": "tsx sim/sim-lives.ts"
+    "sim:lives": "tsx sim/sim-lives.ts",
+    "e2e": "playwright test",
+    "screenshots": "SCREENSHOTS=1 playwright test e2e/screenshots.spec.ts --project=desktop"
   },
   "dependencies": {
     "react": "^18.3.1",

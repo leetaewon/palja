@@ -3,24 +3,28 @@
 > 새 세션은 이 파일부터 읽는다. 작업할 때마다 갱신한다. (규칙: `CLAUDE.md`)
 
 ## 현재 상태
-- **현재 단계**: Phase 1 — 엔진과 시뮬레이터 (완료, PR 검토 대기)
-- **현재 브랜치**: phase-1-engine
-- **마지막 갱신**: 2026-11-03 — sim:lives 보정 완료 (1592: 평균 25.9세, 5세 이전 37.4%, 성인 48.1세)
+- **현재 단계**: Phase 2 — 화면과 1차 공개 (완료, PR 검토 대기). Phase 3의 화면 작업(근거 보기 연결·인생 도감)도 함께 끝냄
+- **현재 브랜치**: phase-2-ui
+- **마지막 갱신**: 2026-11-03 — 10장 모든 화면, E2E 10개, 스크린샷 52장(`docs/screenshots/`)
+- **동시 작업**: 다른 세션 3개가 660·1170·1800s 콘텐츠를 만들고 있다. 화면은 `content.eras`에서 시점을 읽으므로 콘텐츠가 병합되면 자동으로 열린다
 
 ## 다음 할 일
-Phase 1 PR이 main에 병합되면 Phase 2를 시작한다.
-1. main에서 `phase-2-ui` 브랜치를 만든다.
-2. 화면은 `src/ui/`에 만든다. 엔진 사용법:
-   - 출생: `createBirth(content, seed)` → `createLife(content, birth)`. 출생 확률 표시는 `statusProbability()`, 근거는 `content.sources`
-   - 한 해: `advanceYear(content, state, mindsetId)` (0~9세는 mindset 생략). `state.pending`이 있으면 갈림길 모달을 띄우고 `resolveChoice(content, state, choiceId)`
-   - 선택지 `tag`가 `memory`/`knowledge`면 구분 표시 (PRD 10장 4)
-   - 죽으면(`state.dead`) `judgeEnding(content, state)` → 사인 이름·기록 문장·바꾼 것·남은 회귀 횟수. 같은 고을 사람들은 `neighbors(content, state.birth)`
-   - 팔자 고치기: `regress(content, state)`, 새 환생: 새 시드로 `createBirth`
-   - 상태(`LifeState`)는 JSON 그대로 `localStorage`에 저장 가능 (`try/catch`)
-   - 자연 사망은 연대기에 문장이 없다. 엔딩 문장 "○○(으)로 세상을 떠났습니다"는 UI에서 조사를 처리해 만든다 (결정 기록)
-   - 시드 문자열은 UI가 만든다. `Math.random()` 대신 `crypto.getRandomValues` 또는 시각 기반
-3. Playwright 설치·`npm run e2e` 스크립트 추가 후 CLAUDE.md 명령 표 갱신.
-4. 콘텐츠를 고치면 `npm run test`(보정 목표 검사 포함)와 `npm run sim:lives`로 확인한다.
+Phase 2 PR이 main에 병합되면 1차 공개(Cloudflare Pages 프로덕션). 그다음:
+1. 시점 콘텐츠 세션들의 PR이 병합되면 `npm run e2e`와 `npm run screenshots`를 다시 돌려 새 시점이 열리는지 확인한다.
+   - 시점 짝짓기: `src/ui/lib/eras.ts` (PRD 4-1 계획 목록과 출생 구간이 겹치면 같은 시점)
+   - 왕족 판정은 신분 id `royal` 또는 `nameGroup: "royal"` (출생 화면 1/100 보정 안내). 새 시점도 이 규칙을 지키면 안내가 뜬다
+   - 근거 보기의 "연표 사건"은 `kind: "timeline"` + `when.year` + `conditions.eras`에 시점 id가 있는 사건만 보여 준다
+2. Phase 3 남은 것은 콘텐츠뿐: 시점별 사건·갈림길·왕족 콘텐츠·기록 템플릿, `sim:lives` 4개 시점 보정
+3. Phase 4: 연출(출생 공개·회귀 전환), 접근성 점검(스크린 리더로 한 판), README 완성본, 제목 후보
+
+### 화면 구조 (src/ui/)
+- `App.tsx`: 화면 전환(스택: 도감·근거·소개는 위에 쌓고 돌아가기), 저장, 테마, 도감 기록
+- `screens/`: Title · Birth · Life · Ending · Codex · Sources · About
+- `components/`: 도장(`Seal`), 윗줄, 신뢰도 표시, 능력치, 갈림길 시트(`ChoiceSheet`)
+- `lib/`: `storage.ts`(localStorage 모두 try/catch), `eras.ts`(시점 슬롯), `summary.ts`(출생·사인 문장, 결과 복사), `text.ts`(조사), `seed.ts`(crypto 시드)
+- 스타일은 `styles.css` 한 파일. 색은 `:root`/`[data-theme]` 변수. 768px부터 두 단
+- 키보드: 숫자키 마음가짐·선택지, 스페이스 진행/멈춤, → 한 해 넘기기, Enter 기록 보기
+- E2E: `e2e/play.spec.ts`, 스크린샷: `e2e/screenshots.spec.ts` (`SCREENSHOTS=1`일 때만)
 
 ## 단계별 체크
 
@@ -34,17 +38,19 @@ Phase 1 PR이 main에 병합되면 Phase 2를 시작한다.
 - [x] build / test / lint 통과 → PR
 
 ### Phase 2 — 화면과 1차 공개
-- [ ] 10장의 모든 화면, 1592 시점 처음부터 기록 엔딩·회귀까지 플레이 가능
-- [ ] 저장/이어하기, 시드, 결과 복사, 안내 문구(9장)
-- [ ] Playwright E2E: 새 환생 → 갈림길 선택 → 죽음 → 기록 → 팔자 고치기 → 같은 출생 확인
-- [ ] 화면 크기별 레이아웃(10-2), 라이트 기본·다크 전환(10-1)
-- [ ] Playwright 스크린샷 `docs/screenshots/` (360px·390px·1280px, 라이트·다크)
-- [ ] Cloudflare Pages 빌드 설정 확인 (`npm run build` → `dist`, `base: '/'`, `.node-version`)
-- [ ] 미완성 시점은 "준비 중" 표시 → main 병합 시 1차 공개
-- [ ] PR
+- [x] 10장의 모든 화면, 1592 시점 처음부터 기록 엔딩·회귀까지 플레이 가능
+- [x] 저장/이어하기, 시드, 결과 복사, 안내 문구(9장)
+- [x] Playwright E2E: 새 환생 → 갈림길 선택 → 죽음 → 기록 → 팔자 고치기 → 같은 출생 확인 (+ 저장·이어하기, 테마 기억, 시점 슬롯, 근거·소개) — 모바일·데스크톱 10개
+- [x] 화면 크기별 레이아웃(10-2), 라이트 기본·다크 전환(10-1). 명도 대비 라이트·다크 모두 4.9:1 이상
+- [x] Playwright 스크린샷 `docs/screenshots/` (360px·390px·1280px, 라이트·다크, JPEG 52장)
+- [x] Cloudflare Pages 빌드 설정 확인 (`npm run build` → `dist`, `base: '/'`, `.node-version` 22). GitHub Pages 워크플로 없음
+- [x] 미완성 시점은 "준비 중" 표시 (`content.eras` 기준 자동) → main 병합 시 1차 공개
+- [x] PR
 
 ### Phase 3 — 4개 시점 완성
-- [ ]
+- [ ] 나머지 3개 시점 콘텐츠 (다른 세션 진행 중)
+- [x] 근거 보기 화면: 출생 확률·연표 사건·모든 자료, 신뢰도 표시. 연대기와 갈림길에서 사건 근거로 바로 이동 (Phase 2에서 함께)
+- [x] 인생 도감 (Phase 2에서 함께)
 
 ### Phase 4 — 완성도
 - [ ]

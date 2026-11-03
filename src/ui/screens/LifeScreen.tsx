@@ -218,7 +218,7 @@ export function LifeScreen({
                 }}
               />
             )}
-            <div className="mobile-only">{speedControls}</div>
+            {!life.dead && <div className="mobile-only">{speedControls}</div>}
           </div>
         </main>
 
