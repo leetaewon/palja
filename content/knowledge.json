@@ -1,0 +1,352 @@
+{
+  "defaults": {
+    "failText": {
+      "2": "사람들은 {statusName}의 말을 귀담아듣지 않았다.",
+      "3": "고을 관아는 당신의 말을 들어 주지 않았다.",
+      "4": "당신의 말은 조정에 닿지 못했다."
+    },
+    "suspicionText": "오히려 이상한 소리를 하고 다닌다는 말이 돌았다."
+  },
+  "actions": [
+    {
+      "id": "boil-water",
+      "name": "물을 끓여 마시기",
+      "category": "위생",
+      "intro": "당신은 끓인 물이 배앓이와 역병을 막는다는 것을 알고 있다.",
+      "helpsAgainst": [
+        "epidemic",
+        "illness"
+      ],
+      "protectFactor": 0.6,
+      "byInfluence": {
+        "1": {
+          "text": "당신의 가족은 물을 끓여 마셨다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "health",
+              "delta": 3
+            }
+          ]
+        },
+        "2": {
+          "successText": "마을 사람들이 물을 끓여 마시기 시작했다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "trust",
+              "delta": 5
+            }
+          ]
+        },
+        "3": {
+          "successText": "수령이 고을의 우물을 살피게 했다."
+        },
+        "4": {
+          "successText": "조정이 각 도에 우물을 살피라는 명을 내렸다.",
+          "record": {
+            "level": "sillok",
+            "templateId": "sillok-hygiene"
+          }
+        }
+      }
+    },
+    {
+      "id": "isolate-sick",
+      "name": "앓는 사람 따로 돌보기",
+      "category": "위생",
+      "intro": "당신은 앓는 사람을 따로 두고 손을 씻으면 병이 덜 번진다는 것을 알고 있다.",
+      "helpsAgainst": [
+        "epidemic"
+      ],
+      "protectFactor": 0.5,
+      "byInfluence": {
+        "1": {
+          "text": "당신은 앓는 식구를 따로 눕히고 모두 손을 씻게 했다."
+        },
+        "2": {
+          "successText": "마을 사람들이 앓는 이를 따로 돌볼 움막을 지었다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "trust",
+              "delta": 5
+            }
+          ]
+        },
+        "3": {
+          "successText": "수령이 역병이 돈 마을의 출입을 막았다."
+        },
+        "4": {
+          "successText": "조정이 역병이 돈 고을의 출입을 막으라는 명을 내렸다.",
+          "record": {
+            "level": "sillok",
+            "templateId": "sillok-hygiene"
+          }
+        }
+      }
+    },
+    {
+      "id": "vaccination",
+      "name": "우두법",
+      "category": "종두",
+      "intro": "당신은 소의 두창 고름으로 마마를 미리 막는 법을 알고 있다.",
+      "helpsAgainst": [
+        "smallpox"
+      ],
+      "protectFactor": 0.2,
+      "byInfluence": {
+        "1": {
+          "text": "당신은 식구들의 팔에 소 두창 고름을 묻혔다. 모두 가볍게 앓고 지나갔다."
+        },
+        "2": {
+          "successText": "마을 아이들도 하나둘 팔을 내밀었다.",
+          "failText": "사람들은 소의 고름을 몸에 넣는다는 말에 고개를 저었다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "trust",
+              "delta": 5
+            }
+          ]
+        },
+        "3": {
+          "successText": "수령이 고을 아이들에게 이 법을 쓰게 했다."
+        },
+        "4": {
+          "successText": "조정이 마마를 막는 이 법을 시험하게 했다.",
+          "record": {
+            "level": "sillok",
+            "templateId": "sillok-vaccination"
+          }
+        }
+      }
+    },
+    {
+      "id": "clean-birth",
+      "name": "깨끗한 출산",
+      "category": "출산",
+      "intro": "당신은 끓인 물과 삶은 천이 산모와 아이를 살린다는 것을 알고 있다.",
+      "helpsAgainst": [
+        "childbirth"
+      ],
+      "protectFactor": 0.4,
+      "byInfluence": {
+        "1": {
+          "text": "당신은 물을 끓이고 천을 삶아 산실을 준비했다."
+        },
+        "2": {
+          "successText": "마을 산파가 당신의 방법을 따라 하기 시작했다."
+        },
+        "3": {
+          "successText": "수령이 고을 산파들에게 이 법을 알리게 했다."
+        }
+      }
+    },
+    {
+      "id": "food-storage",
+      "name": "곡식 갈무리와 구황 작물",
+      "category": "영양·저장",
+      "intro": "당신은 곡식을 말려 갈무리하는 법과, 거친 땅에서도 자라는 작물을 알고 있다.",
+      "helpsAgainst": [
+        "famine"
+      ],
+      "protectFactor": 0.5,
+      "byInfluence": {
+        "1": {
+          "text": "당신의 집 광에는 말린 곡식과 구황 작물이 쌓였다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "wealth",
+              "delta": 2
+            }
+          ]
+        },
+        "2": {
+          "successText": "마을 사람들이 흉년에 대비해 곡식을 갈무리하기 시작했다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "trust",
+              "delta": 4
+            }
+          ]
+        },
+        "3": {
+          "successText": "수령이 고을 창고를 늘려 곡식을 쌓게 했다."
+        },
+        "4": {
+          "successText": "조정이 각 도에 구황 작물을 심게 했다.",
+          "record": {
+            "level": "sillok",
+            "templateId": "sillok-famine"
+          }
+        }
+      }
+    },
+    {
+      "id": "teach-hangul",
+      "name": "한글과 셈 가르치기",
+      "category": "글",
+      "intro": "당신은 글과 셈을 아는 것이 사람을 지킨다는 것을 알고 있다.",
+      "helpsAgainst": [],
+      "byInfluence": {
+        "1": {
+          "text": "당신은 식구들에게 한글과 셈을 가르쳤다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "learning",
+              "delta": 5
+            },
+            {
+              "type": "stat",
+              "stat": "trust",
+              "delta": 2
+            }
+          ]
+        },
+        "2": {
+          "successText": "마을 아이들이 당신에게 글을 배우러 왔다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "trust",
+              "delta": 5
+            },
+            {
+              "type": "flag",
+              "set": "village-teacher"
+            }
+          ]
+        },
+        "3": {
+          "successText": "수령이 고을에 글방을 열게 했다."
+        },
+        "4": {
+          "successText": "조정이 백성에게 한글 책을 널리 펴게 했다.",
+          "record": {
+            "level": "sillok",
+            "templateId": "sillok-hangul"
+          }
+        }
+      }
+    },
+    {
+      "id": "war-prep",
+      "name": "피난 경로와 곡식 숨기기",
+      "category": "전쟁 대비",
+      "intro": "당신은 왜군이 언제, 어느 길로 올라오는지 알고 있다.",
+      "helpsAgainst": [
+        "war",
+        "famine"
+      ],
+      "protectFactor": 0.5,
+      "byInfluence": {
+        "1": {
+          "text": "당신은 가족과 함께 피난 길과 숨을 곳을 미리 정해 두었다."
+        },
+        "2": {
+          "successText": "마을 사람들이 곡식을 숨기고 산으로 갈 채비를 했다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "trust",
+              "delta": 5
+            }
+          ]
+        },
+        "3": {
+          "successText": "수령이 성을 손보고 군량을 모으게 했다."
+        },
+        "4": {
+          "successText": "당신의 상소가 조정에 올라갔다. 믿는 사람은 많지 않았다.",
+          "record": {
+            "level": "sillok",
+            "templateId": "sillok-war-prophecy"
+          }
+        }
+      }
+    },
+    {
+      "id": "farming",
+      "name": "거름과 물 관리",
+      "category": "농법",
+      "intro": "당신은 거름을 삭혀 쓰고 물길을 다스리는 법을 알고 있다.",
+      "helpsAgainst": [
+        "famine"
+      ],
+      "protectFactor": 0.8,
+      "byInfluence": {
+        "1": {
+          "text": "당신의 밭에서 거둔 곡식이 늘었다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "wealth",
+              "delta": 6
+            }
+          ]
+        },
+        "2": {
+          "successText": "이웃들이 당신의 밭을 보고 거름 만드는 법을 물어 왔다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "trust",
+              "delta": 3
+            }
+          ]
+        },
+        "3": {
+          "successText": "수령이 고을의 보를 고치게 했다."
+        },
+        "4": {
+          "successText": "조정이 거름 쓰는 법을 적은 책을 각 도에 내려보냈다.",
+          "record": {
+            "level": "sillok",
+            "templateId": "sillok-farming"
+          }
+        }
+      }
+    },
+    {
+      "id": "bookkeeping",
+      "name": "장부와 시세",
+      "category": "상업",
+      "intro": "당신은 들고 나는 것을 장부에 적고 시세를 따지는 법을 알고 있다.",
+      "helpsAgainst": [],
+      "byInfluence": {
+        "1": {
+          "text": "당신의 집 살림에 남는 것이 생겼다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "wealth",
+              "delta": 8
+            }
+          ]
+        },
+        "2": {
+          "successText": "장터 사람들이 당신에게 셈을 맡기기 시작했다.",
+          "effects": [
+            {
+              "type": "stat",
+              "stat": "trust",
+              "delta": 4
+            },
+            {
+              "type": "stat",
+              "stat": "wealth",
+              "delta": 3
+            }
+          ]
+        },
+        "3": {
+          "successText": "고을 향리들이 당신이 쓰는 장부 형식을 따랐다."
+        }
+      }
+    }
+  ]
+}

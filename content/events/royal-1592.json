@@ -1,0 +1,476 @@
+[
+  {
+    "id": "royal-letters",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 6,
+      "ageMax": 9
+    },
+    "chance": 0.6,
+    "text": "궁궐 안에서 스승에게 글을 배우기 시작했다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "learning",
+        "delta": 8
+      }
+    ],
+    "sourceRefs": [
+      "royal-1592"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-rites",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 10,
+      "notFlags": [
+        "royal-captive"
+      ]
+    },
+    "chance": 0.15,
+    "repeatable": true,
+    "text": "종묘 제례에 나가 하루 종일 자리를 지켰다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "trust",
+        "delta": 3
+      }
+    ],
+    "sourceRefs": [
+      "royal-1592"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-study",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 10,
+      "ageMax": 40
+    },
+    "chance": 0.2,
+    "repeatable": true,
+    "text": "종친들과 경전을 읽는 자리에 나갔다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "learning",
+        "delta": 4
+      }
+    ],
+    "sourceRefs": [
+      "royal-1592"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-marriage",
+    "kind": "random",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 12,
+      "ageMax": 20,
+      "married": false
+    },
+    "chance": 0.4,
+    "text": "왕실 어른들이 정한 집안과 가례를 올렸다.",
+    "effects": [
+      {
+        "type": "family",
+        "event": "married"
+      }
+    ],
+    "sourceRefs": [
+      "royal-1592"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-1592-memorial",
+    "kind": "choice",
+    "when": {
+      "year": 1592,
+      "month": 1
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 12,
+      "memory": [
+        "1592-busan-landing"
+      ]
+    },
+    "text": "1592년 정월. 당신은 석 달 뒤 남쪽 바다에서 무슨 일이 일어나는지 기억하고 있다.",
+    "choices": [
+      {
+        "id": "memorial",
+        "label": "(지식) 왜의 침입을 예언하며 남쪽 방비를 청하는 상소를 올린다",
+        "requires": {
+          "knowledge": [
+            "war-prep"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "war-prep",
+            "attempt": 4
+          }
+        ]
+      },
+      {
+        "id": "family",
+        "label": "(기억) 식구들에게만 일러 북쪽으로 갈 채비를 해 둔다",
+        "requires": {
+          "memory": [
+            "1592-busan-landing"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "royal-ready"
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.6
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "난리가 나기 전에 식구들의 피난 채비를 해 두었다."
+          }
+        ],
+        "result": "당신은 식구들의 짐을 미리 꾸려 두었다."
+      },
+      {
+        "id": "silent",
+        "label": "기억을 마음에 묻는다",
+        "result": "당신은 아무에게도 말하지 않았다."
+      }
+    ],
+    "sourceRefs": [
+      "royal-1592",
+      "modern-knowledge"
+    ],
+    "confidence": "adapted"
+  },
+  {
+    "id": "royal-1592-flight",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 4
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 6
+    },
+    "text": "4월, 왜군이 부산에 상륙했다는 장계가 올라왔다. 그믐에 임금의 행차가 한양을 떠났다.",
+    "choices": [
+      {
+        "id": "follow",
+        "label": "행차를 따라 북으로 간다",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-1592"
+          }
+        ],
+        "result": "당신은 행차의 뒤를 따랐다."
+      },
+      {
+        "id": "recruit",
+        "label": "왕자들과 함께 근왕병을 모으러 간다",
+        "requires": {
+          "sex": "male",
+          "ageMin": 16
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "royal-recruit"
+          }
+        ],
+        "result": "당신은 함경도로 향하는 일행에 들었다."
+      },
+      {
+        "id": "memory",
+        "label": "(기억) 근왕병을 모으러 가는 길은 위험하다. 행차를 따라 서북으로 간다",
+        "requires": {
+          "memory": [
+            "1592-busan-landing"
+          ]
+        },
+        "effects": [
+          {
+            "type": "flag",
+            "set": "fled-1592"
+          },
+          {
+            "type": "protect",
+            "cause": "war",
+            "factor": 0.6
+          },
+          {
+            "type": "change",
+            "scope": "family",
+            "text": "근왕병 일행에 들지 않고 행차를 따라 화를 피했다."
+          }
+        ],
+        "result": "당신은 기억대로 행차 곁을 떠나지 않았다."
+      }
+    ],
+    "memorable": true,
+    "memoryKey": "1592-busan-landing",
+    "sourceRefs": [
+      "royal-1592",
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "royal-1592-uiju",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 6
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "flags": [
+        "fled-1592"
+      ]
+    },
+    "text": "6월, 평양이 함락되고 행차는 의주에 이르렀다. 압록강 너머로 명나라 땅이 보였다.",
+    "effects": [
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -5
+      }
+    ],
+    "sourceRefs": [
+      "royal-1592",
+      "era-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "royal-1592-captured",
+    "kind": "timeline",
+    "when": {
+      "year": 1592,
+      "month": 7
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "flags": [
+        "royal-recruit"
+      ]
+    },
+    "text": "7월, 함경도에서 왕자 일행이 붙잡혀 왜군에게 넘겨졌다.",
+    "outcomes": [
+      {
+        "weight": 60,
+        "text": "당신도 그 일행에 있었다.",
+        "effects": [
+          {
+            "type": "flag",
+            "set": "royal-captive"
+          },
+          {
+            "type": "stat",
+            "stat": "health",
+            "delta": -15
+          },
+          {
+            "type": "stat",
+            "stat": "trust",
+            "delta": -5
+          }
+        ]
+      },
+      {
+        "weight": 40,
+        "text": "당신은 일행과 떨어져 있어 화를 면했다.",
+        "effects": [
+          {
+            "type": "flag",
+            "unset": "royal-recruit"
+          }
+        ]
+      }
+    ],
+    "memorable": true,
+    "sourceRefs": [
+      "royal-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "royal-1593-release",
+    "kind": "timeline",
+    "when": {
+      "year": 1593,
+      "month": 8
+    },
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "flags": [
+        "royal-captive"
+      ]
+    },
+    "text": "강화 협상 끝에 붙잡혀 있던 왕자 일행이 풀려났다.",
+    "effects": [
+      {
+        "type": "flag",
+        "unset": "royal-captive"
+      },
+      {
+        "type": "flag",
+        "unset": "royal-recruit"
+      },
+      {
+        "type": "stat",
+        "stat": "health",
+        "delta": -5
+      }
+    ],
+    "sourceRefs": [
+      "royal-1592"
+    ],
+    "confidence": "confirmed"
+  },
+  {
+    "id": "royal-modern-court",
+    "kind": "choice",
+    "conditions": {
+      "eras": [
+        "1592"
+      ],
+      "statuses": [
+        "royal"
+      ],
+      "ageMin": 16,
+      "regressed": true,
+      "notFlags": [
+        "royal-captive"
+      ]
+    },
+    "chance": 0.2,
+    "repeatable": true,
+    "text": "조정에 글을 올릴 기회가 있었다.",
+    "choices": [
+      {
+        "id": "none",
+        "label": "올릴 말이 없다",
+        "result": "당신은 붓을 내려놓았다."
+      },
+      {
+        "id": "hygiene",
+        "label": "(지식) 역병을 막는 법을 아뢴다",
+        "requires": {
+          "knowledge": [
+            "boil-water"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "boil-water",
+            "attempt": 4
+          }
+        ]
+      },
+      {
+        "id": "vaccination",
+        "label": "(지식) 마마를 막는 법을 아뢴다",
+        "requires": {
+          "knowledge": [
+            "vaccination"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "vaccination",
+            "attempt": 4
+          }
+        ]
+      },
+      {
+        "id": "famine",
+        "label": "(지식) 구황 작물을 널리 심자고 아뢴다",
+        "requires": {
+          "knowledge": [
+            "food-storage"
+          ]
+        },
+        "effects": [
+          {
+            "type": "knowledge",
+            "id": "food-storage",
+            "attempt": 4
+          }
+        ]
+      }
+    ],
+    "sourceRefs": [
+      "royal-1592",
+      "modern-knowledge"
+    ],
+    "confidence": "adapted"
+  }
+]

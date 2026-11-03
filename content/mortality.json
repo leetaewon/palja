@@ -1,0 +1,152 @@
+{
+  "maxAge": 100,
+  "ageBands": [
+    {
+      "min": 0,
+      "max": 0,
+      "hazard": 0.16,
+      "causes": {
+        "illness": 3,
+        "epidemic": 1,
+        "smallpox": 1
+      }
+    },
+    {
+      "min": 1,
+      "max": 4,
+      "hazard": 0.056,
+      "causes": {
+        "illness": 2,
+        "epidemic": 1,
+        "smallpox": 1.5
+      }
+    },
+    {
+      "min": 5,
+      "max": 14,
+      "hazard": 0.011,
+      "causes": {
+        "illness": 2,
+        "epidemic": 2,
+        "smallpox": 1,
+        "accident": 0.5
+      }
+    },
+    {
+      "min": 15,
+      "max": 29,
+      "hazard": 0.005,
+      "causes": {
+        "illness": 3,
+        "epidemic": 2,
+        "accident": 0.5
+      }
+    },
+    {
+      "min": 30,
+      "max": 44,
+      "hazard": 0.0065,
+      "causes": {
+        "illness": 4,
+        "epidemic": 2,
+        "accident": 0.5
+      }
+    },
+    {
+      "min": 45,
+      "max": 54,
+      "hazard": 0.013,
+      "causes": {
+        "illness": 5,
+        "epidemic": 2,
+        "old-age": 1
+      }
+    },
+    {
+      "min": 55,
+      "max": 64,
+      "hazard": 0.027,
+      "causes": {
+        "illness": 4,
+        "epidemic": 1,
+        "old-age": 3
+      }
+    },
+    {
+      "min": 65,
+      "max": 74,
+      "hazard": 0.065,
+      "causes": {
+        "illness": 2,
+        "old-age": 5
+      }
+    },
+    {
+      "min": 75,
+      "max": 84,
+      "hazard": 0.14,
+      "causes": {
+        "illness": 1,
+        "old-age": 6
+      }
+    },
+    {
+      "min": 85,
+      "max": 100,
+      "hazard": 0.3,
+      "causes": {
+        "old-age": 1
+      }
+    }
+  ],
+  "health": {
+    "low": 3,
+    "high": 0.5
+  },
+  "aging": {
+    "baseline": 60,
+    "recovery": 0.2,
+    "from": 40,
+    "perYear": 1,
+    "from2": 60,
+    "perYear2": 2
+  },
+  "causes": [
+    {
+      "id": "illness",
+      "name": "병"
+    },
+    {
+      "id": "smallpox",
+      "name": "마마(두창)"
+    },
+    {
+      "id": "epidemic",
+      "name": "역병"
+    },
+    {
+      "id": "famine",
+      "name": "굶주림"
+    },
+    {
+      "id": "war",
+      "name": "전란"
+    },
+    {
+      "id": "childbirth",
+      "name": "출산"
+    },
+    {
+      "id": "punishment",
+      "name": "형벌"
+    },
+    {
+      "id": "accident",
+      "name": "사고"
+    },
+    {
+      "id": "old-age",
+      "name": "노환"
+    }
+  ]
+}
