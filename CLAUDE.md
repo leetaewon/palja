@@ -42,6 +42,8 @@
 - 사건·지식·기록은 `content/` 데이터로 정의한다. 특정 사건을 위해 엔진에 if 분기를 넣지 않는다. 필요하면 재사용 가능한 조건·효과 타입을 추가하고 `content-schema.md`를 갱신한다.
 - 사용자에게 보이는 텍스트는 모두 한국어. 문체는 `writing-guide.md`를 따른다.
 - `localStorage` 접근은 항상 `try/catch`.
+- 배포는 Cloudflare Pages Git 연동이다. `npm run build` → `dist`, Vite `base: '/'`를 유지한다. GitHub Pages 워크플로를 만들지 않는다.
+- 모바일 우선, 라이트 모드 기본 (PRD 10-1, 10-2).
 
 ## 하지 않는 것
 

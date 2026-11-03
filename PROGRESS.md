@@ -9,7 +9,7 @@
 
 ## 다음 할 일
 1. `phase-1-engine` 브랜치를 만든다.
-2. Vite + React + TypeScript 초기화, Vitest·ESLint 설정, `package.json` 스크립트(test·build·lint·sim:lives) 확정 후 CLAUDE.md 명령 표 갱신.
+2. Vite + React + TypeScript 초기화 (`base: '/'`, `.node-version`에 Node LTS 고정 — Cloudflare Pages 빌드용), Vitest·ESLint 설정, `package.json` 스크립트(test·build·lint·sim:lives) 확정 후 CLAUDE.md 명령 표 갱신.
 3. `src/engine/`에 시드 RNG → 출생 결정 → 연 단위 진행 → 사건 평가 → 사망 모델 순으로 테스트와 함께 구현.
 4. `content/`에 1592 시점 최소 콘텐츠 작성 (PRD 12장 Phase 1 기준).
 5. `sim:lives`로 PRD 6-1 보정 목표 맞추기.

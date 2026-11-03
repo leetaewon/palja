@@ -5,8 +5,21 @@
 ## 0. 시작 전 확인
 
 - [ ] 로컬 `palja`의 커밋을 GitHub에 Push했다 (`git push`)
-- [ ] 저장소 Settings → Pages → Source를 **GitHub Actions**로 바꿨다 (Phase 2 배포용)
+- [ ] Cloudflare Pages에 저장소를 연결했다 (아래 0-1)
 - [ ] 클라우드 세션에서 `leetaewon/palja` 저장소를 연결했다
+
+### 0-1. Cloudflare Pages 연결 (한 번만)
+1. Cloudflare 대시보드 → Workers & Pages → Create → **Pages** → Git 연결 → `leetaewon/palja` 선택
+2. 빌드 설정
+   - Production branch: `main`
+   - Framework preset: Vite (없으면 None)
+   - Build command: `npm run build`
+   - Build output directory: `dist`
+   - 환경 변수: 비워 둔다 (Node 버전은 저장소의 `.node-version`이 정한다)
+3. 저장하고 배포. **main에 아직 코드가 없어 첫 배포는 실패한다. 정상이다.** Phase 1 PR부터 미리보기 빌드가 돌고, 병합하면 프로덕션이 뜬다.
+4. 주소: `https://palja.pages.dev` (프로젝트 이름에 따라 다름). 서브도메인 연결은 나중에.
+
+> Cloudflare는 새 프로젝트에 Workers를 권장하지만, 이 게임은 정적 사이트라 Pages로 충분하다.
 
 ## 1. 진행 원칙
 
@@ -41,11 +54,12 @@ CLAUDE.md를 먼저 읽고 순서대로 진행해줘. Phase 1은 main에 병합�
 PRD 12장의 Phase 2(화면과 1차 공개)를 진행해줘.
 - main에서 phase-2-ui 브랜치를 만들어 작업해.
 - PRD 10장 화면과 10-1 디자인 원칙을 따르고, 흔한 템플릿 느낌이 아닌
-  한지·먹·도장 톤의 개성 있는 화면으로 만들어줘.
+  한지·먹·도장 톤의 개성 있는 화면으로 만들어줘. 모바일 우선이고, 10-2의 화면 크기별 레이아웃을 따라.
+  라이트 모드가 기본이고 다크 모드는 전환 버튼으로.
 - 화면을 만들 때마다 Playwright로 스크린샷을 찍어 직접 확인하고 깨진 곳을 고쳐.
-  1280px·390px, 라이트·다크 모두 확인해.
-- GitHub Pages 배포 워크플로를 만들고(Vite base '/palja/'), 1592 시점으로 1차 공개할 수 있게 해줘.
-  나머지 시점은 "준비 중"으로 표시해.
+  360px·390px·1280px, 라이트·다크 모두 확인해.
+- 배포는 Cloudflare Pages가 저장소에 연결돼 있어. `npm run build` → `dist`, base '/'를 유지하고
+  GitHub Pages 워크플로는 만들지 마. 나머지 시점은 "준비 중"으로 표시해.
 - 완료 기준을 모두 만족하면 PR을 만들고, 본문에 체크리스트·스크린샷 경로를 넣어줘.
 
 끝까지 진행해줘.
