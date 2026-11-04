@@ -27,7 +27,7 @@ export function AboutScreen({ onCleared }: { onCleared: () => void }) {
       <main className="about prose">
         <h1 className="display">이 게임에 대하여</h1>
         <p>
-        「팔자」는 이 땅의 지난 시대 어딘가에 무작위로 태어나 한 번의 일생을 사는 텍스트 게임입니다. 태어난 시대와 신분이 삶의 거의
+        「팔자록」은 이 땅의 지난 시대 어딘가에 무작위로 태어나 한 번의 일생을 사는 텍스트 게임입니다. 태어난 시대와 신분이 삶의 거의
           모든 것을 정합니다. 죽은 뒤에는 같은 삶으로 돌아가 팔자를 고쳐 보거나, 전혀 다른 삶으로 다시 태어날 수 있어요.
         </p>
         <Notice />
