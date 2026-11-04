@@ -44,6 +44,11 @@ export async function liveToDeath(
       await decadeConfirm.click();
       continue;
     }
+    const pendingBtn = page.getByRole('button', { name: /변곡점 정하기/ });
+    if (await pendingBtn.isVisible()) {
+      await pendingBtn.click();
+      continue;
+    }
     const sheet = page.locator('.sheet');
     if (await sheet.count()) {
       const special = opts.prefer ? sheet.locator(`.choice--${opts.prefer}`) : null;

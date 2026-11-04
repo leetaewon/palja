@@ -2609,6 +2609,27 @@ button {
   margin-bottom: 16px;
 }
 
+.decade-modal__top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.decade-modal__close {
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px 8px;
+  color: var(--ink-2);
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.decade-modal__close:hover {
+  color: var(--ink);
+  border-color: var(--line);
+}
+
 .decade-modal__title {
   font-family: 'Song Myung', 'Gowun Batang', serif;
   font-size: 26px;
@@ -2654,6 +2675,12 @@ button {
   border-color: var(--ink);
 }
 
+.decade-opt-btn.is-disabled,
+.decade-opt-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .decade-opt-btn__desc {
   font-size: 12px;
   opacity: 0.8;
@@ -2684,8 +2711,163 @@ button {
   font-weight: 700;
 }
 
+.decade-reflect-btn.is-disabled,
+.decade-reflect-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .decade-modal__foot {
   margin-top: 20px;
+}
+
+/* 생애의 변곡점 배너 및 타임라인 요소 */
+.dock__pending-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--paper-2);
+  border: 2px solid var(--seal);
+  padding: 12px 16px;
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+
+.dock__pending-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dock__pending-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--seal);
+  background: rgba(162, 44, 41, 0.1);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.dock__pending-text {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.dock__pending-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 현재의 마음가짐 뷰 */
+.current-mindset {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  padding: 10px 14px;
+  border-radius: 4px;
+}
+
+.current-mindset__label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.current-mindset__label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.current-mindset__hint {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.current-mindset__card {
+  display: flex;
+  align-items: center;
+}
+
+.current-mindset__child-text {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+.current-mindset__content {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.current-mindset__badge {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+.current-mindset__desc {
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+/* 타임라인 연도 내 변곡점 기록/정하기 */
+.chronicle__decade-box {
+  margin: 12px 0 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+
+.decade-review-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--paper-3);
+  border: 1px solid var(--line);
+  padding: 6px 12px;
+  border-radius: 3px;
+  color: var(--ink);
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.decade-review-link:hover {
+  background: var(--paper-2);
+  border-color: var(--ink-2);
+}
+
+.decade-review-link__icon {
+  font-size: 15px;
+}
+
+.decade-review-link__title {
+  font-weight: 600;
+}
+
+.decade-review-link__badge {
+  font-size: 12px;
+  padding: 1px 6px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--ink-2);
+}
+
+.decade-pending-trigger {
+  font-size: 13.5px;
+  padding: 6px 14px;
 }
 
 /* 5. 엔딩 연대기 다시 읽기 */
