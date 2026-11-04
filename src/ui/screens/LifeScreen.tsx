@@ -95,13 +95,30 @@ export function LifeScreen({
   const choose = useCallback(
     (choiceId: string) => {
       if (!life.pending) return;
-      setLife(resolveChoice(content, life, choiceId));
+      const nextLife = resolveChoice(content, life, choiceId);
+      setLife(nextLife);
+      if (nextLife.age > 0 && nextLife.age % 10 === 0 && !nextLife.dead && !confirmedDecades[nextLife.age]) {
+        setPendingDecadeAge(nextLife.age);
+        if (decadeTimerRef.current) clearTimeout(decadeTimerRef.current);
+        decadeTimerRef.current = window.setTimeout(() => {
+          const curLife = lifeRef.current;
+          if (curLife.pending) return;
+          setViewingDecade({
+            age: curLife.age,
+            year: curLife.year,
+            mindset: curLife.mindset === 'child' ? 'work' : curLife.mindset,
+            summary: getDecadeSummary(curLife, curLife.age),
+            readOnly: false,
+          });
+        }, 1800);
+      }
     },
-    [content, life, setLife],
+    [content, life, confirmedDecades, setLife],
   );
 
   // 10년 주기(10, 20, 30세...)가 되면 일시정지하고, 타임라인을 읽을 여유(1.8초)를 둔 뒤 모달을 띄운다
   useEffect(() => {
+    if (life.pending) return;
     if (prevAge.current !== life.age && life.age > 0 && life.age % 10 === 0 && !life.dead) {
       wasPlaying.current = playing;
       setPlaying(false);
@@ -110,6 +127,7 @@ export function LifeScreen({
       if (decadeTimerRef.current) clearTimeout(decadeTimerRef.current);
       decadeTimerRef.current = window.setTimeout(() => {
         const curLife = lifeRef.current;
+        if (curLife.pending) return;
         setViewingDecade({
           age: curLife.age,
           year: curLife.year,
@@ -123,7 +141,7 @@ export function LifeScreen({
     return () => {
       if (decadeTimerRef.current) clearTimeout(decadeTimerRef.current);
     };
-  }, [life.age, life.dead, playing]);
+  }, [life.age, life.dead, life.pending, playing]);
 
   const openPendingDecade = useCallback(
     (targetAge?: number) => {

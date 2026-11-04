@@ -44,17 +44,17 @@ export async function liveToDeath(
       await decadeConfirm.click();
       continue;
     }
-    const pendingBtn = page.getByRole('button', { name: /변곡점 정하기/ });
-    if (await pendingBtn.isVisible()) {
-      await pendingBtn.click();
-      continue;
-    }
     const sheet = page.locator('.sheet');
     if (await sheet.count()) {
       const special = opts.prefer ? sheet.locator(`.choice--${opts.prefer}`) : null;
       if (special && (await special.count())) await special.first().click();
       else await sheet.locator('.choice').first().click();
       choices++;
+      continue;
+    }
+    const pendingBtn = page.locator('.dock__pending-btn');
+    if (await pendingBtn.isVisible()) {
+      await pendingBtn.click();
       continue;
     }
     const step = page.getByRole('button', { name: '한 해 넘기기' });

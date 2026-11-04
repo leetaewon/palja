@@ -41,21 +41,21 @@ test('키보드만으로 한 인생을 끝내고 팔자를 고친다', async ({ 
   let choices = 0;
   for (let i = 0; i < 500; i++) {
     if (await page.getByTestId('death-line').count()) break;
-    const decadeConfirm = page.getByRole('button', { name: '이 마음으로 살아가기' });
-    if (await decadeConfirm.isVisible()) {
-      await decadeConfirm.click();
-      continue;
-    }
-    const pendingBtn = page.getByRole('button', { name: /변곡점 정하기/ });
-    if (await pendingBtn.isVisible()) {
-      await pendingBtn.click();
-      continue;
-    }
     if (await page.locator('.sheet').count()) {
       // 갈림길이 열리면 첫 선택지에 포커스가 간다
       await expect(page.locator('.sheet .choice').first()).toBeFocused();
       await page.keyboard.press('1');
       choices++;
+      continue;
+    }
+    const decadeConfirm = page.getByRole('button', { name: '이 마음으로 살아가기' });
+    if (await decadeConfirm.isVisible()) {
+      await decadeConfirm.click();
+      continue;
+    }
+    const pendingBtn = page.locator('.dock__pending-btn');
+    if (await pendingBtn.isVisible()) {
+      await pendingBtn.click();
       continue;
     }
     await page.keyboard.press('ArrowRight');
