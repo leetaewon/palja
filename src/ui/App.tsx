@@ -28,6 +28,7 @@ import { SourcesScreen } from './screens/SourcesScreen';
 import { AboutScreen } from './screens/AboutScreen';
 import { AppContext, type Nav, type Screen } from './context';
 import { RegressTransition, type RegressTransitionProps } from './components/RegressTransition';
+import { InAppBanner } from './components/InAppBanner';
 import { prefersReducedMotion } from './lib/motion';
 import { fullName } from './lib/text';
 
@@ -211,6 +212,7 @@ function Game({ content }: { content: Content }) {
 
   return (
     <AppContext.Provider value={ctx}>
+      <InAppBanner />
       {fx ? <RegressTransition {...fx} onDone={endFx} /> : body}
     </AppContext.Provider>
   );
