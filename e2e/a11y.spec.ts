@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
-import { liveToDeath, startWithSeed } from './helpers';
+import { liveToDeath, setTheme, startWithSeed } from './helpers';
 
 // 접근성 점검 (PRD 10-1, 12장 Phase 4): 화면마다 axe로 WCAG 2.1 AA 규칙(명도 대비·이름표·랜드마크 등)을 라이트·다크에서 본다.
 const SEED = 'palja58';
@@ -14,7 +14,7 @@ async function audit(page: Page, where: string) {
 for (const theme of ['light', 'dark'] as const) {
   test(`axe 점검 · ${theme}`, async ({ page }) => {
     await startWithSeed(page, SEED);
-    if (theme === 'dark') await page.getByRole('button', { name: '어두운 화면으로 바꾸기' }).click();
+    if (theme === 'dark') await setTheme(page, 'dark');
     await audit(page, '출생');
     await page.getByRole('button', { name: '처음으로' }).click();
     await audit(page, '타이틀');

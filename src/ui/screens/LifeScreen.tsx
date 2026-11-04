@@ -17,6 +17,7 @@ import { useApp } from '../context';
 import { ConfidenceTag, ThemeToggle } from '../components/common';
 import { StatBars, StatLine } from '../components/StatBars';
 import { ChoiceSheet } from '../components/ChoiceSheet';
+import { DecadeModal } from '../components/DecadeModal';
 import { eraLabelOf } from '../lib/eras';
 import { memoryLines } from '../lib/memory';
 import { deathSentence, regressionLabel, reignOf } from '../lib/summary';
@@ -44,6 +45,8 @@ export function LifeScreen({
   const [mindset, setMindset] = useState(life.mindset === 'child' ? 'work' : life.mindset);
   const [panelOpen, setPanelOpen] = useState(false);
   const [hint, setHint] = useState<string | null>(null);
+  const [decadeModalOpen, setDecadeModalOpen] = useState(false);
+  const wasPlaying = useRef(false);
   const child = life.age < CHILD_AGE;
   const prevAge = useRef(life.age);
 
@@ -61,21 +64,31 @@ export function LifeScreen({
     [content, life, setLife],
   );
 
-  // 열 살이 되면 한 번 멈추고 마음가짐을 고르게 한다
+  // 10년 주기(10, 20, 30세...)가 되면 멈추고 지난 10년 요약 및 마음가짐/소회 선택창을 띄운다
   useEffect(() => {
-    if (prevAge.current < CHILD_AGE && life.age >= CHILD_AGE && !life.dead) {
+    if (prevAge.current !== life.age && life.age > 0 && life.age % 10 === 0 && !life.dead) {
+      wasPlaying.current = playing;
       setPlaying(false);
-      setHint('열 살이 되었어요. 이제 해마다 마음가짐을 고를 수 있어요. 고른 뒤 다시 진행해 주세요.');
+      setDecadeModalOpen(true);
     }
     prevAge.current = life.age;
-  }, [life.age, life.dead]);
+  }, [life.age, life.dead, playing]);
 
-  // 자동 진행: 한 해 약 3초, 빨리 감기 3배. 갈림길·죽음에서는 멈춘다
+  // 직전 해가 별일 없이 지나갔는지 여부
+  const isQuiet = useMemo(() => {
+    if (life.log.length === 0) return false;
+    const lastYear = life.year - 1;
+    const entries = life.log.filter((e) => e.year === lastYear);
+    return entries.length === 0 || entries.every((e) => !e.eventId && e.text.includes('별일 없이'));
+  }, [life.log, life.year]);
+
+  // 자동 진행: 보통 3초, 빨리 감기 3배. 별일 없는 해는 1/3로 단축. 갈림길·죽음·10년 요약에서는 멈춘다
   useEffect(() => {
-    if (!playing || life.dead || life.pending) return;
-    const t = window.setTimeout(step, YEAR_MS / speed);
+    if (!playing || life.dead || life.pending || decadeModalOpen) return;
+    const delay = isQuiet ? Math.max(350, Math.round(YEAR_MS / speed / 3)) : Math.round(YEAR_MS / speed);
+    const t = window.setTimeout(step, delay);
     return () => window.clearTimeout(t);
-  }, [playing, life, speed, step]);
+  }, [playing, life.dead, life.pending, decadeModalOpen, isQuiet, speed, step]);
 
   // 키보드: 숫자키 마음가짐/선택지, 스페이스 진행·멈춤, → 한 해 넘기기, Enter 기록 보기
   useEffect(() => {
@@ -192,7 +205,7 @@ export function LifeScreen({
           onClick={() => setPanelOpen((o) => !o)}
         >
           <span className="life-top__who">
-            {fullName(life.birth)} · {status.name}
+            {fullName(life.birth)} · {status.name} · {life.birth.sex === 'male' ? '남' : '여'}
           </span>
           <StatLine stats={life.stats} />
           <span className="life-top__chev" aria-hidden="true">
@@ -242,6 +255,27 @@ export function LifeScreen({
       </p>
 
       {life.pending && <ChoiceSheet content={content} life={life} onChoose={choose} openSources={openSources} />}
+
+      {decadeModalOpen && (
+        <DecadeModal
+          open={decadeModalOpen}
+          content={content}
+          life={life}
+          currentMindset={mindset}
+          onConfirm={(newMindset, reflectionText) => {
+            setMindset(newMindset);
+            setLife({
+              ...life,
+              mindset: newMindset,
+              flags: [...life.flags, `reflection:${reflectionText}`],
+            });
+            setDecadeModalOpen(false);
+            if (wasPlaying.current) {
+              setPlaying(true);
+            }
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -415,7 +449,8 @@ function SidePanel({ content, life }: { content: Content; life: LifeState }) {
       <section className="panel__sec">
         <h2 className="label">나</h2>
         <p className="panel__who">
-          {fullName(life.birth)} <span className="panel__status">{status.name}</span>
+          {fullName(life.birth)} <span className="panel__status">{status.name}</span>{' '}
+          <span className="badge badge--sex">{life.birth.sex === 'male' ? '남성' : '여성'}</span>
         </p>
         {status.id !== born.id && <p className="hint">태어날 때 신분: {born.name}</p>}
         <StatBars stats={life.stats} />

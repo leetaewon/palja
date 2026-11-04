@@ -3,9 +3,12 @@ import type { Content, LifeState, RecordLevel } from '../../engine';
 import { RECORD_LEVELS } from '../../engine';
 
 const KEY_THEME = 'palja:theme';
+const KEY_FONT = 'palja:font';
+const KEY_FONT_SIZE = 'palja:font-size';
 const KEY_SAVE = 'palja:save';
 const KEY_CODEX = 'palja:codex';
 const KEY_SPEED = 'palja:speed';
+const KEY_HISTORY = 'palja:history';
 
 function read(key: string): string | null {
   try {
@@ -53,6 +56,28 @@ export function loadTheme(): Theme {
 
 export function saveTheme(t: Theme) {
   write(KEY_THEME, t);
+}
+
+// ───────────── 글꼴 및 크기 ─────────────
+
+export type FontStyle = 'serif' | 'sans';
+export type FontSize = 'sm' | 'md' | 'lg';
+
+export function loadFont(): FontStyle {
+  return read(KEY_FONT) === 'sans' ? 'sans' : 'serif';
+}
+
+export function saveFont(f: FontStyle) {
+  write(KEY_FONT, f);
+}
+
+export function loadFontSize(): FontSize {
+  const s = read(KEY_FONT_SIZE);
+  return s === 'sm' || s === 'lg' ? s : 'md';
+}
+
+export function saveFontSize(s: FontSize) {
+  write(KEY_FONT_SIZE, s);
 }
 
 // ───────────── 속도 ─────────────
@@ -132,4 +157,41 @@ export function addToCodex(life: LifeState, record: RecordLevel): CodexData {
 export function clearAll() {
   remove(KEY_SAVE);
   remove(KEY_CODEX);
+  remove(KEY_HISTORY);
+}
+
+// ───────────── 최근 삶의 기록 (최근 5회) ─────────────
+
+export interface RecentLife {
+  id: string; // seed#lifeIndex
+  timestamp: number;
+  eraId: string;
+  eraTitle: string;
+  name: string;
+  sex: 'male' | 'female';
+  statusName: string;
+  birthYear: number;
+  deathYear: number;
+  ageAtDeath: number;
+  causeName: string;
+  birthSentence: string;
+  deathSentence: string;
+  recordText: string | null;
+  recordLevel: RecordLevel;
+  epitaph: string;
+  lifeIndex: number;
+  changes: Array<{ year: number; scope: string; text: string }>;
+  log: Array<{ year: number; age: number; text: string; kind?: string }>;
+}
+
+export function loadRecentLives(): RecentLife[] {
+  const d = readJson<RecentLife[]>(KEY_HISTORY);
+  return Array.isArray(d) ? d : [];
+}
+
+export function addRecentLife(life: RecentLife): RecentLife[] {
+  const list = loadRecentLives();
+  const next = [life, ...list.filter((x) => x.id !== life.id)].slice(0, 5);
+  write(KEY_HISTORY, JSON.stringify(next));
+  return next;
 }

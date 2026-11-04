@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 import type { Content } from '../engine';
-import type { Theme } from './lib/storage';
+import type { FontSize, FontStyle, Theme } from './lib/storage';
 
 export type Screen =
   | { name: 'title' }
@@ -24,6 +24,9 @@ export interface AppCtx {
   nav: Nav;
   theme: Theme;
   toggleTheme: () => void;
+  font: FontStyle;
+  fontSize: FontSize;
+  applySettings: (settings: { theme: Theme; font: FontStyle; fontSize: FontSize }) => void;
   speed: 1 | 3;
   setSpeed: (s: 1 | 3) => void;
 }

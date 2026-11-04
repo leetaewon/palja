@@ -1,8 +1,9 @@
-// 여러 화면이 함께 쓰는 조각: 도장, 윗줄, 테마 전환, 신뢰도 표시
-import { useId, type ReactNode } from 'react';
+// 여러 화면이 함께 쓰는 조각: 도장, 윗줄, 설정, 신뢰도 표시
+import { useId, useState, type ReactNode } from 'react';
 import type { Confidence } from '../../engine';
 import { useApp } from '../context';
 import { CONFIDENCE_HELP, CONFIDENCE_LABEL } from '../lib/text';
+import { SettingsModal } from './SettingsModal';
 
 /** 붉은 도장. 글자 2자는 세로 한 줄, 4자는 오른쪽 줄부터 2×2로 찍는다 */
 export function Seal({ text, size = 56, className = '', tilt = -4 }: { text: string; size?: number; className?: string; tilt?: number }) {
@@ -59,24 +60,38 @@ export function Seal({ text, size = 56, className = '', tilt = -4 }: { text: str
   );
 }
 
-export function ThemeToggle() {
-  const { theme, toggleTheme } = useApp();
-  const dark = theme === 'dark';
+export function SettingsButton() {
+  const { theme, font, fontSize, applySettings } = useApp();
+  const [open, setOpen] = useState(false);
   return (
-    <button
-      type="button"
-      className="icon-btn theme-toggle"
-      onClick={toggleTheme}
-      aria-label={dark ? '한지: 밝은 화면으로 바꾸기' : '먹: 어두운 화면으로 바꾸기'}
-      title={dark ? '밝게' : '어둡게'}
-    >
-      <span className="theme-toggle__dot" aria-hidden="true" />
-      <span className="theme-toggle__label">{dark ? '한지' : '먹'}</span>
-    </button>
+    <>
+      <button
+        type="button"
+        className="icon-btn theme-toggle"
+        onClick={() => setOpen(true)}
+        aria-label="화면 및 글꼴 설정"
+        title="설정"
+      >
+        <span className="theme-toggle__dot" aria-hidden="true" />
+        <span className="theme-toggle__label">설정</span>
+      </button>
+      <SettingsModal
+        open={open}
+        onClose={() => setOpen(false)}
+        currentTheme={theme}
+        currentFont={font}
+        currentFontSize={fontSize}
+        onApply={applySettings}
+      />
+    </>
   );
 }
 
-/** 화면 맨 윗줄: 왼쪽 뒤로/처음, 가운데 제목, 오른쪽 테마 */
+export function ThemeToggle() {
+  return <SettingsButton />;
+}
+
+/** 화면 맨 윗줄: 왼쪽 뒤로/처음, 가운데 제목, 오른쪽 설정 */
 export function TopBar({ title, back, children }: { title?: ReactNode; back?: 'back' | 'home' | null; children?: ReactNode }) {
   const { nav } = useApp();
   return (
@@ -96,7 +111,7 @@ export function TopBar({ title, back, children }: { title?: ReactNode; back?: 'b
       <div className="topbar__title">{title}</div>
       <div className="topbar__right">
         {children}
-        <ThemeToggle />
+        <SettingsButton />
       </div>
     </header>
   );

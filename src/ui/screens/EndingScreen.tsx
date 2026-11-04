@@ -1,14 +1,29 @@
 // 엔딩: 기록 (PRD 8장)
-import { useMemo, useState } from 'react';
-import { findStatus, judgeEnding, MAX_REGRESSIONS, neighbors, type LifeState } from '../../engine';
+import { useEffect, useMemo, useState } from 'react';
+import { findEra, findStatus, judgeEnding, MAX_REGRESSIONS, neighbors, type Ending, type LifeState } from '../../engine';
 import { useApp } from '../context';
 import { BrushRule, Seal, TopBar } from '../components/common';
 import { eraLabelOf } from '../lib/eras';
+import { addRecentLife } from '../lib/storage';
 import { birthSentence, deathSentence, regressionLabel, resultText } from '../lib/summary';
 import { fullName, josa, RECORD_LABEL, SCOPE_LABEL } from '../lib/text';
 import { useRevealSkip } from '../lib/motion';
 
 const EPITAPH_MAX = 40;
+
+function getSuggestedEpitaph(life: LifeState, ending: Ending): string {
+  const age = life.dead?.age ?? 0;
+  const cause = life.dead?.cause ?? '';
+  if (age < 5) return '짧은 봄날 꿈처럼 지나간 삶.';
+  if (age < 15) return '피어나지 못한 꽃봉오리로 잠들다.';
+  if (cause === 'war' || cause.includes('전란')) return '모진 전란 속에서도 물러서지 않았다.';
+  if (cause === 'epidemic' || cause.includes('역병') || cause.includes('두창') || cause.includes('마마')) return '모진 돌림병 속에서도 묵묵히 버텨낸 생애.';
+  if (ending.record.level === 'sillok' || ending.record.level === 'munjip') return '세상에 뜻을 펴고 나라의 기록에 이름을 남기다.';
+  if (ending.changes.length > 0) return '작은 힘으로 세상을 조금이나마 따뜻하게 밝혔으니 여한이 없다.';
+  if (life.statusId === 'slave' || life.birth.statusId === 'slave') return '흙에서 태어나 평생 땀 흘리다 흙으로 돌아가다.';
+  if (age >= 60) return '모진 풍파를 다 겪고 평안히 눈을 감다.';
+  return '이 땅에 태어나 한평생 정직하게 살다 가다.';
+}
 
 async function copyText(text: string): Promise<boolean> {
   try {
@@ -50,9 +65,44 @@ export function EndingScreen({
   const people = useMemo(() => neighbors(content, life.birth), [content, life.birth]);
   const [copied, setCopied] = useState<'idle' | 'ok' | 'fail'>('idle');
   const [showPeople, setShowPeople] = useState(life.dead ? life.dead.age >= 5 : true);
+  const [showTimeline, setShowTimeline] = useState(false);
   const short = (life.dead?.age ?? 0) < 5;
   const rec = ending.record;
   const status = findStatus(content, life.birth.eraId, life.statusId);
+
+  // 묘비명이 비어 있으면 추천 문구 자동 채우기
+  useEffect(() => {
+    if (!epitaph.trim()) {
+      setEpitaph(getSuggestedEpitaph(life, ending));
+    }
+  }, [life, ending, epitaph, setEpitaph]);
+
+  // 최근 삶의 기록 저장
+  useEffect(() => {
+    if (!life.dead) return;
+    const era = findEra(content, life.birth.eraId);
+    addRecentLife({
+      id: `${life.seed}#${life.lifeIndex}`,
+      timestamp: Date.now(),
+      eraId: life.birth.eraId,
+      eraTitle: era.title,
+      name: fullName(life.birth),
+      sex: life.birth.sex,
+      statusName: status.name,
+      birthYear: life.birth.year,
+      deathYear: life.dead.year,
+      ageAtDeath: life.dead.age,
+      causeName: ending.causeName,
+      birthSentence: birthSentence(content, life),
+      deathSentence: deathSentence(ending),
+      recordText: rec.text ?? null,
+      recordLevel: rec.level,
+      epitaph: epitaph.trim() || getSuggestedEpitaph(life, ending),
+      lifeIndex: life.lifeIndex,
+      changes: ending.changes,
+      log: life.log.map((l) => ({ year: l.year, age: l.age, text: l.text, kind: l.kind })),
+    });
+  }, [content, life, ending, rec, status, epitaph]);
   // 이 시점의 기록 엔딩 근거와 사망 모델 근거를 먼저 보여 준다
   const endingSources = [`records-${life.birth.eraId}`, 'life-expectancy', 'mortality-model'].filter((id) =>
     content.sources.some((s) => s.id === id),
@@ -156,6 +206,31 @@ export function EndingScreen({
           ) : (
             <button type="button" className="text-btn" onClick={() => setShowPeople(true)}>
               펼쳐 보기
+            </button>
+          )}
+        </section>
+
+        <section className="timeline-review" aria-labelledby="timeline-h">
+          <h2 id="timeline-h" className="label">
+            일생 연대기
+          </h2>
+          {showTimeline ? (
+            <div className="timeline-review__content">
+              <button type="button" className="text-btn timeline-review__toggle" onClick={() => setShowTimeline(false)}>
+                ▴ 연대기 접기
+              </button>
+              <ol className="timeline-review__list">
+                {life.log.map((l, i) => (
+                  <li key={i} className={`timeline-review__item timeline-review__item--${l.kind || 'normal'}`}>
+                    <span className="timeline-review__year">{l.year}년 ({l.age}세)</span>
+                    <span className="timeline-review__text">{l.text}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ) : (
+            <button type="button" className="btn btn--ghost timeline-review__open" onClick={() => setShowTimeline(true)}>
+              일생 연대기 전체 다시 읽기 ({life.log.length}개 기록) ▾
             </button>
           )}
         </section>

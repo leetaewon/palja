@@ -2,7 +2,22 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { createBirth, createLife, judgeEnding, regress, type Content, type LifeState } from '../engine';
 import { loadContent } from '../content';
-import { addToCodex, loadSave, loadSpeed, loadTheme, saveSpeed, saveTheme, storeSave, type Theme } from './lib/storage';
+import {
+  addToCodex,
+  loadFont,
+  loadFontSize,
+  loadSave,
+  loadSpeed,
+  loadTheme,
+  saveFont,
+  saveFontSize,
+  saveSpeed,
+  saveTheme,
+  storeSave,
+  type FontSize,
+  type FontStyle,
+  type Theme,
+} from './lib/storage';
 import { newSeed } from './lib/seed';
 import { TitleScreen } from './screens/TitleScreen';
 import { BirthScreen } from './screens/BirthScreen';
@@ -47,6 +62,8 @@ function Game({ content }: { content: Content }) {
   const [epitaphs, setEpitaphs] = useState<Record<string, string>>(initialSave?.epitaphs ?? {});
   const [stack, setStack] = useState<Screen[]>([{ name: 'title' }]);
   const [theme, setTheme] = useState<Theme>(loadTheme);
+  const [font, setFont] = useState<FontStyle>(loadFont);
+  const [fontSize, setFontSize] = useState<FontSize>(loadFontSize);
   const [speed, setSpeedState] = useState<1 | 3>(loadSpeed);
   const [fx, setFx] = useState<Omit<RegressTransitionProps, 'onDone'> | null>(null);
   const screen = stack[stack.length - 1];
@@ -60,12 +77,28 @@ function Game({ content }: { content: Content }) {
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#17140f' : '#f2ebdd');
   }, [theme]);
 
+  // 글꼴 및 글자 크기
+  useEffect(() => {
+    const root = document.documentElement;
+    root.dataset.font = font;
+    root.dataset.fontSize = fontSize;
+  }, [font, fontSize]);
+
   const toggleTheme = useCallback(() => {
     setTheme((t) => {
       const next = t === 'dark' ? 'light' : 'dark';
       saveTheme(next);
       return next;
     });
+  }, []);
+
+  const applySettings = useCallback((settings: { theme: Theme; font: FontStyle; fontSize: FontSize }) => {
+    setTheme(settings.theme);
+    saveTheme(settings.theme);
+    setFont(settings.font);
+    saveFont(settings.font);
+    setFontSize(settings.fontSize);
+    saveFontSize(settings.fontSize);
   }, []);
 
   const setSpeed = useCallback((s: 1 | 3) => {
@@ -138,8 +171,8 @@ function Game({ content }: { content: Content }) {
   }, [life, nav]);
 
   const ctx = useMemo(
-    () => ({ content, nav, theme, toggleTheme, speed, setSpeed }),
-    [content, nav, theme, toggleTheme, speed, setSpeed],
+    () => ({ content, nav, theme, toggleTheme, font, fontSize, applySettings, speed, setSpeed }),
+    [content, nav, theme, toggleTheme, font, fontSize, applySettings, speed, setSpeed],
   );
 
   let body: React.ReactNode = null;

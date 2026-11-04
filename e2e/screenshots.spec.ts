@@ -11,7 +11,11 @@ const THEMES = ['light', 'dark'] as const;
 const SEED = 'palja58';
 
 async function setTheme(page: Page, theme: 'light' | 'dark') {
-  if (theme === 'dark') await page.getByRole('button', { name: '어두운 화면으로 바꾸기' }).click();
+  if (theme === 'dark') {
+    await page.getByRole('button', { name: /설정/ }).first().click();
+    await page.getByRole('button', { name: /먹 \(어두운 화면\)/ }).click();
+    await page.getByRole('button', { name: '적용하기' }).click();
+  }
 }
 
 for (const width of WIDTHS) {

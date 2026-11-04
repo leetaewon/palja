@@ -53,7 +53,9 @@ test('라이트 기본, 다크 전환은 기억된다', async ({ page }) => {
   await page.evaluate(() => localStorage.clear());
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
-  await page.getByRole('button', { name: '어두운 화면으로 바꾸기' }).click();
+  await page.getByRole('button', { name: /설정/ }).first().click();
+  await page.getByRole('button', { name: /먹 \(어두운 화면\)/ }).click();
+  await page.getByRole('button', { name: '적용하기' }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
