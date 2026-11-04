@@ -42,7 +42,7 @@ test('저장과 이어하기, 도감', async ({ page }) => {
   await page.getByRole('button', { name: /이어하기/ }).click();
   await expect(page.getByTestId('year')).toHaveText(year);
 
-  await page.getByRole('button', { name: '처음 화면으로' }).click();
+  await page.getByRole('button', { name: '처음으로' }).click();
   await page.getByRole('button', { name: '인생 도감' }).click();
   await expect(page.getByTestId('codex-count')).toHaveText('0');
 });

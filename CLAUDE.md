@@ -63,7 +63,7 @@
 | `npm run lint` | ESLint (엔진 순수성·`Math.random` 금지 규칙 포함) |
 | `npm run build` | 타입 검사 + 프로덕션 빌드 (`dist`) |
 | `npm run sim:lives` | 1만 인생 시뮬레이션 리포트. `-- --n 2000`으로 표본 수, `-- --json`으로 JSON 출력 |
-| `npm run e2e` | Playwright E2E (`e2e/`). 개발 서버를 4173 포트로 띄운다. 모바일 390px·데스크톱 1280px |
+| `npm run e2e` | Playwright E2E (`e2e/`). 개발 서버를 4173 포트로 띄운다. 모바일 390px·데스크톱 1280px. 접근성(axe, `a11y.spec.ts`)·키보드 완주(`keyboard.spec.ts`)·연출(`motion.spec.ts`) 포함 |
 | `npm run screenshots` | `docs/screenshots/`에 360·390·1280px × 라이트·다크 스크린샷 (JPEG) |
 
 > 명령이 바뀌면 이 표를 고친다.

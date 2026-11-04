@@ -67,7 +67,7 @@ export function ThemeToggle() {
       type="button"
       className="icon-btn theme-toggle"
       onClick={toggleTheme}
-      aria-label={dark ? '밝은 화면으로 바꾸기' : '어두운 화면으로 바꾸기'}
+      aria-label={dark ? '한지: 밝은 화면으로 바꾸기' : '먹: 어두운 화면으로 바꾸기'}
       title={dark ? '밝게' : '어둡게'}
     >
       <span className="theme-toggle__dot" aria-hidden="true" />
