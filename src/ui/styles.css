@@ -2047,3 +2047,367 @@ button {
     scroll-behavior: auto !important;
   }
 }
+
+/* ───────── 연출 (Phase 4) ─────────
+   모바일 우선. 기본 스타일이 최종 모습이고, 애니메이션은 fill-mode `both`로 시작 모습만 덮는다.
+   그래서 prefers-reduced-motion(아래 규칙)이나 `.reveal--done`(한 번 누르면 건너뛰기)으로
+   애니메이션을 없애면 곧바로 최종 화면이 된다. 도장은 인라인 rotate를 지키려고 `scale` 속성만 움직인다. */
+
+@keyframes fx-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes fx-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fx-ink {
+  /* 붓으로 이름을 써 내려가듯 왼쪽부터 번진다 */
+  from {
+    clip-path: inset(0 100% 0 0);
+    filter: blur(3px);
+    opacity: 0.4;
+  }
+  70% {
+    filter: blur(0.6px);
+  }
+}
+
+@keyframes fx-stamp {
+  0% {
+    opacity: 0;
+    scale: 1.9;
+  }
+  55% {
+    opacity: 1;
+    scale: 0.9;
+  }
+  75% {
+    scale: 1.04;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+@keyframes fx-dot {
+  from {
+    opacity: 0;
+    scale: 0.2;
+  }
+}
+
+@keyframes fx-unroll {
+  /* 세로쓰기 기록지는 오른쪽에서 왼쪽으로 펼쳐진다 */
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+}
+
+@keyframes fx-glow {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+@keyframes fx-sweep {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(110%);
+  }
+}
+
+/* 출생 공개: 해 → 이름 → 문장 → 도장 → 확률 → 나머지 */
+.reveal .regress-banner {
+  animation: fx-rise 0.5s ease-out both;
+}
+
+.reveal .birth__year {
+  animation: fx-rise 0.5s ease-out 0.15s both;
+}
+
+.reveal .birth__name {
+  animation: fx-ink 0.9s cubic-bezier(0.3, 0.6, 0.2, 1) 0.35s both;
+}
+
+.reveal .birth__sentence {
+  animation: fx-rise 0.6s ease-out 1s both;
+}
+
+.reveal .birth__seal {
+  transform-origin: 50% 50%;
+  animation: fx-stamp 0.45s ease-out 1.35s both;
+}
+
+.reveal .odds,
+.reveal .birth__family,
+.page--birth.reveal .brush-rule {
+  animation: fx-rise 0.5s ease-out 1.6s both;
+}
+
+.reveal .dots__on {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fx-dot 0.25s ease-out calc(1.7s + var(--i, 0) * 9ms) both;
+}
+
+.reveal .birth__actions {
+  animation: fx-fade 0.4s ease-out 1.8s both;
+}
+
+/* 왕족 출생: 붉은 띠, 도장 둘레로 퍼지는 빛, 하나뿐인 점이 맥박처럼 */
+.birth__rare {
+  position: relative;
+  overflow: hidden;
+  margin: -10px -6px 14px;
+  padding: 6px 10px;
+  border-top: 1.5px solid var(--seal);
+  border-bottom: 1.5px solid var(--seal);
+  color: var(--seal);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-align: center;
+}
+
+.birth--royal .birth__card {
+  border: 1.5px solid var(--seal);
+  outline: 1px solid var(--seal);
+  outline-offset: -6px;
+}
+
+.birth--royal .birth__seal {
+  top: 68px;
+}
+
+.birth--royal .birth__card::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  top: 68px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--seal);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reveal.birth--royal .birth__rare {
+  animation: fx-fade 0.5s ease-out 0.1s both;
+}
+
+.reveal.birth--royal .birth__rare::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, var(--seal-soft) 45%, rgba(255, 255, 255, 0.35) 50%, var(--seal-soft) 55%, transparent 70%);
+  transform: translateX(110%);
+  animation: fx-sweep 1.4s ease-in-out 0.4s both;
+  pointer-events: none;
+}
+
+.reveal.birth--royal .birth__card::after {
+  animation: fx-glow 1.1s ease-out 1.55s both;
+}
+
+.reveal.birth--royal .birth__seal {
+  animation-duration: 0.6s;
+}
+
+.reveal.birth--royal .dots__on {
+  animation:
+    fx-dot 0.3s ease-out 1.75s both,
+    fx-pulse 0.9s ease-in-out 2.05s 2;
+}
+
+@keyframes fx-pulse {
+  50% {
+    scale: 1.7;
+  }
+}
+
+/* 기록 엔딩: 죽음 → 기록지가 펼쳐지고 글씨가 스민 뒤 도장 */
+.reveal .ending__death {
+  animation: fx-fade 0.6s ease-out both;
+}
+
+.reveal .ending__line {
+  animation: fx-rise 0.6s ease-out 0.35s both;
+}
+
+.reveal .ending__short {
+  animation: fx-fade 0.6s ease-out 0.7s both;
+}
+
+.reveal .record__paper {
+  animation: fx-unroll 1.1s cubic-bezier(0.4, 0.1, 0.2, 1) 0.8s both;
+}
+
+.reveal .record__text {
+  animation: fx-fade 0.9s ease-out 1.2s both;
+}
+
+.reveal .record__stamp .seal {
+  animation: fx-stamp 0.45s ease-out 1.95s both;
+}
+
+.reveal .record__kind {
+  animation: fx-fade 0.4s ease-out 2.2s both;
+}
+
+.reveal .record__none {
+  animation: fx-fade 1.4s ease-out 0.8s both;
+}
+
+.page--ending.reveal .changes,
+.page--ending.reveal .epitaph,
+.page--ending.reveal .neighbors,
+.page--ending.reveal .brush-rule,
+.page--ending.reveal .ending__actions {
+  animation: fx-rise 0.5s ease-out 1.5s both;
+}
+
+.reveal.ending--recorded .changes,
+.reveal.ending--recorded .epitaph,
+.reveal.ending--recorded .neighbors,
+.reveal.ending--recorded .brush-rule,
+.reveal.ending--recorded .ending__actions {
+  animation: fx-rise 0.5s ease-out 2.3s both;
+}
+
+/* 한 번 누르거나 키를 치면 남은 연출을 건너뛴다 */
+.reveal--done,
+.reveal--done *,
+.reveal--done *::before,
+.reveal--done *::after {
+  animation: none !important;
+}
+
+/* 회귀 전환: 화면이 먹으로 덮이고, 연도가 태어난 해까지 거꾸로 흐른 뒤 걷힌다.
+   테마와 상관없이 먹빛 바탕 (글자 #f2ebdd on #110e0a, 대비 16:1) */
+.regress-fx {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px calc(24px + env(safe-area-inset-bottom));
+  background: #110e0a;
+  color: #f2ebdd;
+  text-align: center;
+  overflow: hidden;
+  animation:
+    fx-fade 0.35s ease-out both,
+    fx-out 0.4s ease-in 2.2s forwards;
+}
+
+@keyframes fx-out {
+  to {
+    opacity: 0;
+  }
+}
+
+.regress-fx__wash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 140vmax;
+  height: 140vmax;
+  margin: -70vmax 0 0 -70vmax;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(176, 50, 42, 0.28) 0%, rgba(176, 50, 42, 0.08) 35%, transparent 62%);
+  animation: fx-wash 2.6s ease-out both;
+  pointer-events: none;
+}
+
+@keyframes fx-wash {
+  from {
+    transform: scale(0.05);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+.regress-fx__body {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  max-width: 520px;
+}
+
+.regress-fx__title {
+  margin: 0;
+  font-size: 17px;
+  letter-spacing: 0.4em;
+  padding-left: 0.4em;
+  color: #e8a596;
+  animation: fx-fade 0.5s ease-out 0.15s both;
+}
+
+.regress-fx__year {
+  margin: 0;
+  font-family: 'Song Myung', 'Gowun Batang', serif;
+  font-size: clamp(64px, 22vw, 120px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  animation: fx-ink 0.7s ease-out 0.2s both;
+}
+
+.regress-fx__unit {
+  font-size: 0.32em;
+  margin-left: 0.15em;
+}
+
+.regress-fx__line {
+  margin: 6px 0 0;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #d9cdb6;
+  animation: fx-rise 0.5s ease-out 0.5s both;
+}
+
+.regress-fx__round {
+  margin: 0;
+  font-size: 14px;
+  color: #b9ac94;
+  animation: fx-fade 0.5s ease-out 0.7s both;
+}
+
+.regress-fx__skip {
+  margin-top: 18px;
+  min-height: 44px;
+  min-width: 120px;
+  padding: 0 18px;
+  font: inherit;
+  font-size: 15px;
+  color: #f2ebdd;
+  background: transparent;
+  border: 1px solid rgba(242, 235, 221, 0.45);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.regress-fx__skip:focus-visible {
+  outline: 2px solid #e8a596;
+  outline-offset: 3px;
+}

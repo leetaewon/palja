@@ -6,6 +6,7 @@ import { BrushRule, Seal, TopBar } from '../components/common';
 import { eraLabelOf } from '../lib/eras';
 import { birthSentence, deathSentence, regressionLabel, resultText } from '../lib/summary';
 import { fullName, josa, RECORD_LABEL, SCOPE_LABEL } from '../lib/text';
+import { useRevealSkip } from '../lib/motion';
 
 const EPITAPH_MAX = 40;
 
@@ -56,9 +57,10 @@ export function EndingScreen({
   const endingSources = [`records-${life.birth.eraId}`, 'life-expectancy', 'mortality-model'].filter((id) =>
     content.sources.some((s) => s.id === id),
   );
+  const [revealed] = useRevealSkip();
 
   return (
-    <div className="page">
+    <div className={`page page--ending reveal ${rec.text ? 'ending--recorded' : 'ending--unrecorded'} ${revealed ? 'reveal--done' : ''}`}>
       <TopBar back="home" title={eraLabelOf(content, life.birth.eraId)} />
       <main className="ending">
         <section className="ending__death" aria-labelledby="death-h">
