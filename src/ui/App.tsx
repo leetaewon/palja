@@ -12,6 +12,9 @@ import { CodexScreen } from './screens/CodexScreen';
 import { SourcesScreen } from './screens/SourcesScreen';
 import { AboutScreen } from './screens/AboutScreen';
 import { AppContext, type Nav, type Screen } from './context';
+import { RegressTransition, type RegressTransitionProps } from './components/RegressTransition';
+import { prefersReducedMotion } from './lib/motion';
+import { fullName } from './lib/text';
 
 function useContent(): { content: Content | null; error: string | null } {
   return useMemo(() => {
@@ -45,6 +48,7 @@ function Game({ content }: { content: Content }) {
   const [stack, setStack] = useState<Screen[]>([{ name: 'title' }]);
   const [theme, setTheme] = useState<Theme>(loadTheme);
   const [speed, setSpeedState] = useState<1 | 3>(loadSpeed);
+  const [fx, setFx] = useState<Omit<RegressTransitionProps, 'onDone'> | null>(null);
   const screen = stack[stack.length - 1];
 
   // 테마: 라이트 기본, 고른 모드는 기억 (PRD 10-1)
@@ -105,11 +109,28 @@ function Game({ content }: { content: Content }) {
     [content, nav],
   );
 
+  // 회귀 전환 연출을 띄운 뒤 출생 공개로. 움직임 줄이기 설정이면 바로 넘어간다
   const doRegress = useCallback(() => {
     if (!life) return;
-    setLife(regress(content, life));
-    nav.go({ name: 'birth' });
+    const next = regress(content, life);
+    setLife(next);
+    if (life.dead && !prefersReducedMotion()) {
+      setFx({
+        name: fullName(life.birth),
+        fromYear: life.dead.year,
+        fromAge: life.dead.age,
+        toYear: life.birth.year,
+        round: next.lifeIndex,
+      });
+    } else {
+      nav.go({ name: 'birth' });
+    }
   }, [content, life, nav]);
+
+  const endFx = useCallback(() => {
+    setFx(null);
+    nav.go({ name: 'birth' });
+  }, [nav]);
 
   const resume = useCallback(() => {
     if (!life) return;
@@ -155,5 +176,9 @@ function Game({ content }: { content: Content }) {
   }
   if (!body) body = <TitleScreen canResume={false} life={null} onNew={startNew} onResume={resume} />;
 
-  return <AppContext.Provider value={ctx}>{body}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={ctx}>
+      {fx ? <RegressTransition {...fx} onDone={endFx} /> : body}
+    </AppContext.Provider>
+  );
 }

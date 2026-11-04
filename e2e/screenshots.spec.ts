@@ -63,6 +63,11 @@ for (const width of WIDTHS) {
       await page.getByRole('button', { name: /돌아가기/ }).click();
       await page.getByRole('button', { name: /팔자 고치기/ }).click();
       await shot('regress-birth', true);
+
+      // 왕족 출생 (연출이 끝난 모습. 스크린샷은 움직임 줄이기로 찍는다)
+      await startWithSeed(page, 'royal243');
+      await setTheme(page, theme);
+      await shot('royal-birth', true);
     });
   }
 }

@@ -7,6 +7,7 @@ import { eraLabelOf } from '../lib/eras';
 import { memoryLines } from '../lib/memory';
 import { birthSentence, reignOf } from '../lib/summary';
 import { fullName, perHundred, wasNoun, WEALTH_GRADE } from '../lib/text';
+import { useRevealSkip } from '../lib/motion';
 
 export function BirthScreen({ life, onStart }: { life: LifeState; onStart: () => void }) {
   const { content, nav } = useApp();
@@ -18,9 +19,10 @@ export function BirthScreen({ life, onStart }: { life: LifeState; onStart: () =>
   const source = content.sources.find((s) => s.id === status.sourceRef);
   const regressed = life.lifeIndex > 0;
   const memories = memoryLines(content, life);
+  const [revealed] = useRevealSkip();
 
   return (
-    <div className="page">
+    <div className={`page page--birth reveal ${royal ? 'birth--royal' : ''} ${regressed ? 'birth--regressed' : ''} ${revealed ? 'reveal--done' : ''}`}>
       <TopBar back="home" title={eraLabelOf(content, b.eraId)} />
       <main className="birth">
         {regressed && (
@@ -47,6 +49,11 @@ export function BirthScreen({ life, onStart }: { life: LifeState; onStart: () =>
         )}
 
         <section className="birth__card" aria-labelledby="birth-name">
+          {royal && (
+            <p className="birth__rare" data-testid="royal-banner">
+              <span aria-hidden="true">◆</span> 100명 중 1명, 왕실의 출생 <span aria-hidden="true">◆</span>
+            </p>
+          )}
           <p className="birth__year">
             {b.year}년 {b.month}월 <span className="birth__reign">{reignOf(content, life, b.year)}</span>
           </p>
@@ -126,7 +133,17 @@ function HundredDots({ filled }: { filled: number }) {
       {Array.from({ length: 100 }, (_, i) => {
         const x = (i % 10) * 10 + 5;
         const y = Math.floor(i / 10) * 10 + 5;
-        return <circle key={i} cx={x} cy={y} r={3.3} className={i < filled ? 'dots__on' : 'dots__off'} />;
+        const on = i < filled;
+        return (
+          <circle
+            key={i}
+            cx={x}
+            cy={y}
+            r={3.3}
+            className={on ? 'dots__on' : 'dots__off'}
+            style={on ? ({ ['--i' as string]: i } as React.CSSProperties) : undefined}
+          />
+        );
       })}
     </svg>
   );

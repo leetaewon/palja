@@ -1,7 +1,7 @@
 // 660 백제 멸망 시점 콘텐츠 검사 (PRD 12장 Phase 3)
 import { describe, expect, it } from 'vitest';
 import { simulate } from '../sim/sim-lives';
-import { autoLive, createBirth, judgeRecord, regress, statusProbability } from '../src/engine/index';
+import { autoLive, createBirth, judgeRecord, regress, resolveKnowledge, statusProbability } from '../src/engine/index';
 import { content } from './helpers';
 
 const ERA = '660';
@@ -61,21 +61,33 @@ describe('660 시점 콘텐츠 최소분 (PRD 12장 Phase 3)', () => {
     expect(JSON.stringify(eraEvents)).not.toMatch(/"teach-hangul"|"war-prep"/);
   });
 
-  it('왕족·고위 관인의 지식 선택지는 나라(4단계)를 노리지 않는다 (조선 문장 기록 방지)', () => {
+  it('왕족·고위 관인의 지식 선택지는 나라(4단계)까지 노리고, 4단계 기록은 660 문장이다', () => {
+    // 통합 전에는 조선 문장 누수 때문에 3단계로 막았다. byEra가 생겨 4단계를 연다 (Phase 4)
+    let tier4 = 0;
     for (const e of eraEvents) {
       for (const c of e.choices ?? []) {
         const st = c.requires?.statuses ?? e.conditions.statuses ?? [];
         const flags = c.requires?.flags ?? [];
         for (const ef of c.effects ?? []) {
           if (ef.type !== 'knowledge') continue;
-          if (st.includes('royal') || flags.includes('high-official')) expect(ef.attempt, `${e.id}/${c.id}`).toBe(3);
-          else {
+          if (st.includes('royal') || flags.includes('high-official')) {
+            expect(ef.attempt ?? 4, `${e.id}/${c.id}`).toBeGreaterThanOrEqual(3);
+            const k = resolveKnowledge(content, ef.id, ERA);
+            const rec = (ef.attempt ?? 4) >= 4 ? k.byInfluence['4']?.record : undefined;
+            if (rec) {
+              tier4++;
+              const tpl = content.records.templates.find((t) => t.id === rec.templateId);
+              expect(tpl, `${e.id}/${c.id} → ${rec.templateId}`).toBeDefined();
+              expect(!tpl?.eras || tpl.eras.includes(ERA), `${e.id}/${c.id} → ${rec.templateId}`).toBe(true);
+            }
+          } else {
             expect(c.requires?.notStatuses ?? [], `${e.id}/${c.id}`).toContain('royal');
             expect(c.requires?.notFlags ?? [], `${e.id}/${c.id}`).toContain('high-official');
           }
         }
       }
     }
+    expect(tier4).toBeGreaterThan(0);
   });
 });
 

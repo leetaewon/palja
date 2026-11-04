@@ -138,6 +138,16 @@ export function LifeScreen({
     return () => ro.disconnect();
   }, []);
 
+  // 스크린 리더: 해가 넘어갈 때마다 그해 일어난 일을 한 번 읽어 준다 (연대기는 길어서 통째로 읽히지 않게)
+  const announce = useMemo(() => {
+    if (life.dead) return `${life.year}년, ${life.age}세. ${deathSentence({ death: life.dead, causeName: causeName(content, life.dead.cause) })}`;
+    const y = life.pending ? life.year : life.year - 1;
+    const lines = life.log.filter((e) => e.year === y).map((e) => e.text);
+    const age = y - life.birth.year;
+    if (life.log.length === 0 && !life.pending) return `${life.year}년, ${life.age}세.`;
+    return `${y}년, ${age}세. ${lines.length ? lines.join(' ') : '별일 없이 지나갔다.'}${life.pending ? ' 갈림길이 열렸습니다.' : ''}`;
+  }, [content, life]);
+
   const openSources = useCallback((ids: string[]) => nav.push({ name: 'sources', focus: ids }), [nav]);
   const status = findStatus(content, life.birth.eraId, life.statusId);
 
@@ -156,11 +166,11 @@ export function LifeScreen({
     <div className="page page--life" style={{ ['--life-top-h' as string]: `${topH}px` }}>
       <header className="life-top" ref={topRef}>
         <div className="life-top__row">
-          <button type="button" className="text-btn life-top__home" onClick={() => nav.go({ name: 'title' })} aria-label="처음 화면으로">
+          <button type="button" className="text-btn life-top__home" onClick={() => nav.go({ name: 'title' })} aria-label="처음으로">
             <span aria-hidden="true">←</span>
             <span className="desk-only"> 처음으로</span>
           </button>
-          <p className="life-top__when" aria-live="polite">
+          <p className="life-top__when">
             <span className="life-top__era">{eraLabelOf(content, life.birth.eraId)}</span>
             <span className="life-top__year" data-testid="year">
               {life.year}년
@@ -227,6 +237,10 @@ export function LifeScreen({
         </aside>
       </div>
 
+      <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {announce}
+      </p>
+
       {life.pending && <ChoiceSheet content={content} life={life} onChoose={choose} openSources={openSources} />}
     </div>
   );
@@ -260,7 +274,7 @@ function SpeedControls({
         className="speed__btn"
         onClick={() => setSpeed(speed === 1 ? 3 : 1)}
         aria-pressed={speed === 3}
-        aria-label={speed === 3 ? '빨리 감기 끄기' : '빨리 감기 (3배)'}
+        aria-label={speed === 3 ? '빠르게 ×3: 눌러서 보통 속도로' : '보통 ×1: 눌러서 빨리 감기(3배)'}
       >
         {speed === 3 ? '빠르게 ×3' : '보통 ×1'}
       </button>

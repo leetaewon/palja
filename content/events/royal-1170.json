@@ -16,13 +16,7 @@
     },
     "chance": 1,
     "text": "당신은 개경의 종실 집안에서 태어났다. 왕실의 계보에 당신의 이름이 올랐다.",
-    "effects": [
-      {
-        "type": "record",
-        "level": "jokbo",
-        "templateId": "jokbo-royal-1170"
-      }
-    ],
+    "effects": [],
     "sourceRefs": [
       "royal-1170"
     ],
