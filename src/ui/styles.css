@@ -2726,41 +2726,71 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
   background: var(--paper-2);
-  border: 2px solid var(--seal);
-  padding: 12px 16px;
+  border: 1.5px solid var(--seal);
+  padding: 10px 14px;
   border-radius: 4px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .dock__pending-text-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .dock__pending-badge {
-  display: inline-block;
-  align-self: flex-start;
-  font-size: 11.5px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
   font-weight: 700;
   color: var(--seal);
-  background: rgba(162, 44, 41, 0.1);
-  padding: 2px 6px;
-  border-radius: 2px;
+  background: rgba(162, 44, 41, 0.08);
+  border: 1px solid rgba(162, 44, 41, 0.25);
+  padding: 2px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .dock__pending-text {
   margin: 0;
   font-size: 14.5px;
   color: var(--ink);
-  line-height: 1.4;
+  line-height: 1.45;
+  word-break: keep-all;
+  flex: 1 1 auto;
 }
 
 .dock__pending-btn {
   white-space: nowrap;
   flex-shrink: 0;
+  padding: 8px 16px;
+  font-size: 14.5px;
+}
+
+@media (max-width: 640px) {
+  .dock__pending-banner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .dock__pending-text-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .dock__pending-btn {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* 현재의 마음가짐 뷰 */
@@ -2776,22 +2806,26 @@ button {
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 6px;
+  gap: 8px;
 }
 
 .current-mindset__label {
   font-size: 13px;
   font-weight: 700;
   color: var(--ink-2);
+  white-space: nowrap;
 }
 
 .current-mindset__hint {
   font-size: 12px;
   color: var(--ink-3);
+  word-break: keep-all;
 }
 
 .current-mindset__card {
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .current-mindset__child-text {
@@ -2799,12 +2833,15 @@ button {
   font-size: 14px;
   color: var(--ink-2);
   font-style: italic;
+  word-break: keep-all;
 }
 
 .current-mindset__content {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
+  min-width: 0;
+  flex-wrap: wrap;
 }
 
 .current-mindset__badge {
@@ -2815,11 +2852,14 @@ button {
   font-weight: 700;
   padding: 3px 8px;
   border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .current-mindset__desc {
   font-size: 13.5px;
   color: var(--ink-2);
+  word-break: keep-all;
 }
 
 /* 타임라인 연도 내 변곡점 기록/정하기 */
