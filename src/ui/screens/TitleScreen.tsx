@@ -39,9 +39,12 @@ export function TitleScreen({
       <main className="title">
         <section className="title__hero" aria-labelledby="game-title">
           <div className="title__brand">
-            <h1 id="game-title" className="title__name">
-              팔자
-            </h1>
+            <div className="title__names">
+              <h1 id="game-title" className="title__name">
+                팔자록
+              </h1>
+              <p className="title__sub">다시 태어나는 기록</p>
+            </div>
             <Seal text="팔자" size={60} className="title__seal" tilt={6} />
           </div>
           <p className="title__lead">

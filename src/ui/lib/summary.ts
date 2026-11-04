@@ -31,7 +31,7 @@ export function regressionLabel(lifeIndex: number): string {
 export function resultText(content: Content, life: LifeState, ending: Ending, epitaph: string): string {
   const b = life.birth;
   const lines = [
-    `「팔자」 ${eraLabelOf(content, b.eraId)} · ${regressionLabel(life.lifeIndex)}`,
+    `「팔자록」 ${eraLabelOf(content, b.eraId)} · ${regressionLabel(life.lifeIndex)}`,
     `${fullName(b)} — ${birthSentence(content, life)}`,
     deathSentence(ending),
     ending.record.text ? `남은 기록(${RECORD_LABEL[ending.record.level]}): ${ending.record.text}` : '남은 기록: 어디에도 기록되지 않았습니다.',

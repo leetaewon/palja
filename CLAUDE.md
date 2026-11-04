@@ -1,4 +1,4 @@
-# CLAUDE.md — 팔자 (가제)
+# CLAUDE.md — 팔자록
 
 > 이 저장소에서 작업하는 Claude를 위한 안내 파일이다.
 

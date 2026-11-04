@@ -31,7 +31,7 @@ export function App() {
   if (!content) {
     return (
       <main className="page page--narrow">
-        <h1 className="display">팔자</h1>
+        <h1 className="display">팔자록</h1>
         <p>게임 자료를 읽지 못했어요. 새로 고침해 보세요.</p>
         <pre className="error-detail">{error}</pre>
       </main>

@@ -1,9 +1,9 @@
-# 팔자 (가제)
+# 팔자록 — 다시 태어나는 기록
 
 **삼국에서 조선까지, 이 땅 어딘가에 무작위로 태어나 한 번의 일생을 사는 텍스트 인생 시뮬레이션.**
 죽으면 같은 삶으로 돌아가 **팔자를 고치거나**, 전혀 다른 삶으로 다시 태어납니다.
 
-▶ **플레이: https://palja-game.pages.dev** (휴대폰에서 바로 열립니다. 설치·가입 없음)
+▶ **플레이: https://palja.leetaewon.dev** (휴대폰에서 바로 열립니다. 설치·가입 없음)
 
 <p>
   <img src="docs/screenshots/birth-390-light.jpg" alt="출생 공개 화면: 이름, 태어난 해, 이 신분으로 태어날 확률 100칸 그림" width="240">
@@ -71,7 +71,7 @@ npm run e2e          # Playwright: 4개 시점 플레이, 키보드 완주, 접�
 npm run screenshots  # docs/screenshots/ 다시 찍기
 ```
 
-Node 22 (`.node-version`). 배포는 Cloudflare Pages Git 연동입니다. `main`에 병합하면 프로덕션, 브랜치·PR은 미리보기가 만들어집니다(빌드 명령 `npm run build`, 출력 `dist`). 사이트 절대 주소는 `VITE_SITE_URL` 또는 `src/site.ts` 한 곳에서 바꿉니다.
+Node 22 (`.node-version`). 배포는 Cloudflare Pages Git 연동입니다. `main`에 병합하면 프로덕션, 브랜치·PR은 미리보기가 만들어집니다(빌드 명령 `npm run build`, 출력 `dist`). 사이트 절대 주소는 `VITE_SITE_URL` 또는 `src/site.ts` 한 곳에서 바꿉니다(지금 `https://palja.leetaewon.dev`, Pages 프로젝트 `palja-game`의 사용자 설정 도메인).
 
 | 위치 | 담는 것 |
 |---|---|
