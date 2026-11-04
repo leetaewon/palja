@@ -24,6 +24,37 @@
           document.documentElement.style.colorScheme = 'dark';
         }
       } catch (e) {}
+
+      // 인앱 브라우저 감지 및 기본 브라우저 자동 전환 (세션·기록 보존)
+      (function () {
+        try {
+          var ua = navigator.userAgent || navigator.vendor || window.opera || '';
+          var isIOS = /iPhone|iPad|iPod/i.test(ua);
+          var isAndroid = /Android/i.test(ua);
+          var currentUrl = window.location.href;
+
+          // 1. 카카오톡 인앱 브라우저 (iOS & Android): 카카오 전용 외부 브라우저 호출 스킴
+          if (/KAKAOTALK/i.test(ua)) {
+            window.location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(currentUrl);
+            return;
+          }
+
+          // 2. 안드로이드 인앱 브라우저 (페이스북, 인스타그램, 네이버, 라인 등): Chrome Intent 호출
+          if (isAndroid && /FBAN|FBAV|Instagram|NAVER\(inapp|Line\//i.test(ua)) {
+            var urlNoScheme = currentUrl.replace(/^https?:\/\//, '');
+            window.location.href =
+              'intent://' +
+              urlNoScheme +
+              '#Intent;scheme=https;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;end;';
+            return;
+          }
+
+          // 3. iOS 인앱 브라우저 (페이스북, 인스타그램, 라인 등): 배너 노출 플래그 설정
+          if (isIOS && /FBAN|FBAV|Instagram|Line\//i.test(ua)) {
+            document.documentElement.dataset.inAppIos = 'true';
+          }
+        } catch (err) {}
+      })();
     </script>
   </head>
   <body>

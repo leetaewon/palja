@@ -3044,3 +3044,71 @@ button {
   margin-right: 6px;
   color: var(--ink-3);
 }
+
+/* 6. 인앱 브라우저 외부 실행 안내 배너 */
+.inapp-banner {
+  background: var(--paper-3);
+  border-bottom: 1.5px solid var(--seal);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 50;
+  padding: 8px 14px;
+}
+
+.inapp-banner__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.inapp-banner__badge {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--seal);
+  background: rgba(162, 44, 41, 0.1);
+  border: 1px solid rgba(162, 44, 41, 0.25);
+  padding: 2px 6px;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.inapp-banner__text {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--ink);
+  line-height: 1.45;
+  word-break: keep-all;
+  flex: 1 1 auto;
+}
+
+.inapp-banner__close {
+  background: none;
+  border: none;
+  font-size: 15px;
+  padding: 4px 8px;
+  color: var(--ink-2);
+  cursor: pointer;
+  line-height: 1;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.inapp-banner__close:hover {
+  background: var(--paper-2);
+  color: var(--ink);
+}
+
+@media (max-width: 600px) {
+  .inapp-banner__inner {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .inapp-banner__text {
+    font-size: 13px;
+  }
+}
