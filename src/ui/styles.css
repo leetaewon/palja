@@ -2721,74 +2721,59 @@ button {
   margin-top: 20px;
 }
 
-/* 생애의 변곡점 배너 및 타임라인 요소 */
-.dock__pending-banner {
+/* 하단 도크: 생애의 변곡점 안내 및 정하기 */
+.dock__decade {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   background: var(--paper-2);
-  border: 1.5px solid var(--seal);
-  padding: 10px 14px;
+  border: 1px solid var(--seal-tint, rgba(162, 44, 41, 0.35));
+  padding: 8px 14px;
   border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  min-height: 48px;
 }
 
-.dock__pending-text-wrap {
-  flex: 1 1 auto;
-  min-width: 0;
+.dock__decade-info {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
-}
-
-.dock__pending-badge {
-  display: inline-flex;
-  align-items: center;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--seal);
-  background: rgba(162, 44, 41, 0.08);
-  border: 1px solid rgba(162, 44, 41, 0.25);
-  padding: 2px 8px;
-  border-radius: 3px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.dock__pending-text {
-  margin: 0;
-  font-size: 14.5px;
-  color: var(--ink);
-  line-height: 1.45;
-  word-break: keep-all;
+  min-width: 0;
   flex: 1 1 auto;
 }
 
-.dock__pending-btn {
-  white-space: nowrap;
-  flex-shrink: 0;
-  padding: 8px 16px;
+.dock__decade-text {
   font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.dock__decade-btn {
+  flex-shrink: 0;
+  width: auto !important;
+  min-height: 38px !important;
+  padding: 6px 16px !important;
+  font-size: 14.5px !important;
+  white-space: nowrap;
 }
 
 @media (max-width: 640px) {
-  .dock__pending-banner {
+  .dock__decade {
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
+    gap: 8px;
     padding: 10px 12px;
   }
 
-  .dock__pending-text-wrap {
+  .dock__decade-info {
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
   }
 
-  .dock__pending-btn {
-    width: 100%;
+  .dock__decade-btn {
+    width: 100% !important;
     text-align: center;
   }
 }

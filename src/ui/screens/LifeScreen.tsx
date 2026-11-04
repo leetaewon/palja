@@ -378,16 +378,16 @@ export function LifeScreen({
                 </button>
               </div>
             ) : pendingDecadeAge !== null ? (
-              <div className="dock__pending-banner" role="alert">
-                <div className="dock__pending-text-wrap">
-                  <span className="dock__pending-badge">생애의 변곡점</span>
-                  <p className="dock__pending-text">
-                    <strong>{pendingDecadeAge}세</strong>를 맞이했습니다. 지나온 발자취를 돌아보고 앞으로의 마음가짐을 정해주세요.
-                  </p>
+              <div className="dock__decade" role="region" aria-label="생애의 변곡점">
+                <div className="dock__decade-info">
+                  <span className="badge badge--seal">생애의 변곡점</span>
+                  <span className="dock__decade-text">
+                    <strong>{pendingDecadeAge}세</strong>의 삶을 돌아보고 앞으로의 마음가짐을 가다듬습니다.
+                  </span>
                 </div>
                 <button
                   type="button"
-                  className="btn btn--primary btn--big dock__pending-btn"
+                  className="btn btn--primary dock__decade-btn dock__pending-btn"
                   onClick={() => openPendingDecade()}
                 >
                   📜 변곡점 정하기
