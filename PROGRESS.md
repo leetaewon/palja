@@ -3,13 +3,13 @@
 > 새 세션은 이 파일부터 읽는다. 작업할 때마다 갱신한다. (규칙: `CLAUDE.md`)
 
 ## 현재 상태
-- **현재 단계**: Phase 3 — 4개 시점 완성 (통합 끝, PR 검토 대기)
-- **현재 브랜치**: `phase-3-integration` (main에서 갈라짐. Phase 2 화면 + 660·1170·1800s 콘텐츠가 병합된 상태 위에서 통합)
+- **현재 단계**: Phase 4 — 완성도 (시작 전). Phase 3은 PR #6으로 main에 병합됨 (2026-11-04)
+- **현재 브랜치**: `main` (Phase 4는 `phase-4-polish` 브랜치에서)
 - **마지막 갱신**: 2026-11-03 — 기록 시점 누수·같은 해 연쇄 사건 수정, 엔진 요청 정리, 공통 사건 정리, 4개 시점 sim·E2E·근거 확인
 - 검사: `npm run test` 135개, `npm run e2e` 24개(모바일·데스크톱, 4개 시점 플레이 포함), `npm run lint`, `npm run build` 통과. `npm run sim:lives` 4개 시점 보정 목표 5개 모두 통과 (`docs/sim-report.md`)
 
 ## 다음 할 일
-1. `phase-3-integration` PR이 main에 병합되면 Cloudflare 프로덕션(https://palja-game.pages.dev)에서 휴대폰으로 4개 시점을 한 판씩 직접 해 본다. 시드 `era3`(660)·`era89`(1170)·`era27`(1592)·`era55`(1800s)는 E2E와 같은 인생이다.
+1. Cloudflare 프로덕션(https://palja-game.pages.dev)에서 휴대폰으로 4개 시점을 한 판씩 직접 해 본다. 시드 `era3`(660)·`era89`(1170)·`era27`(1592)·`era55`(1800s)는 E2E와 같은 인생이다.
 2. Phase 4 (`phase-4-polish`, PRD 12장): 연출(출생 공개·왕족 출생·회귀 전환·기록 엔딩), 접근성 점검(키보드 완주·스크린 리더 라벨), README 완성본(소개·플레이 링크·스크린샷·근거·개발 방법), 제목 후보 3개.
 3. 여유가 있으면 아래 "남은 과제"를 처리한다.
 
@@ -46,7 +46,7 @@
 - [x] 인생 도감 (신분 칸을 시점 파일 순서로)
 - [x] `sim:lives` 4개 시점 보정 목표 → `docs/sim-report.md`
 - [x] 통합: 기록 시점 필터, 같은 해 연쇄 사건, 현대 지식 시점 문장, 새 신분 마음가짐, sim 신분 표, 공통 사건 정리, 4개 시점 E2E
-- [ ] PR (`phase-3-integration`)
+- [x] PR (`phase-3-integration`, #6 병합)
 
 ### Phase 4 — 완성도
 - [ ] 연출, 접근성 점검, README 완성본, 제목 후보 3개
