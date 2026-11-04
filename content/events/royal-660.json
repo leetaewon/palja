@@ -20,11 +20,6 @@
       {
         "type": "flag",
         "set": "lineage-660"
-      },
-      {
-        "type": "record",
-        "level": "jokbo",
-        "templateId": "jokbo-660-royal"
       }
     ],
     "sourceRefs": [
