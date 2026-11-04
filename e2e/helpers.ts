@@ -17,6 +17,17 @@ export async function startWithSeed(page: Page, seed: string) {
   await expect(page.getByTestId('birth-sentence')).toBeVisible();
 }
 
+/** 테마를 설정을 통해 바꾼다 */
+export async function setTheme(page: Page, theme: 'light' | 'dark') {
+  await page.getByRole('button', { name: /설정/ }).first().click();
+  if (theme === 'dark') {
+    await page.getByRole('button', { name: /먹 \(어두운 화면\)/ }).click();
+  } else {
+    await page.getByRole('button', { name: /한지 \(밝은 화면\)/ }).click();
+  }
+  await page.getByRole('button', { name: '적용하기' }).click();
+}
+
 /** 일생을 시작하고 멈춘 뒤, 한 해씩 넘기며 갈림길은 고른다. 죽으면 멈춘다. */
 export async function liveToDeath(
   page: Page,
@@ -28,12 +39,22 @@ export async function liveToDeath(
   for (let i = 0; i < 500; i++) {
     if (await page.getByTestId('death-line').count()) return { choices };
     if (opts.stopWhen && (await opts.stopWhen())) return { choices };
+    const decadeConfirm = page.getByRole('button', { name: '이 마음으로 살아가기' });
+    if (await decadeConfirm.isVisible()) {
+      await decadeConfirm.click();
+      continue;
+    }
     const sheet = page.locator('.sheet');
     if (await sheet.count()) {
       const special = opts.prefer ? sheet.locator(`.choice--${opts.prefer}`) : null;
       if (special && (await special.count())) await special.first().click();
       else await sheet.locator('.choice').first().click();
       choices++;
+      continue;
+    }
+    const pendingBtn = page.locator('.dock__pending-btn');
+    if (await pendingBtn.isVisible()) {
+      await pendingBtn.click();
       continue;
     }
     const step = page.getByRole('button', { name: '한 해 넘기기' });

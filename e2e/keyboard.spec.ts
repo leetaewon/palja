@@ -48,7 +48,16 @@ test('키보드만으로 한 인생을 끝내고 팔자를 고친다', async ({ 
       choices++;
       continue;
     }
-    if ((await page.getByTestId('age').innerText()) === '12세') await page.keyboard.press('2'); // 마음가짐 바꾸기
+    const decadeConfirm = page.getByRole('button', { name: '이 마음으로 살아가기' });
+    if (await decadeConfirm.isVisible()) {
+      await decadeConfirm.click();
+      continue;
+    }
+    const pendingBtn = page.locator('.dock__pending-btn');
+    if (await pendingBtn.isVisible()) {
+      await pendingBtn.click();
+      continue;
+    }
     await page.keyboard.press('ArrowRight');
   }
   await expect(page.getByTestId('death-line')).toBeVisible();

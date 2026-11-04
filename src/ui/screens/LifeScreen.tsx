@@ -17,12 +17,41 @@ import { useApp } from '../context';
 import { ConfidenceTag, ThemeToggle } from '../components/common';
 import { StatBars, StatLine } from '../components/StatBars';
 import { ChoiceSheet } from '../components/ChoiceSheet';
+import { DecadeModal, MINDSET_DESC } from '../components/DecadeModal';
 import { eraLabelOf } from '../lib/eras';
 import { memoryLines } from '../lib/memory';
 import { deathSentence, regressionLabel, reignOf } from '../lib/summary';
 import { fullName, INFLUENCE_LABEL } from '../lib/text';
 
 const YEAR_MS = 3000;
+
+export interface ConfirmedDecade {
+  age: number;
+  year: number;
+  mindset: string;
+  reflection: string;
+  summary: string[];
+}
+
+export interface ViewingDecade {
+  age: number;
+  year: number;
+  mindset: string;
+  reflection?: string;
+  summary?: string[];
+  readOnly: boolean;
+}
+
+function getDecadeSummary(life: LifeState, age: number): string[] {
+  const minAge = Math.max(0, age - 10);
+  const recentLogs = life.log.filter((e) => e.age >= minAge && e.age < age && e.text);
+  if (recentLogs.length === 0) {
+    return ['큰 풍파 없이 담담하게 세월을 보냈습니다.'];
+  }
+  const events = recentLogs.filter((e) => e.kind === 'event' || e.kind === 'knowledge');
+  const pool = events.length > 0 ? events : recentLogs;
+  return pool.slice(-3).map((e) => `${e.year}년 (${e.age}세) · ${e.text}`);
+}
 
 function isTyping(t: EventTarget | null): boolean {
   const el = t as HTMLElement | null;
@@ -44,40 +73,164 @@ export function LifeScreen({
   const [mindset, setMindset] = useState(life.mindset === 'child' ? 'work' : life.mindset);
   const [panelOpen, setPanelOpen] = useState(false);
   const [hint, setHint] = useState<string | null>(null);
+
+  // 10년 주기 변곡점 관련 상태
+  const [pendingDecadeAge, setPendingDecadeAge] = useState<number | null>(null);
+  const [confirmedDecades, setConfirmedDecades] = useState<Record<number, ConfirmedDecade>>({});
+  const [viewingDecade, setViewingDecade] = useState<ViewingDecade | null>(null);
+  const decadeTimerRef = useRef<number | null>(null);
+
+  const wasPlaying = useRef(false);
   const child = life.age < CHILD_AGE;
   const prevAge = useRef(life.age);
+  const lifeRef = useRef(life);
+  lifeRef.current = life;
 
   const step = useCallback(() => {
-    if (life.dead || life.pending) return;
+    if (life.dead || life.pending || pendingDecadeAge !== null) return;
     if (life.age > CHILD_AGE) setHint(null);
     setLife(advanceYear(content, life, life.age >= CHILD_AGE ? mindset : undefined));
-  }, [content, life, mindset, setLife]);
+  }, [content, life, mindset, pendingDecadeAge, setLife]);
 
   const choose = useCallback(
     (choiceId: string) => {
       if (!life.pending) return;
-      setLife(resolveChoice(content, life, choiceId));
+      const nextLife = resolveChoice(content, life, choiceId);
+      setLife(nextLife);
+      if (nextLife.age > 0 && nextLife.age % 10 === 0 && !nextLife.dead && !confirmedDecades[nextLife.age]) {
+        setPendingDecadeAge(nextLife.age);
+        if (decadeTimerRef.current) clearTimeout(decadeTimerRef.current);
+        decadeTimerRef.current = window.setTimeout(() => {
+          const curLife = lifeRef.current;
+          if (curLife.pending) return;
+          setViewingDecade({
+            age: curLife.age,
+            year: curLife.year,
+            mindset: curLife.mindset === 'child' ? 'work' : curLife.mindset,
+            summary: getDecadeSummary(curLife, curLife.age),
+            readOnly: false,
+          });
+        }, 1800);
+      }
     },
-    [content, life, setLife],
+    [content, life, confirmedDecades, setLife],
   );
 
-  // 열 살이 되면 한 번 멈추고 마음가짐을 고르게 한다
+  // 10년 주기(10, 20, 30세...)가 되면 일시정지하고, 타임라인을 읽을 여유(1.8초)를 둔 뒤 모달을 띄운다
   useEffect(() => {
-    if (prevAge.current < CHILD_AGE && life.age >= CHILD_AGE && !life.dead) {
+    if (life.pending) return;
+    if (prevAge.current !== life.age && life.age > 0 && life.age % 10 === 0 && !life.dead) {
+      wasPlaying.current = playing;
       setPlaying(false);
-      setHint('열 살이 되었어요. 이제 해마다 마음가짐을 고를 수 있어요. 고른 뒤 다시 진행해 주세요.');
+      setPendingDecadeAge(life.age);
+
+      if (decadeTimerRef.current) clearTimeout(decadeTimerRef.current);
+      decadeTimerRef.current = window.setTimeout(() => {
+        const curLife = lifeRef.current;
+        if (curLife.pending) return;
+        setViewingDecade({
+          age: curLife.age,
+          year: curLife.year,
+          mindset: curLife.mindset === 'child' ? 'work' : curLife.mindset,
+          summary: getDecadeSummary(curLife, curLife.age),
+          readOnly: false,
+        });
+      }, 1800);
     }
     prevAge.current = life.age;
-  }, [life.age, life.dead]);
+    return () => {
+      if (decadeTimerRef.current) clearTimeout(decadeTimerRef.current);
+    };
+  }, [life.age, life.dead, life.pending, playing]);
 
-  // 자동 진행: 한 해 약 3초, 빨리 감기 3배. 갈림길·죽음에서는 멈춘다
+  const openPendingDecade = useCallback(
+    (targetAge?: number) => {
+      if (decadeTimerRef.current) clearTimeout(decadeTimerRef.current);
+      const age = targetAge ?? pendingDecadeAge ?? life.age;
+      setViewingDecade({
+        age,
+        year: life.year - (life.age - age),
+        mindset: mindset === 'child' ? 'work' : mindset,
+        summary: getDecadeSummary(life, age),
+        readOnly: false,
+      });
+    },
+    [pendingDecadeAge, life, mindset],
+  );
+
+  const openRecordedDecade = useCallback(
+    (age: number) => {
+      const rec = confirmedDecades[age];
+      if (!rec) return;
+      setViewingDecade({
+        age: rec.age,
+        year: rec.year,
+        mindset: rec.mindset,
+        reflection: rec.reflection,
+        summary: rec.summary,
+        readOnly: true,
+      });
+    },
+    [confirmedDecades],
+  );
+
+  const handleCloseDecade = useCallback(() => {
+    setViewingDecade(null);
+  }, []);
+
+  const handleConfirmDecade = useCallback(
+    (newMindset: string, reflectionText: string) => {
+      if (!viewingDecade) return;
+      const age = viewingDecade.age;
+      const year = viewingDecade.year;
+      const summary = viewingDecade.summary ?? getDecadeSummary(life, age);
+
+      setConfirmedDecades((prev) => ({
+        ...prev,
+        [age]: {
+          age,
+          year,
+          mindset: newMindset,
+          reflection: reflectionText,
+          summary,
+        },
+      }));
+
+      setMindset(newMindset);
+      setLife({
+        ...life,
+        mindset: newMindset,
+        flags: [...life.flags, `reflection:${age}:${reflectionText}`],
+      });
+
+      setPendingDecadeAge(null);
+      setViewingDecade(null);
+
+      if (wasPlaying.current) {
+        setPlaying(true);
+      }
+    },
+    [viewingDecade, life, setLife],
+  );
+
+  // 직전 해가 별일 없이 지나갔는지 여부
+  const isQuiet = useMemo(() => {
+    if (life.log.length === 0) return false;
+    const lastYear = life.year - 1;
+    const entries = life.log.filter((e) => e.year === lastYear);
+    return entries.length === 0 || entries.every((e) => !e.eventId && e.text.includes('별일 없이'));
+  }, [life.log, life.year]);
+
+  // 자동 진행: 보통 3초, 빨리 감기 3배. 별일 없는 해는 1/3로 단축. 갈림길·죽음·10년 요약/변곡점 대기에서는 멈춘다
   useEffect(() => {
-    if (!playing || life.dead || life.pending) return;
-    const t = window.setTimeout(step, YEAR_MS / speed);
+    if (!playing || life.dead || life.pending || viewingDecade || pendingDecadeAge !== null) return;
+    const delay = isQuiet ? Math.max(350, Math.round(YEAR_MS / speed / 3)) : Math.round(YEAR_MS / speed);
+    const t = window.setTimeout(step, delay);
     return () => window.clearTimeout(t);
-  }, [playing, life, speed, step]);
+  }, [playing, life.dead, life.pending, viewingDecade, pendingDecadeAge, isQuiet, speed, step]);
 
-  // 키보드: 숫자키 마음가짐/선택지, 스페이스 진행·멈춤, → 한 해 넘기기, Enter 기록 보기
+  // 키보드: 갈림길 선택지(숫자키), 스페이스 진행·멈춤, → 한 해 넘기기, Enter 기록 보기
+  // ※ 마음가짐은 타임라인에서 직접 바꿀 수 없으므로 숫자키를 제거함
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (isTyping(e.target) || e.altKey || e.ctrlKey || e.metaKey) return;
@@ -97,14 +250,11 @@ export function LifeScreen({
         }
         return;
       }
-      if (/^[1-9]$/.test(e.key) && !child) {
-        const m = mindsets[Number(e.key) - 1];
-        if (m) {
-          e.preventDefault();
-          setMindset(m.id);
-          setHint(null);
-        }
-      } else if (e.key === ' ') {
+      if (pendingDecadeAge !== null) {
+        // 변곡점 미확정 상태에서는 진행 금지
+        return;
+      }
+      if (e.key === ' ') {
         if ((e.target as HTMLElement)?.tagName === 'BUTTON') return;
         e.preventDefault();
         setPlaying((p) => !p);
@@ -115,7 +265,7 @@ export function LifeScreen({
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [life, child, mindsets, choose, step, onSeeRecord]);
+  }, [life, choose, step, onSeeRecord, pendingDecadeAge]);
 
   // 새 문장이 쌓이면 연대기 끝으로
   const endRef = useRef<HTMLDivElement>(null);
@@ -151,6 +301,8 @@ export function LifeScreen({
   const openSources = useCallback((ids: string[]) => nav.push({ name: 'sources', focus: ids }), [nav]);
   const status = findStatus(content, life.birth.eraId, life.statusId);
 
+  const isSpeedDisabled = !!life.dead || !!life.pending || pendingDecadeAge !== null;
+
   const speedControls = (
     <SpeedControls
       playing={playing}
@@ -158,7 +310,7 @@ export function LifeScreen({
       speed={speed}
       setSpeed={setSpeed}
       onStep={step}
-      disabled={!!life.dead || !!life.pending}
+      disabled={isSpeedDisabled}
     />
   );
 
@@ -192,7 +344,7 @@ export function LifeScreen({
           onClick={() => setPanelOpen((o) => !o)}
         >
           <span className="life-top__who">
-            {fullName(life.birth)} · {status.name}
+            {fullName(life.birth)} · {status.name} · {life.birth.sex === 'male' ? '남' : '여'}
           </span>
           <StatLine stats={life.stats} />
           <span className="life-top__chev" aria-hidden="true">
@@ -203,7 +355,15 @@ export function LifeScreen({
 
       <div className="life-grid">
         <main className="chronicle-col">
-          <Chronicle content={content} life={life} openSources={openSources} />
+          <Chronicle
+            content={content}
+            life={life}
+            openSources={openSources}
+            confirmedDecades={confirmedDecades}
+            pendingDecadeAge={pendingDecadeAge}
+            onOpenDecadeRecord={openRecordedDecade}
+            onOpenPendingDecade={openPendingDecade}
+          />
           <div ref={endRef} className="chronicle-end" />
           <div className="dock">
             {hint && !life.dead && (
@@ -217,16 +377,24 @@ export function LifeScreen({
                   남은 기록 보기
                 </button>
               </div>
+            ) : pendingDecadeAge !== null ? (
+              <div className="dock__decade" role="region" aria-label="생애의 변곡점">
+                <div className="dock__decade-info">
+                  <span className="badge badge--seal">생애의 변곡점</span>
+                  <span className="dock__decade-text">
+                    <strong>{pendingDecadeAge}세</strong>의 삶을 돌아보고 앞으로의 마음가짐을 가다듬습니다.
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  className="btn btn--primary dock__decade-btn dock__pending-btn"
+                  onClick={() => openPendingDecade()}
+                >
+                  📜 변곡점 정하기
+                </button>
+              </div>
             ) : (
-              <MindsetPicker
-                mindsets={mindsets}
-                value={mindset}
-                disabled={child}
-                onChange={(id) => {
-                  setMindset(id);
-                  setHint(null);
-                }}
-              />
+              <CurrentMindsetView mindset={mindset} mindsets={mindsets} child={child} />
             )}
             {!life.dead && <div className="mobile-only">{speedControls}</div>}
           </div>
@@ -242,6 +410,22 @@ export function LifeScreen({
       </p>
 
       {life.pending && <ChoiceSheet content={content} life={life} onChoose={choose} openSources={openSources} />}
+
+      {viewingDecade && (
+        <DecadeModal
+          open={!!viewingDecade}
+          onClose={handleCloseDecade}
+          content={content}
+          life={life}
+          targetAge={viewingDecade.age}
+          targetYear={viewingDecade.year}
+          initialMindset={viewingDecade.mindset}
+          initialReflection={viewingDecade.reflection}
+          savedSummary={viewingDecade.summary}
+          readOnly={viewingDecade.readOnly}
+          onConfirm={handleConfirmDecade}
+        />
+      )}
     </div>
   );
 }
@@ -282,34 +466,37 @@ function SpeedControls({
   );
 }
 
-function MindsetPicker({
+function CurrentMindsetView({
+  mindset,
   mindsets,
-  value,
-  disabled,
-  onChange,
+  child,
 }: {
+  mindset: string;
   mindsets: { id: string; name: string }[];
-  value: string;
-  disabled: boolean;
-  onChange: (id: string) => void;
+  child: boolean;
 }) {
+  const cur = mindsets.find((m) => m.id === mindset);
+  const desc = MINDSET_DESC[mindset] ?? '';
+
   return (
-    <fieldset className="mindset" disabled={disabled}>
-      <legend className="mindset__legend">
-        {disabled ? '어린 시절에는 마음가짐 없이 흘러갑니다' : '올해의 마음가짐'}
-      </legend>
-      <div className="mindset__options">
-        {mindsets.map((m, i) => (
-          <label key={m.id} className={`mindset__opt ${value === m.id && !disabled ? 'is-on' : ''}`}>
-            <input type="radio" name="mindset" value={m.id} checked={value === m.id} onChange={() => onChange(m.id)} />
-            <span className="mindset__key desk-only" aria-hidden="true">
-              {i + 1}
-            </span>
-            <span>{m.name}</span>
-          </label>
-        ))}
+    <div className="current-mindset" role="region" aria-label="현재의 마음가짐">
+      <div className="current-mindset__label-row">
+        <span className="current-mindset__label">현재의 마음가짐</span>
+        <span className="current-mindset__hint">
+          {child ? '어린 시절' : '※ 10년 주기 변곡점에서만 변경할 수 있습니다'}
+        </span>
       </div>
-    </fieldset>
+      <div className="current-mindset__card">
+        {child ? (
+          <p className="current-mindset__child-text">어린 시절에는 정해진 마음가짐 없이 자라납니다.</p>
+        ) : (
+          <div className="current-mindset__content">
+            <span className="current-mindset__badge">{cur?.name ?? mindset}</span>
+            <span className="current-mindset__desc">{desc}</span>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -348,7 +535,23 @@ function eventOf(content: Content, id?: string): EventDef | null {
   }
 }
 
-function Chronicle({ content, life, openSources }: { content: Content; life: LifeState; openSources: (ids: string[]) => void }) {
+function Chronicle({
+  content,
+  life,
+  openSources,
+  confirmedDecades,
+  pendingDecadeAge,
+  onOpenDecadeRecord,
+  onOpenPendingDecade,
+}: {
+  content: Content;
+  life: LifeState;
+  openSources: (ids: string[]) => void;
+  confirmedDecades: Record<number, ConfirmedDecade>;
+  pendingDecadeAge: number | null;
+  onOpenDecadeRecord: (age: number) => void;
+  onOpenPendingDecade: (age: number) => void;
+}) {
   const groups = groupLog(life);
   const b = life.birth;
   const region = content.eras.find((e) => e.id === b.eraId)?.regions.find((r) => r.id === b.regionId)?.name ?? '';
@@ -389,6 +592,33 @@ function Chronicle({ content, life, openSources }: { content: Content; life: Lif
                 );
               })}
             </ul>
+
+            {/* 10년 주기 변곡점 링크 또는 정하기 버튼 */}
+            {g.age > 0 && g.age % 10 === 0 && (
+              <div className="chronicle__decade-box">
+                {confirmedDecades[g.age] ? (
+                  <button
+                    type="button"
+                    className="decade-review-link"
+                    onClick={() => onOpenDecadeRecord(g.age)}
+                  >
+                    <span className="decade-review-link__icon">📜</span>
+                    <span className="decade-review-link__title">{g.age}세 생애의 변곡점 기록 보기</span>
+                    <span className="decade-review-link__badge">
+                      {content.mindsets.find((m) => m.id === confirmedDecades[g.age].mindset)?.name ?? confirmedDecades[g.age].mindset}
+                    </span>
+                  </button>
+                ) : pendingDecadeAge === g.age ? (
+                  <button
+                    type="button"
+                    className="btn btn--primary decade-pending-trigger"
+                    onClick={() => onOpenPendingDecade(g.age)}
+                  >
+                    📜 {g.age}세 생애의 변곡점 정하기
+                  </button>
+                ) : null}
+              </div>
+            )}
           </li>
         ),
       )}
@@ -415,7 +645,8 @@ function SidePanel({ content, life }: { content: Content; life: LifeState }) {
       <section className="panel__sec">
         <h2 className="label">나</h2>
         <p className="panel__who">
-          {fullName(life.birth)} <span className="panel__status">{status.name}</span>
+          {fullName(life.birth)} <span className="panel__status">{status.name}</span>{' '}
+          <span className="badge badge--sex">{life.birth.sex === 'male' ? '남성' : '여성'}</span>
         </p>
         {status.id !== born.id && <p className="hint">태어날 때 신분: {born.name}</p>}
         <StatBars stats={life.stats} />
@@ -458,3 +689,5 @@ function SidePanel({ content, life }: { content: Content; life: LifeState }) {
     </div>
   );
 }
+
+

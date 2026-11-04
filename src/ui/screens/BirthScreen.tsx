@@ -60,6 +60,10 @@ export function BirthScreen({ life, onStart }: { life: LifeState; onStart: () =>
           <h1 id="birth-name" className="birth__name">
             {fullName(b)}
           </h1>
+          <div className="birth__meta-badges">
+            <span className="badge badge--status">{status.name}</span>
+            <span className="badge badge--sex">{b.sex === 'male' ? '남성' : '여성'}</span>
+          </div>
           <p className="birth__sentence" data-testid="birth-sentence">
             {birthSentence(content, life)}
           </p>

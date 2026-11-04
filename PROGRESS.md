@@ -5,8 +5,8 @@
 ## 현재 상태
 - **제목**: 「팔자록 — 다시 태어나는 기록」 (2026-11-04 확정, 구 가제 「팔자」). 회귀 기능 이름은 그대로 "팔자 고치기"
 - **주소**: https://palja.leetaewon.dev (Pages 프로젝트 `palja-game`의 사용자 설정 도메인). 예전 주소 palja-game.pages.dev도 계속 열린다
-- **현재 단계**: PRD 12장 Phase 1~4 모두 main 병합 (Phase 4는 PR #7)
-- **마지막 갱신**: 2026-11-04 — 제목과 사이트 주소 변경 (`rename-palja-rok`)
+- **현재 단계**: PRD 12장 Phase 1~4 모두 main 병합, UX·가독성·생애 변곡점 개선 완료
+- **마지막 갱신**: 2026-11-04 — 가독성 고대비화, UX 설정 모달, Hero 밸런스, 성별 뱃지, 템포 가속, 10년 요약·소회 모달, 묘비 추천, 엔딩 연대기 및 도감 서고 지원
 - 검사: `npm run test`, `npm run e2e`, `npm run lint`, `npm run build` 통과. `npm run sim:lives` 4개 시점 보정 목표 5개 모두 통과
 
 ## 다음 할 일

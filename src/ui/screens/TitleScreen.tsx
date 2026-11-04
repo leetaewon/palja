@@ -47,37 +47,39 @@ export function TitleScreen({
             </div>
             <Seal text="팔자" size={60} className="title__seal" tilt={6} />
           </div>
-          <p className="title__lead">
-            삼국에서 조선까지, 이 땅 어딘가에 무작위로 태어나 한 번의 일생을 삽니다. 죽으면 <strong>팔자를 고치러</strong> 같은 삶으로
-            돌아가거나, 전혀 다른 삶으로 다시 태어납니다.
-          </p>
-        </section>
+          <div className="title__hero-main">
+            <p className="title__lead">
+              삼국에서 조선까지, 이 땅 어딘가에 무작위로 태어나 한 번의 일생을 삽니다. 죽으면 <strong>팔자를 고치러</strong> 같은 삶으로
+              돌아가거나, 전혀 다른 삶으로 다시 태어납니다.
+            </p>
 
-        <nav className="title__menu" aria-label="시작 메뉴">
-          <button type="button" className="btn btn--primary btn--big" onClick={() => onNew()}>
-            새 환생
-          </button>
-          {canResume && life && (
-            <button type="button" className="btn btn--big" onClick={onResume}>
-              이어하기
-              <span className="btn__sub">
-                {fullName(life.birth)} · {eraLabelOf(content, life.birth.eraId)} · {life.dead ? '기록을 볼 차례' : `${life.age}세`} ·{' '}
-                {regressionLabel(life.lifeIndex)}
-              </span>
-            </button>
-          )}
-          <div className="title__minor">
-            <button type="button" className="btn" onClick={() => nav.push({ name: 'codex' })}>
-              인생 도감
-            </button>
-            <button type="button" className="btn" onClick={() => nav.push({ name: 'sources' })}>
-              근거 보기
-            </button>
-            <button type="button" className="btn" onClick={() => nav.push({ name: 'about' })}>
-              이 게임에 대하여
-            </button>
+            <nav className="title__menu" aria-label="시작 메뉴">
+              <button type="button" className="btn btn--primary btn--big" onClick={() => onNew()}>
+                새 환생
+              </button>
+              {canResume && life && (
+                <button type="button" className="btn btn--big" onClick={onResume}>
+                  이어하기
+                  <span className="btn__sub">
+                    {fullName(life.birth)} · {eraLabelOf(content, life.birth.eraId)} · {life.dead ? '기록을 볼 차례' : `${life.age}세`} ·{' '}
+                    {regressionLabel(life.lifeIndex)}
+                  </span>
+                </button>
+              )}
+              <div className="title__minor">
+                <button type="button" className="btn" onClick={() => nav.push({ name: 'codex' })}>
+                  인생 도감
+                </button>
+                <button type="button" className="btn" onClick={() => nav.push({ name: 'sources' })}>
+                  근거 보기
+                </button>
+                <button type="button" className="btn" onClick={() => nav.push({ name: 'about' })}>
+                  이 게임에 대하여
+                </button>
+              </div>
+            </nav>
           </div>
-        </nav>
+        </section>
 
         <BrushRule />
 
