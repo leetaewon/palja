@@ -67,3 +67,12 @@
 | `npm run screenshots` | `docs/screenshots/`에 360·390·1280px × 라이트·다크 스크린샷 (JPEG) |
 
 > 명령이 바뀌면 이 표를 고친다.
+
+<!-- cloudflare-pages-skill:start -->
+## 배포 및 프리뷰 (Cloudflare Pages)
+
+- 이 프로젝트는 Cloudflare Pages로 배포된다. 프로젝트명: `palja-game`, production 브랜치: `main`.
+- 기능 추가·개선은 `feature/*` 브랜치에서 작업하고 PR을 만든다 (main 직접 작업 금지).
+- PR을 만든 뒤에는 `cloudflare-pages` 스킬로 프리뷰 URL(브랜치 URL과 배포 해시 URL)을 확인해 함께 보고한다.
+- 스킬을 쓸 수 없으면 PR의 Cloudflare 봇 코멘트에서 두 URL을 직접 확인한다.
+<!-- cloudflare-pages-skill:end -->
